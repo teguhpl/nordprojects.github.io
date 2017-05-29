@@ -1,5 +1,3 @@
----
----
 <!DOCTYPE HTML>
 <html lang="en-GB">
 <head>
@@ -27,7 +25,146 @@
     <div style="position:absolute;
                 left:0;top:0;right:0;bottom:0;
                 z-index: -1;">
-      {% include colorsbackground.html %}
+      <div id="colors-background">
+</div>
+
+<style>
+  #colors-background {
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+  }
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/threejs/r76/three.min.js"></script>
+
+<script id="vertexShader" type="x-shader/x-vertex">
+  varying vec2 vUv; 
+  uniform float uTime;
+
+  void main()
+  {
+      vUv = uv;
+
+      vec4 mvPosition = modelViewMatrix * vec4(position, 1.0 );
+      gl_Position = projectionMatrix * mvPosition;
+  }
+</script>
+
+<script id="fragmentShader" type="x-shader/x-fragment">
+  varying vec2 vUv;
+  uniform float uTime;
+
+  void main()
+  {
+      vec2 uv = vUv;
+      vec4 color = vec4(uv, 0.5+0.5*sin(uTime*0.4), 1.0);
+      
+      color.xyz *= 0.3;
+      color.xyz += 0.8;
+      gl_FragColor = color;
+  }
+
+</script>
+
+<script>
+  function webGLSupported () {
+    try {
+      var canvas = document.createElement( 'canvas' )
+      return !!(window.WebGLRenderingContext && (canvas.getContext('webgl')
+                                                 || canvas.getContext('experimental-webgl')))
+    }
+    catch (err) {
+      return false
+    }
+  }
+
+  var container, renderer, camera, scene, uniforms, clock, render_width, render_height
+
+  if (webGLSupported()) {
+    init()
+    animate()
+  }
+
+  function init () {
+    'use strict'
+    container = document.getElementById('colors-background')
+    render_width = container.offsetWidth
+    render_height = container.offsetHeight
+
+    clock = new THREE.Clock()
+
+    // CAMERA
+
+    camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+
+    // SCENE
+
+    scene = new THREE.Scene()
+
+    var vertexShader = document.getElementById('vertexShader').textContent
+    var fragmentShader = document.getElementById('fragmentShader').textContent
+
+    // SHADER
+
+    uniforms = {
+      'uTime': {value: 0.0},
+    }
+
+    var material = new THREE.ShaderMaterial({
+      uniforms: uniforms,
+      vertexShader: vertexShader,
+      fragmentShader: fragmentShader,
+      lights: false,
+      fog: false,
+    })
+
+    // TERRAIN MESH
+
+    var planeGeometry = new THREE.PlaneGeometry(2, 2);
+    var terrain = new THREE.Mesh(planeGeometry, material)
+    terrain.visible = true
+    scene.add(terrain)
+
+    // RENDERER
+
+    renderer = new THREE.WebGLRenderer({ antialias: false })
+    renderer.setClearColor(0xffffff)
+    renderer.setPixelRatio(window.devicePixelRatio)
+    renderer.setSize(render_width, render_height)
+    container.appendChild(renderer.domElement)
+
+    // EVENTS
+
+    onWindowResize()
+
+    window.addEventListener('resize', onWindowResize, false)
+  }
+
+  function onWindowResize (event) {
+    render_width = container.offsetWidth
+    render_height = container.offsetHeight
+
+    renderer.setSize(render_width, render_height)
+
+    camera.aspect = render_width / render_height
+    camera.updateProjectionMatrix()
+  }
+
+  function animate () {
+    requestAnimationFrame(animate)
+
+    render()
+  }
+
+  function render () {
+    var delta = clock.getDelta()
+
+    uniforms['uTime'].value += delta;
+
+    renderer.render(scene, camera)
+  }
+</script>
+
     </div>
     <div class="margins" style="text-align: center;
                                 display: flex;
