@@ -30,10 +30,18 @@
   void main()
   {
       vec2 uv = vUv;
-      vec4 color = vec4(uv, 0.5+0.5*sin(uTime*0.4), 1.0);
-      
-      color.xyz *= 0.3;
-      color.xyz += 0.8;
+      vec4 color = vec4(uv, 0.5, 1.0);
+      // color.r += 0.5 * sin(uTime*0.3);
+      color.b += 0.5 * sin(uTime*0.4);
+
+      // vec3 colors[4] = vec3[]
+
+      float whiteness = length(color.xyz);
+
+      color.xyz -= 0.5*vec3(whiteness);
+
+      color.xyz *= vec3(0.18, 0.18, 0.18);
+      color.xyz += vec3(0.94, 0.95, 0.94);
       gl_FragColor = color;
   }
 
