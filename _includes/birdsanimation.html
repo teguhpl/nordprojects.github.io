@@ -99,7 +99,7 @@
         vec3 central = vec3( 0., 0., 0. );
         dir = selfPosition - central;
         dist = length( dir );
-        dir.y *= 2.5;
+        dir.y *= 1.5;
         velocity -= normalize( dir ) * delta * 8.;
         for (float y=0.0;y<height;y++) {
             for (float x=0.0;x<width;x++) {
