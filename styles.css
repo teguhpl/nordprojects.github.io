@@ -1,12 +1,24 @@
 
 /* GLOBAL */
 
+@font-face {
+  font-family: 'Apercu';
+  src: url('fonts/Apercu-Medium.eot');
+  src: url('fonts/Apercu-Medium.eot?#iefix') format('embedded-opentype'),
+    url('fonts/Apercu-Medium.woff') format('woff'),
+    url('fonts/Apercu-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* We love making thing: */
+
 body {
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 20px;
-  font-weight: 300;
-  line-height: 1.42857143;
-  color: #333;
+  font-family: Apercu-Medium;
+  font-size: 22px;
+  color: #373737;
+  letter-spacing: 0;
+  line-height: 28px;
 }
 
 .margins {
