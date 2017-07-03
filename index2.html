@@ -32,12 +32,12 @@
 
   <div class="section"
        style="height: 90vh;
-              min-height: 300px;
               max-height: 600px;
               position: relative;
-              background-image: radial-gradient(circle farthest-corner at 71% 100%,
-                                                #F2E7EA 0%,
-                                                #E2EEFF 100%);">
+              overflow: hidden;
+              background-image: radial-gradient(circle at 80% 130%, 
+                                              rgba(242,231,234,1) 0%, 
+                                              rgba(226,238,255,1) 100%);">
 
     {% include gpuparticlesanimation.html %}
 
@@ -47,14 +47,26 @@
                                 height: 100%;
                                 padding-top: 2em;
                                 position: relative;
-                                zIndex: 1">
-
-      <img src="img/nord-logo.svg" style="width: 284px"/>
-      <p style="margin-top: 2em">
-        We create meaningful products <br>
-        with good design and new <br>
-        technology.
-      </p>
+                                zIndex: 1;
+                                max-width: 930px;">
+      <div class="hidden-xs">
+        <img src="img/nord-logo.svg" style="width: 284px"/>
+        <p style="margin-top: 2em; font-size: 26px">
+          We create meaningful products <br>
+          with good design and new <br>
+          technology.
+        </p>
+      </div>
+      <div class="visible-xs-block" style="text-align: center; padding: 0 10px;">
+        <div style="height: 26vh"></div>
+        <img src="img/nord-logo-centered.svg" />
+        <div style="height: 10vh"></div>
+        <p style="margin-top: 1em; font-size: 23px">
+          We create meaningful products
+          with good design and new
+          technology.
+        </p>
+      </div>
     </div>
   </div>
 
@@ -74,13 +86,14 @@
   <div class="section">
     <div class="margins-narrow"
           style="display: flex;
-                 height: 430px;
+                 min-height: 430px;
                  justify-content: center;
                  flex-direction: column;">
-      <h1>Hi we’re Nord Projects.</h1>
+      <h2>Hi! We’re Nord Projects.</h2>
       <p>
         We’re a design and technology consultancy. We work like a startup to build products that delight customers and solve real business problems.
       </p>
+      <div class="spacer hidden-xs" style="height: 30px"></div>
     </div>
   </div>
 
@@ -106,37 +119,57 @@
       </p>
     </div>
   </div>
+  <style>
+    .work-on-item {
+      max-width: 255px;
+      margin: 0 auto;
+      line-height: 1.44;
+    }
+    .work-on-item h3 {
+      margin-top: 14px;
+      margin-bottom: 7px;
+    }
+  </style>
   <div class="section" style="margin-top: 45px;">
     <div class="margins">
       <div class="row"
            style="text-align: center;
                   font-size: 0.8em">
         <div class="col-sm-4">
-          <div style="background: url(/img/icon-strategy.svg) center no-repeat;
-                      background-size: 80px auto;
-                      height: 120px;">
+          <div class="work-on-item">
+            <div style="background: url(/img/icon-strategy.svg) center no-repeat;
+                        background-size: 76px auto;
+                        height: 120px;">
+            </div>
+            <h3>Strategy</h3>
+            <p>
+              Transform user needs and business goals into a compelling proposition.
+            </p>
           </div>
-          <p>
-            <b>Strategy</b><br> Transform user needs and business goals into a compelling proposition.
-          </p>
         </div>
         <div class="col-sm-4">
-          <div style="background: url(/img/icon-design.svg) center no-repeat;
-                      background-size: 80px auto;
-                      height: 120px">
+          <div class="work-on-item">
+            <div style="background: url(/img/icon-design.svg) center no-repeat;
+                        background-size: 78px auto;
+                        height: 120px">
+            </div>
+            <h3>Design</h3>
+            <p>
+              Create meaningful products with a beautiful look and a wonderful feel.
+            </p>
           </div>
-          <p>
-            <b>Design</b><br> Create meaningful products with a beautiful look and a wonderful feel.
-          </p>
         </div>
         <div class="col-sm-4">
-          <div style="background: url(/img/icon-development.svg) center no-repeat;
-                      background-size: 80px auto;
-                      height: 120px">
+          <div class="work-on-item">
+            <div style="background: url(/img/icon-development.svg) center no-repeat;
+                        background-size: 95px auto;
+                        height: 120px">
+            </div>
+            <h3>Development</h3>
+            <p>
+              Build technology and provide a codebase that's an asset to your business.
+            </p>
           </div>
-          <p>
-            <b>Development</b><br> Build technology and provide a codebase that's an asset to your business.
-          </p>
         </div>
       </div>
     </div>
@@ -158,39 +191,42 @@
 
 {% endcomment %}
 
-  <div class="section" style="background-image: linear-gradient(165deg, #6E91F7 0%, #35AFF7 100%);">
-    <div class="margins" style="padding-top: 20px;
-                                padding-bottom: 60px" >
+  <style>
+    .big-names-logo {
+      margin: 25px 25px;
+    }
+    @media (max-width: 768px) {
+      .big-names-logo {
+        display: block;
+        margin: 25px auto;
+      }
+    }
+  </style>
+
+  <div class="section" style="margin-top: 100px;
+                              background-image: linear-gradient(165deg, #6E91F7 0%, #35AFF7 100%);
+                              text-align: center;">
+    <div class="margins" style="padding-top: 30px;
+                                padding-bottom: 64px" >
       <h2 style="color: #FFFFFF; 
-                 text-align: center;
                  width: 100%;
                  margin-top: 1em;
-                 margin-bottom: 1em;">
+                 margin-bottom: 1em;
+                 font-size: 34px;">
         We work with big names like...
       </h2>
-      <br>
-      <div class="row vertical-align">
-        <div class="col-md-2 col-md-offset-1">
-          <img src="img/logos/google.png">
-        </div>
-        <div class="col-md-2">
-          <img src="img/logos/samsung.png">
-        </div>
-        <div class="col-md-2">
-          <img src="img/logos/nhs.png">
-        </div>
-        <div class="col-md-2">
-          <img src="img/logos/btsport.png">
-        </div>
-        <div class="col-md-2">
-          <img src="img/logos/nectar.png">
-        </div>
+      <div>
+        <img class="big-names-logo" src="img/logos/google.png">
+        <img class="big-names-logo" src="img/logos/samsung.png">
+        <img class="big-names-logo" src="img/logos/nhs.png">
+        <img class="big-names-logo" src="img/logos/btsport.png">
+        <img class="big-names-logo hidden-xs" src="img/logos/nectar.png">
       </div>
     </div>
   </div>
 
   <div class="section">
-    <div class="margins" >
+    <div class="margins">
       <h2 style="text-align: center;
                  width: 100%;
                  margin-top: 3em;
@@ -213,16 +249,21 @@
 {% endcomment %}
 
   <style>
-  .link-button {
-    background: #FFFFFF;
-    border: 2px solid #000000;
-    box-shadow: -3px 3px 0 0 #000000;
-    padding: 10px 20px;
-  }
+    .link-button {
+      background: #FFFFFF;
+      border: 2px solid #000000;
+      box-shadow: -3px 3px 0 0 #000000;
+      padding: 10px 20px;
+      color: inherit;
+    }
+    .link-button:hover {
+      text-decoration: none;
+      color: inherit;
+    }
   </style>
 
   <div class="section" style="margin-top: 30px;">
-    <div class="margins">
+    <div class="margins-wide">
 
       <div class="row text-center">
         <div class="col-sm-6">
@@ -233,8 +274,8 @@
               background-position: center;">
             </div>
           <img src="/img/tingbotlogo.svg"
-               style="max-width: 94px;
-                      margin-top: 30px;
+               style="max-width: 147px;
+                      margin-top: 50px;
                       margin-bottom: 20px;
                       height: 50px;"/>
           <p>
@@ -256,8 +297,8 @@
             background-position: center;">
           </div>
           <img src="/img/miximlogo.svg"
-               style="max-width: 94px;
-                      margin-top: 30px;
+               style="max-width: 159px;
+                      margin-top: 50px;
                       margin-bottom: 20px;
                       height: 50px;"/>
           <p>
@@ -340,21 +381,37 @@
 {% endcomment %}
   <div class="section" style="background-color: #353535; 
                               color: white;
-                              padding-top: 20px;
-                              padding-bottom: 20px;">
+                              padding-top: 75px;
+                              padding-bottom: 25px;">
     <div class="margins-narrow">
       <p>
-        We like meeting new people, potential collaborations and the prospect of new exciting work. If you have an enquiry relating to any of these please get in touch.<br>👇
+        We like meeting new people, potential collaborations and the prospect of new exciting work. If you have an enquiry relating to any of these please get in touch.<br><br>👇
       </p>
 
       <p>
-        <a href="mailto:hello@nordprojects.co" style="color: #FFFFFF; text-decoration: none;">
+        <a href="mailto:hello@nordprojects.co" style="color: #FFFFFF;
+                                                      text-decoration: none;
+                                                      padding-bottom: 5px;
+                                                      background:
+                                                        linear-gradient(
+                                                          to right, 
+                                                          #7FB5FF,
+                                                          #5FFFE9 100%)
+                                                        left 
+                                                        bottom
+                                                        transparent
+                                                        no-repeat; 
+                                                      background-size:100% 2px;">
           hello@nordprojects.co
         </a>
       </p>
 
-      <p style="font-size: 0.8em; opacity: 0.44;">
-        ©Copyright Nord Projects Ltd 2017
+      <p style="margin-top: 90px;
+                margin-bottom: 0;
+                font-size: 0.8em;
+                opacity: 0.44;
+                text-align: center;">
+        Copyright Nord Projects 2017
       </p>
     </div>
   </div>

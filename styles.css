@@ -19,19 +19,30 @@ body {
   color: #373737;
   letter-spacing: 0;
   line-height: 28px;
+  -webkit-font-smoothing: antialiased;
 }
 
 .margins {
-  max-width: 980px;
+  max-width: 1040px;
   padding: 0 50px;
   margin: 0 auto;
+}
+.margins-narrow {
+  max-width: 700px;
+  padding: 0 50px;
+  margin: 0 auto;
+}
+.margins-wide {
+  max-width: 1160px;
+  padding: 0 50px;
+  margin: 0 auto;
+}
+@media (max-width: 768px) {
+  .margins, .margins-narrow, .margins-wide {
+    padding: 0 20px;
+  }
 }
 
-.margins-narrow {
-  max-width: 780px;
-  padding: 0 50px;
-  margin: 0 auto;
-}
 .text-center-xs {
   text-align: center;
 }
