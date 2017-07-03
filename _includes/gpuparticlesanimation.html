@@ -163,7 +163,7 @@ void main() {
 varying vec4 color;
 
 void main() {
-    gl_FragColor = vec4(color.rgb * 1.0, 1.0) * 1.0;
+    gl_FragColor = color;
 }
 </script>
 
@@ -200,10 +200,12 @@ void main() {
     color = vec4(clamp(p.x, -0.5, 1.0) * color1 +
                  clamp(1.0-p.x, -0.5, 1.0) * color2,
                  1.0);
-
     
-    color *= clamp(p.y * 0.5, -1.0, 0.0) + 1.0;
-    color += clamp(p.y * 0.5, 0.0, 1.0);
+    color.rgb *= clamp(p.y * 0.5, -1.0, 0.0) + 1.0;
+    color.rgb += clamp(p.y * 0.5, 0.0, 1.0);
+
+    float opacity = clamp(time * 0.5, 0.0, 1.0);
+    color.a *= opacity;
 
     gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
     gl_PointSize = pointSize;
@@ -270,7 +272,6 @@ void main() {
         pos += vel * dt;
         gl_FragColor = vec4(comp(pos), p.w);
     }
-
 }
 </script>
 
