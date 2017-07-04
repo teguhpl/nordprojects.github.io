@@ -340,7 +340,7 @@ void main() {
                     antialias: true,
                 });
 
-                renderer.setPixelRatio(0.5);
+                renderer.setPixelRatio(1.0);
                 renderer.setSize(domWidth, domHeight);
                 $dom.append(renderer.domElement);
 
@@ -462,7 +462,7 @@ void main() {
                     new THREE.ShaderMaterial({
                         uniforms : {
                             positionTex         : { type : "t", value : fboPositionPP.getReadBuffer() },
-                            pointSize           : { type : "f",     value : 1 },
+                            pointSize           : { type : "f",     value : 2.5 },
                             scale               : scale,
                             time                : time,
                             px                  : { type : "f",     value : 1 / size }
