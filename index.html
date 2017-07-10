@@ -96,13 +96,60 @@
     </div>
   </div>
 
-  <div style="height: 60vw;
-              max-height: 400px;
-              background-image: url(img/sync-app.jpg);
-              background-size: cover;
-              background-position: center;">
+  <div class="iphone-banner-container">
+    <div class="iphone-banner">
+      <video autoplay loop muted playsinline
+             style="">
+        <source src="img/iphone.mp4" type="video/mp4">
+        <source src="img/iphone.webm" type="video/webm">
+      </video>
+    </div>
   </div>
-
+  <style>
+    .iphone-banner-container {
+      height: 400px;
+      background-color: #ceced0;
+      position: relative;
+      overflow: hidden;
+    }
+    .iphone-banner {
+      width: 1440px;
+      height: 400px;
+      position: absolute;
+      left: calc(50% - 720px);
+      top: calc(50% - 200px);
+      background-image: url(img/sync-app.jpg);
+      background-size: 100% auto;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    .iphone-banner video {
+      height: 400px;
+      width: 400px;
+      position: absolute;
+      top: 0;
+      left: 520px;
+    }
+    @media (max-width: 768px) {
+      .iphone-banner-container {
+      height: 338px;
+      }
+      .iphone-banner {
+        width: 782px;
+        height: 338px;
+        background-image: url(img/sync-app-mobile.jpg);
+        left: calc(50% - 391px);
+        top: calc(50% - 169px);
+      }
+      .iphone-banner video {
+        height: 270px;
+        width: 270px;
+        position: absolute;
+        top: 55px;
+        left: 200px;
+      }
+    }
+  </style>
   <div class="section" style="margin-top: 45px;">
     <div class="margins-narrow">
       <p>
