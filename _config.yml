@@ -13,15 +13,15 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Tingbot
-email: hello@tingbot.com
+title: Nord Projects
+email: joe@nordprojects.co
 description: > # this means to ignore newlines until "baseurl:"
-  Make cool apps and learn to code with Tingbot: the creative app
-  platform for the Raspberry Pi.
+  We're a design and technology consultancy. We work like a startup to build
+  products that delight customers and solve real business problems.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://tingbot.com" # the base hostname & protocol for your site
-twitter_username: tingbot
-github_username: tingbot
+url: "http://nordprojects.co" # the base hostname & protocol for your site
+twitter_username: nordprojects
+github_username: nordprojects
 
 # Build settings
 markdown: kramdown
@@ -37,13 +37,11 @@ permalink: /blog/:year/:month/:day/:title.html
 
 # social
 twitter:
-  username: thetingbot
-facebook:
-  app_id: 1642387226047001
-defaults:
-  - scope:
-      path: ""
-    values:
-      image:
-        twitter: /images/twitter-image.png
-        facebook: /images/facebook-image.png
+  username: nordprojects
+# defaults:
+#   - scope:
+#       path: ""
+#     values:
+#       image:
+#         twitter: /images/twitter-image.png
+#         facebook: /images/facebook-image.png
