@@ -341,7 +341,10 @@ void main() {
                     antialias: true,
                 });
 
-                renderer.setPixelRatio(1.0);
+                var pixelRatio = window.devicePixelRatio ? window.devicePixelRatio : 1.0;
+                // renderer.setPixelRatio(1.0);
+                renderer.setPixelRatio(pixelRatio);
+
                 renderer.setSize(domWidth, domHeight);
                 $dom.append(renderer.domElement);
 
@@ -463,7 +466,7 @@ void main() {
                     new THREE.ShaderMaterial({
                         uniforms : {
                             positionTex         : { type : "t", value : fboPositionPP.getReadBuffer() },
-                            pointSize           : { type : "f",     value : 2.5 },
+                            pointSize           : { type : "f",     value : 2.5*pixelRatio },
                             scale               : scale,
                             time                : time,
                             px                  : { type : "f",     value : 1 / size }
