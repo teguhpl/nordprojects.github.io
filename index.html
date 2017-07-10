@@ -62,8 +62,9 @@
         <img src="img/nord-logo-centered.svg" />
         <div style="height: 10vh"></div>
         <p style="margin-top: 1em; font-size: 23px">
-          We use design and technology
-          to create meaningful products.
+          We use design and <br>
+          technology to create <br>
+          meaningful products.
         </p>
       </div>
     </div>
@@ -82,14 +83,22 @@
                                                                                                    
 {% endcomment %}
 
+  <style>
+    @media (max-width: 768px) {
+      p.mobile-line {
+        line-height: 32px;
+      }
+    }
+  </style>
+
   <div class="section">
     <div class="margins-narrow"
           style="display: flex;
-                 min-height: 430px;
                  justify-content: center;
                  flex-direction: column;">
+      <div class="spacer hidden-xs" style="height: 40px"></div>
       <h2>Hi! We’re Nord Projects.</h2>
-      <p>
+      <p class="mobile-line">
         We’re a design and technology consultancy. We work like a startup to build products that delight customers and solve real business problems.
       </p>
       <div class="spacer hidden-xs" style="height: 40px"></div>
@@ -149,18 +158,31 @@
         left: 200px;
       }
     }
+  
+    @media (max-width: 768px) {
+        .mobile-margin {
+            margin-top: 35px;
+        }
+        p.mobile-line-small {
+            line-height: 30px;
+        }
+    }
+    
+    @media (min-width: 768px) {
+        .mobile-margin {
+            margin-top: 45px;
+        }
+    }
   </style>
-  <div class="section" style="margin-top: 45px;">
+  <div class="section mobile-margin">
     <div class="margins-narrow">
-      <p>
+      <p class="mobile-line-small">
         We love making things.
-      </p>
-
-      <p>
+      <br>
+      <br>
         We’ve been working together since 2012 on projects like Tingbot and Mixim. These are the projects we love best - where great design and solid engineering make the complex simple.
-      </p>
-
-      <p>
+      <br>
+      <br>
         We work across mobile, web and connected devices. We like to work on:
       </p>
     </div>
@@ -175,6 +197,14 @@
       margin-top: 14px;
       margin-bottom: 7px;
     }
+
+    @media (max-width: 768px) {
+      .mobile-design-fix {
+        position: relative;
+        top: 10px;
+      }
+    }
+
   </style>
   <div class="section" style="margin-top: 45px;">
     <div class="margins">
@@ -195,9 +225,10 @@
         </div>
         <div class="col-sm-4">
           <div class="work-on-item">
-            <div style="background: url(/img/icon-design.svg) center no-repeat;
+            <div class="mobile-design-fix" 
+                 style="background: url(/img/icon-design.svg) center no-repeat;
                         background-size: 78px auto;
-                        height: 120px">
+                        height: 120px;">
             </div>
             <h3>Design</h3>
             <p>
@@ -241,45 +272,83 @@
     .big-names-logo {
       margin: 25px 25px;
     }
+
+    .big-names-blue {
+        margin-top: 112px;
+    }
+
+    .big-names-margin {
+      padding-bottom: 64px;
+    }
+
     @media (max-width: 768px) {
       .big-names-logo {
         display: block;
-        margin: 25px auto;
+        margin: 28px auto;
+      }
+
+      .big-names-blue {
+        margin-top: 60px;
+      }
+
+      .big-names-margin {
+        padding-bottom: 40px;
       }
     }
   </style>
 
-  <div class="section" style="margin-top: 112px;
-                              background-image: linear-gradient(165deg, #6E91F7 0%, #35AFF7 100%);
+  <div class="section big-names-blue" style="background-image: linear-gradient(165deg, #6E91F7 0%, #35AFF7 100%);
                               text-align: center;">
-    <div class="margins" style="padding-top: 30px;
-                                padding-bottom: 64px" >
-      <h2 style="color: #FFFFFF; 
+    <div class="margins big-names-margin" style="padding-top: 30px;" >
+      <h2 class="hidden-xs" style="color: #FFFFFF; 
                  width: 100%;
                  margin-top: 27px;
                  margin-bottom: 27px;
                  font-size: 34px;">
         We work with big names like...
       </h2>
+
+      <h2 class="visible-xs" style="color: #FFFFFF; 
+                 width: 100%;
+                 margin-top: 24px;
+                 margin-bottom: 30px;
+                 font-size: 28px;
+                 line-height: 30px;">
+        We work with big<br>
+        names like...
+      </h2>
       <div>
-        <img class="big-names-logo" src="img/logos/google.svg">
-        <img class="big-names-logo" src="img/logos/samsung.svg">
-        <img class="big-names-logo" src="img/logos/nhs.svg">
-        <img class="big-names-logo" src="img/logos/bt-sport.svg">
+        <img class="big-names-logo hidden-xs" src="img/logos/google.svg">
+        <img class="big-names-logo hidden-xs" src="img/logos/samsung.svg">
+        <img class="big-names-logo hidden-xs" src="img/logos/nhs.svg">
+        <img class="big-names-logo hidden-xs" src="img/logos/bt-sport.svg">
         <img class="big-names-logo hidden-xs" src="img/logos/nectar.svg">
+
+        <img class="big-names-logo visible-xs" style="height: 36px" src="img/logos/google.svg">
+        <img class="big-names-logo visible-xs" style="height: 41px" src="img/logos/samsung.svg">
+        <img class="big-names-logo visible-xs" style="height: 29px" src="img/logos/bt-sport.svg">
+        <img class="big-names-logo visible-xs" style="height: 31px" src="img/logos/nhs.svg">
       </div>
     </div>
   </div>
 
   <div class="section">
     <div class="margins">
-      <h2 style="text-align: center;
+      <h2 class="hidden-xs" style="text-align: center;
                  width: 100%;
                  margin-top: 3em;
                  margin-bottom: 2em;
                  color: #3F70FF;
                  font-size: 34px;">
                  and sometimes we build our own stuff too.</h2>
+      <h2 class="visible-xs" style="text-align: center;
+                 width: 100%;
+                 margin-top: 2em;
+                 margin-bottom: 2.1em;
+                 color: #3F70FF;
+                 font-size: 25px;">
+                 Sometimes we build<br>
+                 our own stuff too...</h2>
     </div>
   </div>
 
@@ -324,7 +393,8 @@
       <div class="row text-center">
         <div class="col-sm-6">
 
-          <div style="width: 100%;
+          <div class="hidden-xs" style="
+                      width: 100%;
                       height: 300px;">
             <video class="gfy-video" 
                    autoplay 
@@ -333,6 +403,21 @@
                    muted=""
                    poster="https://thumbs.gfycat.com/MedicalTameAmericanavocet-poster.jpg" 
                    style="width: 100%; height: 100%; object-fit: cover;">
+              <source src="https://fat.gfycat.com/MedicalTameAmericanavocet.webm" type="video/webm" class="webmsource">
+              <source src="https://zippy.gfycat.com/MedicalTameAmericanavocet.mp4" type="video/mp4" class="mp4source">
+            </video>
+          </div>
+          <div class="visible-xs" style="
+                      width: 260px;
+                      height: 260px;
+                      margin: auto">
+            <video class="gfy-video" 
+                   autoplay 
+                   loop="" 
+                   playsinline=""
+                   muted=""
+                   poster="https://thumbs.gfycat.com/MedicalTameAmericanavocet-poster.jpg" 
+                   style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
               <source src="https://fat.gfycat.com/MedicalTameAmericanavocet.webm" type="video/webm" class="webmsource">
               <source src="https://zippy.gfycat.com/MedicalTameAmericanavocet.mp4" type="video/mp4" class="mp4source">
             </video>
@@ -353,13 +438,22 @@
              target="_blank">Learn more</a>
           <div style="height: 50px"></div>
         </div>
-
+        <div class="visible-xs" style="height: 100px;"></div>
         <div class="col-sm-6">
-          <div style="width: 100%;
+          <div class="hidden-xs" style="width: 100%;
             height: 300px;
             background-image: url(/img/mixim-image-desktop.jpg);
             background-size: cover;
             background-position: center;">
+          </div>
+          <div class="visible-xs" style="
+            height: 260px;
+            width: 260px;
+            background-image: url(/img/mixim-image-desktop.jpg);
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            margin: auto;">
           </div>
           <img src="/img/miximlogo.svg"
                style="max-width: 159px;
