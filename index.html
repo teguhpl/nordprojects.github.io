@@ -346,7 +346,8 @@
                  margin-top: 2em;
                  margin-bottom: 2.1em;
                  color: #3F70FF;
-                 font-size: 25px;">
+                 font-size: 28px;
+                 line-height: 30px;">
                  Sometimes we build<br>
                  our own stuff too...</h2>
     </div>
@@ -384,6 +385,13 @@
       left: -2px;
       top: 2px;
       color: #3F70FF;
+    }
+
+    @media (max-width: 768px) {
+      .link-button {
+        font-size: 18px;
+        padding: 9px 16px;
+      }
     }
   </style>
 
@@ -424,10 +432,10 @@
           </div>
           <img src="/img/tingbotlogo.svg"
                style="max-width: 147px;
-                      margin-top: 50px;
+                      margin-top: 21px;
                       margin-bottom: 20px;
                       height: 50px;"/>
-          <p style="font-size: 21px">
+          <p class="wide-paragraph" style="font-size: 21px">
             A kit product that turns<br>
             scary electronics into a fun<br>
             accessible coding platform.
@@ -438,7 +446,7 @@
              target="_blank">Learn more</a>
           <div style="height: 50px"></div>
         </div>
-        <div class="visible-xs" style="height: 100px;"></div>
+        <div class="visible-xs" style="height: 60px;"></div>
         <div class="col-sm-6">
           <div class="hidden-xs" style="width: 100%;
             height: 300px;
@@ -457,10 +465,10 @@
           </div>
           <img src="/img/miximlogo.svg"
                style="max-width: 159px;
-                      margin-top: 50px;
+                      margin-top: 21px;
                       margin-bottom: 20px;
                       height: 50px;"/>
-          <p style="font-size: 21px">
+          <p class="wide-paragraph" style="font-size: 21px">
             A software tool enabling<br>
             musicians to collaborate online<br>
             10x faster than Dropbox.
@@ -488,23 +496,38 @@
                                                                                                              
 {% endcomment %}
 
-  <div style="height: 60px"></div>
-  <div style="height: 60vw;
+  <div class="hidden-xs" style="height: 60px"></div>
+  <div class="hidden-xs"
+       style="height: 60vw;
               max-height: 450px;
               background-image: url(/img/team-pic-web.jpg);
               background-size: cover;
               background-position: center;">
   </div>
-
+  <div class="visible-xs" style="height: 38px"></div>
+  <div class="visible-xs"
+       style="height: 244px;
+              background-image: url(/img/team-pic-mobile.jpg);
+              background-size: cover;
+              background-position: center;">
+  </div>
   <style>
     .link-team {
       text-decoration: underline;
       color: #3F70FF;
     }
+
+    .section-team {
+      margin-top: 50px;
+    }
+    @media (max-width: 768px) {
+      .section-team {
+        margin-top: 28px;
+      }
+    }
   </style>
 
-  <div class="section"
-       style="margin-top: 50px">
+  <div class="section section-team">
     <div class="margins-narrow">
       <p>
         Nord Projects is Ben, Joe and Mike.
@@ -514,19 +537,16 @@
         Nord is small for a reason - we're the ones actually designing and making your product. Too many ideas are diluted by fragmented teams and poor communication. We're able to retain the magic and meaning of an idea, preserving its core value throughout - to create better products.
       <br><br>
         Check out our work:
-        <br><a class="link-team" href="http://benpawle.co.uk">Ben</a>
-        <br> <a class="link-team" href="http://joerick.me">Joe</a>
-        <br> <a class="link-team" href="http://mikethings.com">Mike</a>
+        <br><a class="link-team" href="http://benpawle.co.uk" target="_blank">Ben</a>
+        <br> <a class="link-team" href="http://joerick.me" target="_blank">Joe</a>
+        <br> <a class="link-team" href="http://mikethings.com" target="_blank">Mike</a>
       </p>
 
     </div>
   </div>
 
-  <div class="section">
-    <div class="margins">
-      <div style="height: 35px"></div>
-    </div>
-  </div>
+  <div class="hidden-xs" style="height: 35px"></div>
+  <div class="visible-xs" style="height: 25px"></div>
 
   {% comment %}
 
@@ -540,16 +560,40 @@
        \______/  \______/ |__/  |__/   \___/   \_______/ \_______/   \___/  
                                                                             
 {% endcomment %}
-  <div class="section" style="background-color: #353535; 
+  <style>
+    .section-contact {
+      padding-top: 75px;
+    }
+
+    .paragraph-copyright {
+      margin-top: 110px;
+    }
+
+    @media (max-width: 768px) {
+      .section-contact {
+        padding-top: 31px;
+      }
+
+      .paragraph-contact {
+        margin-left: 11px;
+        margin-right: 11px;
+        font-size: 24px;
+        line-height: 29px;
+      }
+
+      .paragraph-copyright {
+        margin-top: 70px;
+      }
+    }
+  </style>
+
+  <div class="section section-contact" style="background-color: #353535; 
                               color: white;
-                              padding-top: 75px;
                               padding-bottom: 25px;">
     <div class="margins-narrow">
-      <p>
+      <p class="paragraph-contact">
         We like meeting new people, potential collaborations and the prospect of new exciting work. If you have an enquiry relating to any of these please get in touch.<br><br>👇
-      </p>
-
-      <p>
+      <br><br>
         <a href="mailto:hello@nordprojects.co" style="color: #FFFFFF;
                                                       text-decoration: none;
                                                       padding-bottom: 5px;
@@ -567,12 +611,12 @@
         </a>
       </p>
 
-      <p style="margin-top: 110px;
-                margin-bottom: 0;
+      <p class="paragraph-copyright" 
+         style="margin-bottom: 0;
                 font-size: 0.7em;
                 opacity: 0.44;
                 text-align: center;">
-        Copyright Nord Projects 2017
+        &copy;Copyright Nord Projects Ltd 2017
       </p>
     </div>
   </div>
