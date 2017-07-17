@@ -37,6 +37,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/threejs/r71/three.min.js"></script>
 
 <script type="x-shader/x-fragment" id="accelerationFrag">
+precision highp float;
 varying vec2 texcoord;
 
 uniform sampler2D accelerationTex;
@@ -70,14 +71,13 @@ void main() {
     } else {
         // update velocity
 
-        vec3 acc = uncomp(texture2D(accelerationTex, texcoord).xyz);
         vec3 vel = uncomp(texture2D(velocityTex, texcoord).xyz);
-        vel += acc;
-
         // linear drag
-        if(length(vel) > 0.0) {
-            //vel += vel * -0.0001;
+        if(length(vel) > 2.0) {
+            vel += vel * -0.001;
         }
+        vec3 acc = uncomp(texture2D(accelerationTex, texcoord).xyz);
+        vel += acc;
 
         // gl_FragColor = vec4(0.5, 0.5, 0.5, 1.);
         gl_FragColor = vec4(comp(vel), 1.);
@@ -87,6 +87,7 @@ void main() {
 </script>
 
 <script type="x-shader/x-fragment" id="clearFrag">
+precision highp float;
 varying vec2 texcoord;
 
 void main() {
@@ -96,6 +97,7 @@ void main() {
 </script>
 
 <script type="x-shader/x-fragment" id="forceFrag">
+precision highp float;
 varying vec2 texcoord;
 
 uniform sampler2D accelerationTex;
@@ -248,6 +250,7 @@ void main() {
 </script>
 
 <script type="x-shader/x-fragment" id="velocityFrag">
+precision highp float;
 varying vec2 texcoord;
 
 uniform sampler2D accelerationTex;
@@ -430,7 +433,7 @@ void main() {
                     "clearFrag",
                 ]);
 
-                var scale = { type : "v3", value : space };
+                var scale = { type : "v3", value : new THREE.Vector3(5, 5, 5) };
                 var time = { type : "f", value : 0.0 };
                 var seed = { type : "f", value : Math.random() };
                 var dt = { type : "f", value : 0.0 };
