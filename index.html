@@ -97,11 +97,13 @@
                  justify-content: center;
                  flex-direction: column;">
       <div class="spacer hidden-xs" style="height: 40px"></div>
+      <div class="spacer visible-xs" style="height: 20px"></div>
       <h2>Hi! We’re Nord Projects.</h2>
       <p class="mobile-line">
         We’re a design and technology consultancy. We work like a startup to build products that delight customers and solve real business problems.
       </p>
       <div class="spacer hidden-xs" style="height: 40px"></div>
+      <div class="spacer visible-xs" style="height: 20px"></div>
     </div>
   </div>
 
@@ -376,7 +378,11 @@
     }
     .link-button:hover {
       text-decoration: none;
-      color: #3F70FF;
+      color: inherit;
+      box-shadow: -4px 4px 0 0 #000000;
+      position: relative;
+      left: 1px;
+      top: -1px;
     }
     .link-button:active {
       border: 2px solid #000000;
@@ -384,7 +390,11 @@
       position: relative;
       left: -2px;
       top: 2px;
-      color: #3F70FF;
+      color: inherit;
+    }
+    .link-button:focus {
+      color: inherit;
+      text-decoration: none;
     }
 
     @media (max-width: 768px) {
@@ -571,7 +581,7 @@
 
     @media (max-width: 768px) {
       .section-contact {
-        padding-top: 31px;
+        padding-top: 40px;
       }
 
       .paragraph-contact {
