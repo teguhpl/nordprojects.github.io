@@ -91,9 +91,9 @@ void main() {
                                 /
                                 length(lineEnd - lineStart));
 
-        if (length(cylinderToPoint) < 0.4) {
-            //vel = reflect(vel, normalize(cylinderToPoint)) + mousePositionVelocity * 1000.0;
-            vel += mousePositionVelocity * 10.0;
+        if (length(cylinderToPoint) < 0.6) {
+            vel = reflect(vel, normalize(cylinderToPoint)) * 0.5 + mousePositionVelocity * 15.0; 
+            //vel += mousePositionVelocity * 10.0;
             //vel += (mousePosition - pos) * 0.01;  
         }
 
