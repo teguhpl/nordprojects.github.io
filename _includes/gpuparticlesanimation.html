@@ -42,7 +42,11 @@ varying vec2 texcoord;
 
 uniform sampler2D accelerationTex;
 uniform sampler2D velocityTex;
+uniform sampler2D positionTex;
 uniform vec3 scale;
+uniform vec3 mousePosition;
+uniform vec3 mousePositionVelocity;
+uniform vec3 mousePositionToCameraVector;
 uniform float time;
 uniform float dt;
 uniform float seed;
@@ -76,6 +80,23 @@ void main() {
         if(length(vel) > 2.0) {
             vel += vel * -0.001;
         }
+
+        // collision with mouse
+        // collision is within a volume (a cylinder) described by a point center
+        // and a vector of the primary axis.
+        vec3 pos = uncomp(texture2D(positionTex, texcoord).xyz);
+        vec3 lineStart = mousePosition - mousePositionToCameraVector;
+        vec3 lineEnd = mousePosition + mousePositionToCameraVector;
+        vec3 cylinderToPoint = (cross(lineEnd - lineStart, lineStart - pos)
+                                /
+                                length(lineEnd - lineStart));
+
+        if (length(cylinderToPoint) < 0.4) {
+            //vel = reflect(vel, normalize(cylinderToPoint)) + mousePositionVelocity * 1000.0;
+            vel += mousePositionVelocity * 10.0;
+            //vel += (mousePosition - pos) * 0.01;  
+        }
+
         vec3 acc = uncomp(texture2D(accelerationTex, texcoord).xyz);
         vel += acc;
 
@@ -365,15 +386,17 @@ void main() {
 
             init: function(id) {
                 var $dom = $("#" + id);
+
                 if (!isWebGLSupported()) {
                     $dom.find('.gpu-particles-fallback-image').show();
                     return;
                 }
+
                 var scene = new THREE.Scene();
                 var domWidth = $dom.width();
                 var domHeight = $dom.height();
 
-                var camera = new THREE.PerspectiveCamera(75, domWidth / domHeight, 0.001, 1000);
+                var camera = new THREE.PerspectiveCamera(75, domWidth / domHeight, 0.1, 100);
                 camera.position.z = 40*0.3;
                 camera.position.y = 30*0.3;
                 camera.position.x = 15*0.3;
@@ -392,6 +415,8 @@ void main() {
 
                 var sphere = new THREE.Mesh(new THREE.SphereGeometry(0.1, 32, 32), new THREE.MeshNormalMaterial({}));
                 // scene.add(sphere);
+                var mouseSphere = new THREE.Mesh(new THREE.SphereGeometry(0.2, 32, 32), new THREE.MeshNormalMaterial({}));
+                // scene.add(mouseSphere);
 
                 var sceneRTT = new THREE.Scene();
                 var cameraRTT = new THREE.OrthographicCamera( -1, 1, 1, -1, 0, 1 );
@@ -436,6 +461,9 @@ void main() {
                 var scale = { type : "v3", value : new THREE.Vector3(5, 5, 5) };
                 var time = { type : "f", value : 0.0 };
                 var seed = { type : "f", value : Math.random() };
+                var mousePosition = { type : "v3", value : new THREE.Vector3(10000.0, 10000.0, 0.0) };
+                var mousePositionVelocity = { type : "v3", value : new THREE.Vector3(0.0, 0.0, 0.0) };
+                var mousePositionToCameraVector = { type : "v3", value : new THREE.Vector3(1.0, 0.0, 0.0) };
                 var dt = { type : "f", value : 0.0 };
 
                 force = new THREE.ShaderMaterial({
@@ -457,10 +485,14 @@ void main() {
                     uniforms : {
                         accelerationTex    : { type : "t", value : fboAccelerationPP.getReadBuffer() },
                         velocityTex        : { type : "t", value : fboVelocityPP.getReadBuffer() },
+                        positionTex        : { type : "t", value : fboPositionPP.getReadBuffer() },
                         scale              : scale,
                         time               : time,
                         dt                 : dt,
-                        seed               : seed
+                        seed               : seed,
+                        mousePosition      : mousePosition,
+                        mousePositionToCameraVector : mousePositionToCameraVector,
+                        mousePositionVelocity : mousePositionVelocity,
                     },
                     vertexShader : shaders[2],
                     fragmentShader : shaders[4]
@@ -530,6 +562,29 @@ void main() {
                 var dt = 0.1;
                 var mspace = space.clone().divideScalar(2.0);
 
+                var previousMoveEventTimestamp = null;
+
+                document.addEventListener('mousemove', function (event) {
+                    var previousMousePosition = mousePosition.value;
+                    var zeroPoint = new THREE.Vector3(0,0,0);
+                    zeroPoint.project(camera);
+                    var mouseScreenPosition = new THREE.Vector3(2 * event.pageX/domWidth - 1.0,
+                                                                -2 * event.pageY/domHeight + 1.0,
+                                                                zeroPoint.z);
+                    mouseScreenPosition.unproject(camera);
+                    mousePosition.value = mouseScreenPosition;
+
+                    mousePositionToCameraVector.value = mouseScreenPosition.clone().sub(camera.position).normalize();
+
+                    if (previousMoveEventTimestamp) {
+                        var timeSinceLastEvent = event.timeStamp - previousMoveEventTimestamp;
+                        mousePositionVelocity.value = mouseScreenPosition.clone()
+                                                                         .sub(previousMousePosition)
+                                                                         .divideScalar(timeSinceLastEvent);
+                    }
+                    previousMoveEventTimestamp = event.timeStamp;
+                }, false);
+
                 var simulate = function(t, dt, attractor) {
                     // apply force
                     
@@ -544,6 +599,7 @@ void main() {
                     // update velocity
                     acceleration.uniforms.accelerationTex.value = fboAccelerationPP.getReadBuffer();
                     acceleration.uniforms.velocityTex.value = fboVelocityPP.getReadBuffer();
+                    acceleration.uniforms.positionTex.value = fboPositionPP.getReadBuffer();
                     acceleration.uniforms.time.value = t;
                     acceleration.uniforms.dt.value = dt;
                     blit(acceleration, fboVelocityPP.getWriteBuffer());
@@ -560,13 +616,13 @@ void main() {
                 };
 
                 var updateRendererSize = function() {
-                    var w = $dom.width();
-                    var h = $dom.height();
-                    camera.aspect = w / h;
+                    domWidth = $dom.width();
+                    domHeight = $dom.height();
+                    camera.aspect = domWidth / domHeight;
                     camera.updateProjectionMatrix();
-                    renderer.setSize(w, h);
+                    renderer.setSize(domWidth, domHeight);
 
-                    if (w < 768) {
+                    if (domWidth < 768) {
                         // mobile view
                         camera.lookAt(new THREE.Vector3(0, -5, 0));
                         camera.zoom = 0.7;
@@ -586,6 +642,8 @@ void main() {
                     clock.getDelta();
                     var t = clock.elapsedTime * 0.25;
                     sphere.position.set(Math.cos(t) * mspace.x, Math.sin(t) * mspace.y, Math.sin(t) * mspace.z);
+                    mouseSphere.position.set(mousePosition.value.x, mousePosition.value.y, mousePosition.value.z);
+                    // mouseSphere.position.set(mousePosition.value);
 
                     if(ps) {
                         simulate(clock.elapsedTime, dt, new THREE.Vector3(sphere.position.x / space.x * 0.5 + 0.5, sphere.position.y / space.y * 0.5 + 0.5, sphere.position.z / space.z * 0.5 + 0.5));
