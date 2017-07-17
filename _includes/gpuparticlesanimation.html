@@ -1,10 +1,36 @@
 <div id="gpu-particles-animation">
+    <div class="gpu-particles-fallback-image">
+    </div>
 </div>
 
 <style>
   #gpu-particles-animation {
     position: absolute;
     top: 0; bottom: 0; left: 0; right: 0;
+  }
+  .gpu-particles-fallback-image {
+    position: absolute;
+    left: 53%;
+    top: 31%;
+    transform: translate(-50%, -50%);
+
+    width: 667px;
+    max-width: 120%;
+    padding-bottom: 82%;
+
+    background-image: url(/img/web-gl-fallback.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .gpu-particles-fallback-image {
+      left: 70%;
+      top: 50%;
+      width: 550px;
+    }
   }
 </style>
 
@@ -318,6 +344,15 @@ void main() {
 
         };
 
+        function isWebGLSupported() {
+            try {
+                var canvas = document.createElement( 'canvas' );
+                return !! ( window.WebGLRenderingContext && ( canvas.getContext( 'webgl' ) || canvas.getContext( 'experimental-webgl' ) ) );
+            } catch ( e ) {
+                return false;
+            }
+        }
+
         var app, GPUParticlesAnimation = function(id) {
             app = this;
             app.init(id);
@@ -327,6 +362,10 @@ void main() {
 
             init: function(id) {
                 var $dom = $("#" + id);
+                if (!isWebGLSupported()) {
+                    $dom.find('.gpu-particles-fallback-image').show();
+                    return;
+                }
                 var scene = new THREE.Scene();
                 var domWidth = $dom.width();
                 var domHeight = $dom.height();
