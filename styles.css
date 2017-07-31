@@ -86,6 +86,7 @@ img {
 a {
   text-decoration: underline; 
   color: #373737;
+  text-decoration-skip: ink;
 }
 
 .vertical-align {
