@@ -83,6 +83,11 @@ img {
   max-width: 100%;
 }
 
+a {
+  text-decoration: underline; 
+  color: #373737;
+}
+
 .vertical-align {
     display: flex;
     align-items: center;
