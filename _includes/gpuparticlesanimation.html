@@ -50,6 +50,8 @@ uniform vec3 mousePositionToCameraVector;
 uniform float time;
 uniform float dt;
 uniform float seed;
+uniform vec3 clickPosition;
+uniform float clickTime;
 
 vec3 uncomp(vec3 v3) {
     v3 = ((v3 - 0.5) * 2.0);
@@ -87,14 +89,26 @@ void main() {
         vec3 pos = uncomp(texture2D(positionTex, texcoord).xyz);
         vec3 lineStart = mousePosition - mousePositionToCameraVector;
         vec3 lineEnd = mousePosition + mousePositionToCameraVector;
-        vec3 cylinderToPoint = (cross(lineEnd - lineStart, lineStart - pos)
-                                /
-                                length(lineEnd - lineStart));
+        vec3 cylinderCrossPos = (cross(lineEnd - lineStart, lineStart - pos)
+                                 /
+                                 length(lineEnd - lineStart));
+        float cylinderToPos = length(cylinderCrossPos);
 
-        if (length(cylinderToPoint) < 0.6) {
-            vel = reflect(vel, normalize(cylinderToPoint)) * 0.5 + mousePositionVelocity * 15.0; 
-            //vel += mousePositionVelocity * 10.0;
-            //vel += (mousePosition - pos) * 0.01;  
+        if (cylinderToPos < 0.6) {
+            if (clickTime > time - 0.1) {
+                // repel from the clicked position
+                vel = normalize(cylinderCrossPos) * 1.6;
+            } else {
+                if (cylinderToPos < 0.4) {
+                    vec3 cylinderToPoint = cross(cylinderCrossPos, lineEnd - lineStart);
+                    vel = reflect(vel, normalize(cylinderToPoint)) * 0.5 + mousePositionVelocity * 15.0;
+                    if (length(vel) < 0.1) {
+                        vel = 0.2 * normalize(vel);
+                    }
+                    //vel += mousePositionVelocity * 10.0;
+                    //vel += (mousePosition - pos) * 0.01;  
+                }
+            }
         }
 
         vec3 acc = uncomp(texture2D(accelerationTex, texcoord).xyz);
@@ -465,6 +479,8 @@ void main() {
                 var mousePositionVelocity = { type : "v3", value : new THREE.Vector3(0.0, 0.0, 0.0) };
                 var mousePositionToCameraVector = { type : "v3", value : new THREE.Vector3(1.0, 0.0, 0.0) };
                 var dt = { type : "f", value : 0.0 };
+                var clickTime = { type : "f", value : 0.0 };
+                var clickPosition = { type : "v3", value : new THREE.Vector3(0.0, 0.0, 0.0) };
 
                 force = new THREE.ShaderMaterial({
                     uniforms : {
@@ -493,6 +509,8 @@ void main() {
                         mousePosition      : mousePosition,
                         mousePositionToCameraVector : mousePositionToCameraVector,
                         mousePositionVelocity : mousePositionVelocity,
+                        clickPosition      : clickPosition,
+                        clickTime          : clickTime,
                     },
                     vertexShader : shaders[2],
                     fragmentShader : shaders[4]
@@ -564,26 +582,38 @@ void main() {
 
                 var previousMoveEventTimestamp = null;
 
-                document.addEventListener('mousemove', function (event) {
-                    var previousMousePosition = mousePosition.value;
+                function unproject(pageX, pageY) {
                     var zeroPoint = new THREE.Vector3(0,0,0);
                     zeroPoint.project(camera);
-                    var mouseScreenPosition = new THREE.Vector3(2 * event.pageX/domWidth - 1.0,
-                                                                -2 * event.pageY/domHeight + 1.0,
-                                                                zeroPoint.z);
-                    mouseScreenPosition.unproject(camera);
-                    mousePosition.value = mouseScreenPosition;
+                    var result = new THREE.Vector3(2 * pageX/domWidth - 1.0,
+                                                   -2 * pageY/domHeight + 1.0,
+                                                   zeroPoint.z);
+                    result.unproject(camera);
+                    return result;
+                }
 
-                    mousePositionToCameraVector.value = mouseScreenPosition.clone().sub(camera.position).normalize();
+                document.addEventListener('mousemove', function (event) {
+                    var previousMousePosition = mousePosition.value;
+                    
+                    mousePosition.value = unproject(event.pageX, event.pageY);
+
+                    mousePositionToCameraVector.value = mousePosition.value.clone()
+                                                                           .sub(camera.position)
+                                                                           .normalize();
 
                     if (previousMoveEventTimestamp) {
                         var timeSinceLastEvent = event.timeStamp - previousMoveEventTimestamp;
-                        mousePositionVelocity.value = mouseScreenPosition.clone()
+                        mousePositionVelocity.value = mousePosition.value.clone()
                                                                          .sub(previousMousePosition)
                                                                          .divideScalar(timeSinceLastEvent);
                     }
                     previousMoveEventTimestamp = event.timeStamp;
                 }, false);
+
+                document.addEventListener('mousedown', function (event) {
+                    clickPosition.value = unproject(event.pageX, event.pageY);
+                    clickTime.value = clock.elapsedTime;
+                });
 
                 var simulate = function(t, dt, attractor) {
                     // apply force
