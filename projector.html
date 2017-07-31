@@ -1,0 +1,750 @@
+---
+---
+<!DOCTYPE HTML>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="shortcut icon" href="/img/favicon.png">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/styles.css">
+    
+    <!-- jquery is useful even before the page is loaded, and is commonly cached
+         Other JS resources should go below the content -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <style>
+        body {
+            background-color: black;
+
+        }
+    </style>
+</head>
+<body>
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyCFzBCo9QDgT0g-iBKcwkpSQQdIYlmy8VI",
+    authDomain: "tingbot-integration.firebaseapp.com",
+    databaseURL: "https://tingbot-integration.firebaseio.com",
+    projectId: "tingbot-integration",
+    storageBucket: "tingbot-integration.appspot.com",
+    messagingSenderId: "906209884323"
+  };
+  firebase.initializeApp(config);
+</script>
+<div id="gpu-particles-animation">
+    <div class="gpu-particles-fallback-image">
+    </div>
+</div>
+
+<style>
+  #gpu-particles-animation {
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+  }
+  .gpu-particles-fallback-image {
+    position: absolute;
+    left: 53%;
+    top: 31%;
+    transform: translate(-50%, -50%);
+
+    width: 667px;
+    max-width: 120%;
+    padding-bottom: 82%;
+
+    background-image: url(/img/web-gl-fallback.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .gpu-particles-fallback-image {
+      left: 70%;
+      top: 50%;
+      width: 550px;
+    }
+  }
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/threejs/r71/three.min.js"></script>
+
+<script type="x-shader/x-fragment" id="accelerationFrag">
+precision highp float;
+varying vec2 texcoord;
+
+uniform sampler2D accelerationTex;
+uniform sampler2D velocityTex;
+uniform sampler2D positionTex;
+uniform vec3 scale;
+uniform vec3 mousePosition;
+uniform vec3 mousePositionVelocity;
+uniform vec3 mousePositionToCameraVector;
+uniform float time;
+uniform float dt;
+uniform float seed;
+
+vec3 uncomp(vec3 v3) {
+    v3 = ((v3 - 0.5) * 2.0);
+    v3.x *= scale.x;
+    v3.y *= scale.y;
+    v3.z *= scale.z;
+    return v3;
+}
+
+vec3 comp(vec3 v3) {
+    v3.x /= scale.x;
+    v3.y /= scale.y;
+    v3.z /= scale.z;
+    return (v3 / 2.0) + 0.5;
+}
+
+void main() {
+
+    if(time <= 0.3) {
+        // initialize
+
+        gl_FragColor = vec4(0.45, 0.45, 0.45, 1.);
+    } else {
+        // update velocity
+
+        vec3 vel = uncomp(texture2D(velocityTex, texcoord).xyz);
+        // linear drag
+        if(length(vel) > 2.0) {
+            vel += vel * -0.001;
+        }
+
+        // collision with mouse
+        // collision is within a volume (a cylinder) described by a point center
+        // and a vector of the primary axis.
+        vec3 pos = uncomp(texture2D(positionTex, texcoord).xyz);
+        vec3 lineStart = mousePosition - mousePositionToCameraVector;
+        vec3 lineEnd = mousePosition + mousePositionToCameraVector;
+        vec3 cylinderToPoint = (cross(lineEnd - lineStart, lineStart - pos)
+                                /
+                                length(lineEnd - lineStart));
+
+        if (length(cylinderToPoint) < 0.6) {
+            vel = reflect(vel, normalize(cylinderToPoint)) * 0.5 + mousePositionVelocity * 15.0; 
+            //vel += mousePositionVelocity * 10.0;
+            //vel += (mousePosition - pos) * 0.01;  
+        }
+
+        vec3 acc = uncomp(texture2D(accelerationTex, texcoord).xyz);
+        vel += acc;
+
+        // gl_FragColor = vec4(0.5, 0.5, 0.5, 1.);
+        gl_FragColor = vec4(comp(vel), 1.);
+    }
+
+}
+</script>
+
+<script type="x-shader/x-fragment" id="clearFrag">
+precision highp float;
+varying vec2 texcoord;
+
+void main() {
+    vec2 uv = texcoord;
+    gl_FragColor = vec4(0.5, 0.5, 0.5, 1.);
+}
+</script>
+
+<script type="x-shader/x-fragment" id="forceFrag">
+precision highp float;
+varying vec2 texcoord;
+
+uniform sampler2D accelerationTex;
+uniform sampler2D positionTex;
+uniform vec3 scale;
+uniform vec3 attractor;
+uniform float time;
+uniform float seed;
+uniform int inverse;
+uniform float touchPhase;
+uniform vec3 mousePosition;
+uniform vec3 touchPosition;
+
+float rnd(vec2 p){
+    return fract(sin(dot(p ,vec2(12.9898,78.233))) * 43758.5453);
+}
+
+vec3 uncomp(vec3 v3) {
+    v3 = ((v3 - 0.5) * 2.0);
+    v3.x *= scale.x;
+    v3.y *= scale.y;
+    v3.z *= scale.z;
+    return v3;
+}
+
+vec3 comp(vec3 v3) {
+    v3.x /= scale.x;
+    v3.y /= scale.y;
+    v3.z /= scale.z;
+    return (v3 / 2.0) + 0.5;
+}
+
+
+void main() {
+
+    if(time <= 0.3) {
+        float x = rnd(texcoord);
+        float y = rnd(texcoord + seed);
+        float z = rnd(texcoord + seed * 10.);
+        gl_FragColor = vec4(x, y, z, 1.);
+    } else {
+        vec3 from = uncomp(texture2D(positionTex, texcoord).xyz);
+        vec3 to;
+        if (touchPhase > 0.5) {
+            to = touchPosition;
+        } else {
+            to = uncomp(attractor);
+        }
+        vec3 dir = to - from;
+        float m = length(dir);
+
+        if(inverse > 0) {
+            dir *= -1.;
+            m = clamp(m, 0., 0.001);
+        } else {
+            m = clamp(m, 0., 0.02);
+        }
+
+        vec3 rotationComponent = vec3(0.0);
+
+        vec3 rotationDirection = cross(from, vec3(0.1, 1.0, 0.1));
+        rotationComponent += rotationDirection * 0.04;
+
+        vec3 rotatorPosition = vec3(1.0, 0.0, 0.0);
+        vec3 rotationDirection2 = cross(from - rotatorPosition, vec3(1.0, 1.0, 0.1));
+        rotationComponent += rotationDirection2 * 0.02;
+
+        // clamp size of the thing
+        if (length(from) > 10.0) {
+            rotationComponent *= -0.5;
+        }
+        
+        dir += rotationComponent;
+
+
+        vec3 f = normalize(dir) * m; 
+
+        // random motion
+        f.x += rnd(from.xy) * 0.001;
+        f.y += rnd(from.xz) * 0.002;
+        f.z += rnd(from.yz) * 0.003;
+
+        gl_FragColor = vec4(comp(f), 1.);
+    }
+
+}
+</script>
+
+<script type="x-shader/x-fragment" id="kernelVert">
+varying vec2 texcoord;
+
+void main() {
+    texcoord = uv;
+    gl_Position = vec4(position, 1.);
+}
+</script>
+
+<script type="x-shader/x-fragment" id="particleFrag">
+varying vec4 color;
+
+void main() {
+    gl_FragColor = color;
+}
+</script>
+
+<script type="x-shader/x-fragment" id="particleVert">
+attribute vec2 vuv;
+varying vec4 color;
+
+uniform sampler2D positionTex;
+uniform float pointSize;
+uniform float time;
+uniform vec3 scale;
+
+vec3 uncomp(vec3 v3) {
+    v3 = ((v3 - 0.5) * 2.0);
+    v3.x *= scale.x;
+    v3.y *= scale.y;
+    v3.z *= scale.z;
+    return v3;
+}
+
+void main() {
+    vec2 texcoord = vuv;
+
+    vec3 p = texture2D(positionTex, texcoord).xyz;
+    vec3 pos = uncomp(p);
+
+    vec3 color1 = vec3(0.43, 0.95, 1.0);
+    color1 *= 0.8;
+    color1.b = 0.95;
+    //vec3 color2 = vec3(0.92, 0.58, 1.0);
+    vec3 color2 = vec3(0.49, 0.71, 1.0);
+    
+    float gradientDriver = p.y * 3.0;
+
+    color = vec4(clamp(p.x, -0.5, 1.0) * color1 +
+                 clamp(1.0-p.x, -0.5, 1.0) * color2,
+                 1.0);
+    
+    color.rgb *= clamp(p.y * 0.5, -1.0, 0.0) + 1.0;
+    color.rgb += clamp(p.y * 0.5, 0.0, 1.0);
+
+    float opacity = clamp(time * 0.5, 0.0, 1.0);
+    color.a *= opacity;
+
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+    gl_PointSize = pointSize;
+}
+</script>
+
+<script type="x-shader/x-fragment" id="positionFrag">
+varying vec4 color;
+
+void main() {
+  gl_FragColor = color;
+}
+</script>
+
+<script type="x-shader/x-fragment" id="velocityFrag">
+precision highp float;
+varying vec2 texcoord;
+
+uniform sampler2D accelerationTex;
+uniform sampler2D velocityTex;
+uniform sampler2D positionTex;
+uniform vec3 scale;
+uniform float time;
+uniform float dt;
+uniform float seed;
+
+float rnd(vec2 p){
+    return fract(sin(dot(p ,vec2(12.9898,78.233))) * 43758.5453);
+}
+
+vec3 uncomp(vec3 v3) {
+    v3 = ((v3 - 0.5) * 2.0);
+    v3.x *= scale.x;
+    v3.y *= scale.y;
+    v3.z *= scale.z;
+    return v3;
+}
+
+vec3 comp(vec3 v3) {
+    v3.x /= scale.x;
+    v3.y /= scale.y;
+    v3.z /= scale.z;
+    return (v3 / 2.0) + 0.5;
+}
+
+// output position
+void main() {
+
+    if(time <= 0.3) {
+        float r = (rnd(texcoord) + 2.0) * 2.0;
+        float q = rnd(texcoord+seed * 2000.0) * 0.2;
+        float theta = rnd(texcoord + seed) * 3.1415 * 2.0;
+        float phi = rnd(texcoord + seed * 10.0) * 3.1415 * 2.0;
+
+        float x = r*sin(theta) + q*sin(phi);
+        float y = q*cos(phi);
+        float z = r*cos(theta);
+        float w = rnd(texcoord + seed * 100.);
+        gl_FragColor = vec4(comp(vec3(x, y, z)), w);
+    } else {
+        vec3 vel = uncomp(texture2D(velocityTex, texcoord).xyz);
+
+        vec4 p = texture2D(positionTex, texcoord);
+        vec3 pos = uncomp(p.xyz);
+        pos += vel * dt;
+        gl_FragColor = vec4(comp(pos), p.w);
+    }
+}
+</script>
+
+<script>
+    (function(global, THREE) {
+
+        function FboPingPong(width, height, type) {
+            this.readBufferIndex = 0;
+            this.writeBufferIndex = 1;
+            this.buffers = [
+                this.createBuffer(width, height, type),
+                this.createBuffer(width, height, type)
+            ];
+        }
+
+        FboPingPong.prototype = {
+
+            getReadBuffer : function() {
+                return this.buffers[this.readBufferIndex];
+            },
+
+            getWriteBuffer : function() {
+                return this.buffers[this.writeBufferIndex];
+            },
+
+            swap : function() {
+                var tmp = this.buffers[this.writeBufferIndex];
+                this.buffers[this.writeBufferIndex] = this.buffers[this.readBufferIndex];
+                this.buffers[this.readBufferIndex] = tmp;
+            },
+
+            createBuffer : function(width, height, type) {
+                return new THREE.WebGLRenderTarget(width, height, {
+                    wrapS: THREE.RepeatWrapping,
+                    wrapT: THREE.RepeatWrapping,
+                    minFilter: THREE.NearestFilter,
+                    magFilter: THREE.NearestFilter,
+                    format: THREE.RGBAFormat,
+                    type: type,
+                    stencilBuffer: false
+                });
+            }
+
+        };
+
+        function isWebGLSupported() {
+            try {
+                var canvas = document.createElement( 'canvas' );
+                return !! ( window.WebGLRenderingContext && ( canvas.getContext( 'webgl' ) || canvas.getContext( 'experimental-webgl' ) ) );
+            } catch ( e ) {
+                return false;
+            }
+        }
+
+        var app, GPUParticlesAnimation = function(id) {
+            app = this;
+            app.init(id);
+        };
+
+        GPUParticlesAnimation.prototype = {
+
+            init: function(id) {
+                var $dom = $("#" + id);
+
+                if (!isWebGLSupported()) {
+                    $dom.find('.gpu-particles-fallback-image').show();
+                    return;
+                }
+
+                var scene = new THREE.Scene();
+                var domWidth = $dom.width();
+                var domHeight = $dom.height();
+
+                var camera = new THREE.PerspectiveCamera(75, domWidth / domHeight, 0.1, 100);
+                camera.position.z = 40*0.3;
+                camera.position.y = 30*0.3;
+                camera.position.x = 15*0.3;
+
+                var renderer = new THREE.WebGLRenderer({
+                    alpha: true,
+                    antialias: true,
+                });
+
+                var pixelRatio = window.devicePixelRatio ? window.devicePixelRatio : 1.0;
+                // renderer.setPixelRatio(1.0);
+                renderer.setPixelRatio(pixelRatio);
+
+                renderer.setSize(domWidth, domHeight);
+                $dom.append(renderer.domElement);
+
+                var sphere = new THREE.Mesh(new THREE.SphereGeometry(0.1, 32, 32), new THREE.MeshNormalMaterial({}));
+                // scene.add(sphere);
+                var mouseSphere = new THREE.Mesh(new THREE.SphereGeometry(0.2, 32, 32), new THREE.MeshNormalMaterial({}));
+                // scene.add(mouseSphere);
+
+                var sceneRTT = new THREE.Scene();
+                var cameraRTT = new THREE.OrthographicCamera( -1, 1, 1, -1, 0, 1 );
+                var quadRTT = new THREE.Mesh(new THREE.PlaneBufferGeometry(2, 2), null);
+                sceneRTT.add(quadRTT);
+
+                var blit = function(material, writeBuffer) {
+                    quadRTT.material = material;
+                    renderer.render(sceneRTT, cameraRTT, writeBuffer, false);
+                };
+
+                var ps;
+
+                var size = 128;
+                // var size = 512;
+
+                var type = THREE.HalfFloatType;
+                // var type = THREE.FloatType;
+                var fboAccelerationPP = new FboPingPong(size, size, type);
+                var fboVelocityPP = new FboPingPong(size, size, type);
+                var fboPositionPP = new FboPingPong(size, size, type);
+
+                // var space = new THREE.Vector3(10, 10, 10);
+                // var space = new THREE.Vector3(5, 5, 5);
+                var space = new THREE.Vector3(5, 3, 5);
+                var force;
+                var acceleration;
+                var velocity;
+                var clear;
+
+                var shaders = this.loadShaders([
+                    "particleVert",
+                    "particleFrag",
+                    "kernelVert",
+                    "forceFrag",
+                    "accelerationFrag",
+                    "velocityFrag",
+                    "positionFrag",
+                    "clearFrag",
+                ]);
+
+                var scale = { type : "v3", value : new THREE.Vector3(5, 5, 5) };
+                var time = { type : "f", value : 0.0 };
+                var seed = { type : "f", value : Math.random() };
+                var mousePosition = { type : "v3", value : new THREE.Vector3(10000.0, 10000.0, 0.0) };
+                var mousePositionVelocity = { type : "v3", value : new THREE.Vector3(0.0, 0.0, 0.0) };
+                var mousePositionToCameraVector = { type : "v3", value : new THREE.Vector3(1.0, 0.0, 0.0) };
+                var touchPosition = { type : "v3", value : new THREE.Vector3(0.0, 0.0, 0.0) };
+                var touchPhase = { type: "f", value: 0 };
+                var dt = { type : "f", value : 0.0 };
+
+                force = new THREE.ShaderMaterial({
+                    uniforms : {
+                        accelerationTex    : { type : "t", value : fboAccelerationPP.getReadBuffer() },
+                        positionTex        : { type : "t", value : fboPositionPP.getReadBuffer() },
+                        attractor          : { type : "v3", value : new THREE.Vector3(0.0, 0.0, 0.0) },
+                        scale              : scale,
+                        time               : time,
+                        dt                 : dt,
+                        seed               : seed,
+                        inverse            : { type : "i", value : 0 },
+                        mousePosition      : mousePosition,
+                        mousePositionToCameraVector : mousePositionToCameraVector,
+                        mousePositionVelocity : mousePositionVelocity,
+                        touchPosition      : touchPosition,
+                        touchPhase         : touchPhase,
+                    },
+                    vertexShader : shaders[2],
+                    fragmentShader : shaders[3]
+                });
+
+                acceleration = new THREE.ShaderMaterial({
+                    uniforms : {
+                        accelerationTex    : { type : "t", value : fboAccelerationPP.getReadBuffer() },
+                        velocityTex        : { type : "t", value : fboVelocityPP.getReadBuffer() },
+                        positionTex        : { type : "t", value : fboPositionPP.getReadBuffer() },
+                        scale              : scale,
+                        time               : time,
+                        dt                 : dt,
+                        seed               : seed,
+                        mousePosition      : mousePosition,
+                        mousePositionToCameraVector : mousePositionToCameraVector,
+                        mousePositionVelocity : mousePositionVelocity,
+                    },
+                    vertexShader : shaders[2],
+                    fragmentShader : shaders[4]
+                });
+
+                velocity = new THREE.ShaderMaterial({
+                    uniforms : {
+                        accelerationTex    : { type : "t", value : fboAccelerationPP.getReadBuffer() },
+                        velocityTex        : { type : "t", value : fboVelocityPP.getReadBuffer() },
+                        positionTex        : { type : "t", value : fboPositionPP.getReadBuffer() },
+                        scale              : scale,
+                        time               : time,
+                        dt                 : dt,
+                        seed               : seed
+                    },
+                    vertexShader : shaders[2],
+                    fragmentShader : shaders[5]
+                });
+                
+                clear = new THREE.ShaderMaterial({
+                    uniforms : {
+                    },
+                    vertexShader : shaders[2],
+                    fragmentShader : shaders[shaders.length - 1]
+                });
+
+                var geometry = new THREE.Geometry();
+                var uv = [];
+                for(var y = 0; y < size; y++) {
+                    var ry = y / size;
+                    for(var x = 0; x < size; x++) {
+                        geometry.vertices.push(
+                            new THREE.Vector3(
+                                (Math.random() - 0.5) * 100,
+                                (Math.random() - 0.5) * 100,
+                                (Math.random() - 0.5) * 100
+                            )
+                        );
+                        uv.push(new THREE.Vector2(x / size, ry));
+                    }
+                }
+
+                ps = new THREE.PointCloud(
+                    geometry,
+                    new THREE.ShaderMaterial({
+                        uniforms : {
+                            positionTex         : { type : "t", value : fboPositionPP.getReadBuffer() },
+                            pointSize           : { type : "f",     value : 2.5*pixelRatio },
+                            scale               : scale,
+                            time                : time,
+                            px                  : { type : "f",     value : 1 / size }
+                        },
+                        attributes : {
+                            "vuv" : { type : "v2", value : uv }
+                        },
+                        vertexShader : shaders[0],
+                        fragmentShader : shaders[1],
+                        blending : THREE.NormalBlending,
+                        transparent : true,
+                        depthTest : false
+                    })
+                );
+                scene.add(ps);
+                
+                var clock = new THREE.Clock();
+
+                var dt = 0.1;
+                var mspace = space.clone().divideScalar(2.0);
+
+                var previousMoveEventTimestamp = null;
+
+                function tinker(x, y, time) {
+                    var previousMousePosition = mousePosition.value;
+                    var zeroPoint = new THREE.Vector3(0,0,0);
+                    zeroPoint.project(camera);
+                    var mouseScreenPosition = new THREE.Vector3(2 * x - 1.0,
+                                                                -2 * y + 1.0,
+                                                                zeroPoint.z);
+                    mouseScreenPosition.unproject(camera);
+                    mousePosition.value = mouseScreenPosition;
+
+                    mousePositionToCameraVector.value = mouseScreenPosition.clone().sub(camera.position).normalize();
+
+                    if (previousMoveEventTimestamp) {
+                        var timeSinceLastEvent = time - previousMoveEventTimestamp;
+                        mousePositionVelocity.value = mouseScreenPosition.clone()
+                                                                         .sub(previousMousePosition)
+                                                                         .divideScalar(timeSinceLastEvent);
+                    }
+                    previousMoveEventTimestamp = time;
+                }
+                function tinkerTouch(x, y) {
+                    var zeroPoint = new THREE.Vector3(0,0,0);
+                    zeroPoint.project(camera);
+                    var touchScreenPosition = new THREE.Vector3(2 * x - 1.0,
+                                                                -2 * y + 1.0,
+                                                                zeroPoint.z);
+                    touchScreenPosition.unproject(camera);
+                    touchPosition.value = touchScreenPosition;
+                }
+
+                document.addEventListener('mousemove', function (event) {
+                    tinker(event.pageX/domWidth, event.pageY/domHeight, event.timeStamp);
+                }, false);
+
+                var database = firebase.database();
+                firebase.database().ref('/touch').on('value', function(snapshot) {
+                    var touch = snapshot.val();
+                    tinkerTouch(touch.x, touch.y);
+                    if (touch.action == 'down' || touch.action == 'move') {
+                        touchPhase.value = 1.0;
+                    } else {
+                        touchPhase.value = 0.0;
+                    }
+                });                
+
+                var simulate = function(t, dt, attractor) {
+                    // apply force
+                    
+                    force.uniforms.accelerationTex.value = fboAccelerationPP.getReadBuffer();
+                    force.uniforms.positionTex.value = fboPositionPP.getReadBuffer();
+                    force.uniforms.time.value = t;
+                    force.uniforms.attractor.value = attractor;
+                    force.uniforms.dt.value = dt;
+                    blit(force, fboAccelerationPP.getWriteBuffer());
+                    fboAccelerationPP.swap();
+
+                    // update velocity
+                    acceleration.uniforms.accelerationTex.value = fboAccelerationPP.getReadBuffer();
+                    acceleration.uniforms.velocityTex.value = fboVelocityPP.getReadBuffer();
+                    acceleration.uniforms.positionTex.value = fboPositionPP.getReadBuffer();
+                    acceleration.uniforms.time.value = t;
+                    acceleration.uniforms.dt.value = dt;
+                    blit(acceleration, fboVelocityPP.getWriteBuffer());
+                    fboVelocityPP.swap();
+
+                    // update position
+                    velocity.uniforms.accelerationTex.value = fboAccelerationPP.getReadBuffer();
+                    velocity.uniforms.velocityTex.value = fboVelocityPP.getReadBuffer();
+                    velocity.uniforms.positionTex.value = fboPositionPP.getReadBuffer();
+                    velocity.uniforms.time.value = t;
+                    velocity.uniforms.dt.value = dt;
+                    blit(velocity, fboPositionPP.getWriteBuffer());
+                    fboPositionPP.swap();
+                };
+
+                var updateRendererSize = function() {
+                    domWidth = $dom.width();
+                    domHeight = $dom.height();
+                    camera.aspect = domWidth / domHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(domWidth, domHeight);
+
+                    // mobile view
+                    camera.lookAt(new THREE.Vector3(0, 0, 0));
+                    camera.zoom = 1;
+
+
+                };
+                updateRendererSize();
+                $(window).on('resize', updateRendererSize);
+
+
+                (function loop() {
+                    requestAnimationFrame(loop);
+
+                    clock.getDelta();
+                    var t = clock.elapsedTime * 0.25;
+                    sphere.position.set(Math.cos(t) * mspace.x, Math.sin(t) * mspace.y, Math.sin(t) * mspace.z);
+                    mouseSphere.position.set(mousePosition.value.x, mousePosition.value.y, mousePosition.value.z);
+                    // mouseSphere.position.set(mousePosition.value);
+
+                    if(ps) {
+                        simulate(clock.elapsedTime, dt, new THREE.Vector3(sphere.position.x / space.x * 0.5 + 0.5, sphere.position.y / space.y * 0.5 + 0.5, sphere.position.z / space.z * 0.5 + 0.5));
+                        ps.material.uniforms.positionTex.value = fboPositionPP.getReadBuffer();
+                        blit(clear, fboAccelerationPP.getReadBuffer());
+                    }
+
+                    renderer.render(scene, camera);
+                })();
+            },
+
+            loadShaders : function(names, success) {
+                var shaders = [];
+
+                for (var i = 0; i < names.length; i++) {
+                  var name = names[i];
+                  var shader = document.getElementById(name).textContent;
+                  shaders.push(shader);
+                }
+
+                return shaders;
+            },
+        };
+
+        global.GPUParticlesAnimation = GPUParticlesAnimation;
+    })(window, THREE);
+
+    var app = new GPUParticlesAnimation("gpu-particles-animation");
+</script>
+
+</body>
+</html>
