@@ -522,10 +522,7 @@
               background-position: center;">
   </div>
   <style>
-    .link-team {
-      text-decoration: underline;
-      color: #3F70FF;
-    }
+
 
     .section-team {
       margin-top: 50px;
@@ -535,25 +532,56 @@
         margin-top: 28px;
       }
     }
+
+    p.team-bio {
+      font-family: Apercu-Medium;
+      font-size: 16px;
+      color: #373737;
+      letter-spacing: 0;
+      line-height: 24px;
+      margin-bottom: 40px;
+    }
+
+    img.team-bio {
+      float: left; 
+      margin: 0px 30px 0px 0px;
+      width: 90px;
+      height: 90px;
+    }
+
+    a.team-bio {
+      text-decoration: underline;
+      color: #3F70FF;
+    }
   </style>
 
   <div class="section section-team">
     <div class="margins-narrow">
       <p>
         Nord Projects is Ben, Joe and Mike. We work together really well, and we've got years of experience doing it. So you’re in safe hands.
-      <br><br>
+        <br><br>
         Nord is small for a reason - we're the ones actually designing and making your product. Too often ideas are diluted by oversized, fragmented teams. We're able to preserve the principle of an idea and craft it into something special - to create brilliant products.
-      <br><br>
-        Check out our past work:
-        <br><a class="link-team" href="http://benpawle.co.uk" target="_blank">Ben</a>
-        <br> <a class="link-team" href="http://joerick.me" target="_blank">Joe</a>
-        <br> <a class="link-team" href="http://mikethings.com" target="_blank">Mike</a>
+        <br><br>
+        <p class="team-bio">
+          <img src="img/team/ben.jpg" class="team-bio">
+          Ben’s a product / interaction designer. His work’s been exhibited in places like the V&amp;A, and featured by Wired and Fast Co. His one hit wonder was a <a href="https://vimeo.com/47322513" target="_blank" style="text-decoration: underline; color: #373737;">condom you could open with one hand</a>.
+          <br><a class="team-bio" href="http://benpawle.co.uk" target="_blank">See Ben's work</a>
+        </p>
+        <p class="team-bio">
+          <img src="img/team/joe.jpg" class="team-bio">
+          Joe’s a full stack developer. Since graduating from the University of Cambridge he’s built everything from experimental generative graphics to iPhone apps to cloud-deployed web platforms.
+          <br><a class="team-bio" href="http://joerick.me" target="_blank">See Joe's work</a>
+        </p>
+        <p class="team-bio">
+          <img src="img/team/mike.jpg" class="team-bio">
+          Mike has been leading development teams for the last 5 years delivering projects used by millions of users. He has worked across iPhone, Mac and web on apps like TVPlayer, At The Races and Mixim.
+          <br><a class="team-bio" href="http://mikethings.com" target="_blank">See Mike's work</a>
+        </p>
       </p>
-
     </div>
   </div>
 
-  <div class="hidden-xs" style="height: 35px"></div>
+  <div class="hidden-xs" style="height: 70px"></div>
   <div class="visible-xs" style="height: 25px"></div>
 
   {% comment %}
