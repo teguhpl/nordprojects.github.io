@@ -79,7 +79,7 @@ void main() {
 
         vec3 vel = uncomp(texture2D(velocityTex, texcoord).xyz);
         // linear drag
-        if(length(vel) > 2.0) {
+        if(length(vel) > 1.4) {
             vel += vel * -0.001;
         }
 
@@ -94,14 +94,14 @@ void main() {
                                  length(lineEnd - lineStart));
         float cylinderToPos = length(cylinderCrossPos);
 
-        if (cylinderToPos < 0.6) {
+        if (cylinderToPos < 0.8) {
             if (clickTime > time - 0.1) {
                 // repel from the clicked position
                 vel = normalize(cylinderCrossPos) * 1.6;
             } else {
                 if (cylinderToPos < 0.4) {
                     vec3 cylinderToPoint = cross(cylinderCrossPos, lineEnd - lineStart);
-                    vel = reflect(vel, normalize(cylinderToPoint)) * 0.5 + mousePositionVelocity * 15.0;
+                    vel = reflect(vel, normalize(cylinderToPoint)) * 0.7 + mousePositionVelocity * 15.0;
                     if (length(vel) < 0.1) {
                         vel = 0.2 * normalize(vel);
                     }
@@ -174,7 +174,7 @@ void main() {
         vec3 from = uncomp(texture2D(positionTex, texcoord).xyz);
         vec3 to = uncomp(attractor);
         vec3 dir = to - from;
-        float m = length(dir);
+        float m = length(dir) * 0.01;
 
         if(inverse > 0) {
             dir *= -1.;
@@ -186,18 +186,18 @@ void main() {
         vec3 rotationComponent = vec3(0.0);
 
         vec3 rotationDirection = cross(from, vec3(0.1, 1.0, 0.1));
-        rotationComponent += rotationDirection * 0.04;
+        rotationComponent += rotationDirection * 0.02;
 
         vec3 rotatorPosition = vec3(1.0, 0.0, 0.0);
         vec3 rotationDirection2 = cross(from - rotatorPosition, vec3(1.0, 1.0, 0.1));
-        rotationComponent += rotationDirection2 * 0.02;
+        rotationComponent += rotationDirection2 * 0.01;
 
         // clamp size of the thing
         if (length(from) > 10.0) {
             rotationComponent *= -0.5;
         }
         
-        dir += rotationComponent;
+        dir += rotationComponent * 0.5;
 
 
         vec3 f = normalize(dir) * m; 
@@ -649,6 +649,7 @@ void main() {
                     blit(velocity, fboPositionPP.getWriteBuffer());
                     fboPositionPP.swap();
                 };
+                window.fboVelocityPP = fboVelocityPP;
 
                 var updateRendererSize = function() {
                     domWidth = $dom.width();
