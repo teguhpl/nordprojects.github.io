@@ -585,7 +585,8 @@ void main() {
                 var dt = 0.1;
                 var mspace = space.clone().divideScalar(2.0);
 
-                var previousMoveEventTimestamp = null;
+                var previousMouseUpdateTimestamp = 0;
+                var touchDown = false;
 
                 function unproject(pageX, pageY) {
                     var zeroPoint = new THREE.Vector3(0,0,0);
@@ -597,28 +598,47 @@ void main() {
                     return result;
                 }
 
-                document.addEventListener('mousemove', function (event) {
+                function updateMousePositionUniforms(pageX, pageY) {
                     var previousMousePosition = mousePosition.value;
                     
-                    mousePosition.value = unproject(event.pageX, event.pageY);
+                    mousePosition.value = unproject(pageX, pageY);
 
                     mousePositionToCameraVector.value = mousePosition.value.clone()
                                                                            .sub(camera.position)
                                                                            .normalize();
 
-                    if (previousMoveEventTimestamp) {
-                        var timeSinceLastEvent = event.timeStamp - previousMoveEventTimestamp;
-                        mousePositionVelocity.value = mousePosition.value.clone()
-                                                                         .sub(previousMousePosition)
-                                                                         .divideScalar(timeSinceLastEvent);
-                    }
-                    previousMoveEventTimestamp = event.timeStamp;
+                    var timeSinceLastEvent = event.timeStamp - previousMouseUpdateTimestamp;
+                    mousePositionVelocity.value = mousePosition.value.clone()
+                                                                     .sub(previousMousePosition)
+                                                                     .divideScalar(timeSinceLastEvent);
+
+                    previousMouseUpdateTimestamp = event.timeStamp;
+                }
+
+                document.addEventListener('mousemove', function (event) {
+                    updateMousePositionUniforms(event.pageX, event.pageY);
                 }, false);
 
                 document.addEventListener('mousedown', function (event) {
+                    updateMousePositionUniforms(event.pageX, event.pageY);
                     clickPosition.value = unproject(event.pageX, event.pageY);
                     clickTime.value = clock.elapsedTime;
                 });
+                
+                document.addEventListener('touchstart', function (event) {
+                    updateMousePositionUniforms(event.pageX, event.pageY);
+                    clickPosition.value = unproject(event.pageX, event.pageY);
+                    touchDown = true;
+                }, false);
+                document.addEventListener('touchmove', function (event) {
+                    updateMousePositionUniforms(event.pageX, event.pageY);
+                    clickPosition.value = unproject(event.pageX, event.pageY);
+                }, false);
+                document.addEventListener('touchend', function (event) {
+                    updateMousePositionUniforms(event.pageX, event.pageY);
+                    clickPosition.value = unproject(event.pageX, event.pageY);
+                    touchDown = false;
+                }, false);
 
                 var simulate = function(t, dt, attractor) {
                     // apply force
@@ -680,6 +700,10 @@ void main() {
                     sphere.position.set(Math.cos(t) * mspace.x, Math.sin(t) * mspace.y, Math.sin(t) * mspace.z);
                     mouseSphere.position.set(mousePosition.value.x, mousePosition.value.y, mousePosition.value.z);
                     // mouseSphere.position.set(mousePosition.value);
+
+                    if (touchDown) {
+                        clickTime.value = clock.elapsedTime;
+                    }
 
                     if(ps) {
                         simulate(clock.elapsedTime, dt, new THREE.Vector3(sphere.position.x / space.x * 0.5 + 0.5, sphere.position.y / space.y * 0.5 + 0.5, sphere.position.z / space.z * 0.5 + 0.5));
