@@ -420,10 +420,15 @@ void main() {
                     antialias: true,
                 });
 
-                var pixelRatio = window.devicePixelRatio ? window.devicePixelRatio : 1.0;
-                // renderer.setPixelRatio(1.0);
+                var pixelRatio;
+                if (domWidth < 768) {
+                    // mobile view
+                    pixelRatio = window.devicePixelRatio ? window.devicePixelRatio : 1.0;
+                } else {
+                    // desktop view
+                    pixelRatio = 1.0;
+                }
                 renderer.setPixelRatio(pixelRatio);
-
                 renderer.setSize(domWidth, domHeight);
                 $dom.append(renderer.domElement);
 
