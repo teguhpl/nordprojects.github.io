@@ -52,6 +52,7 @@ uniform float dt;
 uniform float seed;
 uniform vec3 clickPosition;
 uniform float clickTime;
+uniform float particleDragThreshold;
 
 vec3 uncomp(vec3 v3) {
     v3 = ((v3 - 0.5) * 2.0);
@@ -79,8 +80,8 @@ void main() {
 
         vec3 vel = uncomp(texture2D(velocityTex, texcoord).xyz);
         // linear drag
-        if(length(vel) > 1.4) {
-            vel += vel * -0.001;
+        if(length(vel) > particleDragThreshold) {
+            vel *= 0.9;
         }
 
         // collision with mouse
@@ -174,7 +175,7 @@ void main() {
         vec3 from = uncomp(texture2D(positionTex, texcoord).xyz);
         vec3 to = uncomp(attractor);
         vec3 dir = to - from;
-        float m = length(dir) * 0.01;
+        float m = length(dir);
 
         if(inverse > 0) {
             dir *= -1.;
@@ -186,18 +187,18 @@ void main() {
         vec3 rotationComponent = vec3(0.0);
 
         vec3 rotationDirection = cross(from, vec3(0.1, 1.0, 0.1));
-        rotationComponent += rotationDirection * 0.02;
+        rotationComponent += rotationDirection * 0.04;
 
         vec3 rotatorPosition = vec3(1.0, 0.0, 0.0);
         vec3 rotationDirection2 = cross(from - rotatorPosition, vec3(1.0, 1.0, 0.1));
-        rotationComponent += rotationDirection2 * 0.01;
+        rotationComponent += rotationDirection2 * 0.02;
 
         // clamp size of the thing
         if (length(from) > 10.0) {
             rotationComponent *= -0.5;
         }
         
-        dir += rotationComponent * 0.5;
+        dir += rotationComponent;
 
 
         vec3 f = normalize(dir) * m; 
@@ -452,7 +453,9 @@ void main() {
                 var size = 128;
                 // var size = 512;
 
-                var type = /(iPad|iPhone|iPod)/g.test(navigator.userAgent) ? THREE.HalfFloatType : THREE.FloatType;
+                var isIos = /(iPad|iPhone|iPod)/g.test(navigator.userAgent);
+                var type = isIos ? THREE.HalfFloatType : THREE.FloatType;
+                var particleDragThreshold = isIos ? 1.9 : 1.3;
                 // var type = THREE.FloatType;
                 var fboAccelerationPP = new FboPingPong(size, size, type);
                 var fboVelocityPP = new FboPingPong(size, size, type);
@@ -516,6 +519,7 @@ void main() {
                         mousePositionVelocity : mousePositionVelocity,
                         clickPosition      : clickPosition,
                         clickTime          : clickTime,
+                        particleDragThreshold: { type: 'f', value: particleDragThreshold },
                     },
                     vertexShader : shaders[2],
                     fragmentShader : shaders[4]
