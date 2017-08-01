@@ -452,7 +452,7 @@ void main() {
                 var size = 128;
                 // var size = 512;
 
-                var type = THREE.HalfFloatType;
+                var type = /(iPad|iPhone|iPod)/g.test(navigator.userAgent) ? THREE.HalfFloatType : THREE.FloatType;
                 // var type = THREE.FloatType;
                 var fboAccelerationPP = new FboPingPong(size, size, type);
                 var fboVelocityPP = new FboPingPong(size, size, type);
