@@ -189,9 +189,9 @@ void main() {
         vec3 rotationDirection = cross(from, vec3(0.1, 1.0, 0.1));
         rotationComponent += rotationDirection * 0.04;
 
-        vec3 rotatorPosition = vec3(1.0, 0.0, 0.0);
-        vec3 rotationDirection2 = cross(from - rotatorPosition, vec3(1.0, 1.0, 0.1));
-        rotationComponent += rotationDirection2 * 0.02;
+        vec3 rotatorPosition = vec3(sin(time*0.1), 0.0, cos(time*0.08+20.0));
+        vec3 rotationDirection2 = cross(from - rotatorPosition, vec3(1.0, -0.1, -0.1));
+        rotationComponent += normalize(rotationDirection2) * 0.08 * sin(0.02*time) / length(from - rotatorPosition);
 
         // clamp size of the thing
         if (length(from) > 10.0) {
