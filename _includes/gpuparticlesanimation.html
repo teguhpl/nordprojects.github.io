@@ -34,7 +34,7 @@
   }
 </style>
 
-<script src="https://ajax.googleapis.com/ajax/libs/threejs/r71/three.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/threejs/r84/three.min.js"></script>
 
 <script type="x-shader/x-vertex" id="kernelVert">
 varying vec2 texcoord;
@@ -88,52 +88,43 @@ vec3 comp(vec3 v3) {
 
 
 void main() {
+    vec3 from = uncomp(texture2D(positionTex, texcoord).xyz);
+    vec3 to = uncomp(attractor);
+    vec3 dir = to - from;
+    float m = length(dir);
 
-    if(time <= 0.3) {
-        float x = rnd(texcoord);
-        float y = rnd(texcoord + seed);
-        float z = rnd(texcoord + seed * 10.);
-        gl_FragColor = vec4(x, y, z, 1.);
+    if(inverse > 0) {
+        dir *= -1.;
+        m = clamp(m, 0., 0.001);
     } else {
-        vec3 from = uncomp(texture2D(positionTex, texcoord).xyz);
-        vec3 to = uncomp(attractor);
-        vec3 dir = to - from;
-        float m = length(dir);
-
-        if(inverse > 0) {
-            dir *= -1.;
-            m = clamp(m, 0., 0.001);
-        } else {
-            m = clamp(m, 0., 0.02);
-        }
-
-        vec3 rotationComponent = vec3(0.0);
-
-        vec3 rotationDirection = cross(from, vec3(0.1, 1.0, 0.1));
-        rotationComponent += rotationDirection * 0.04;
-
-        vec3 rotatorPosition = vec3(sin(time*0.1), 0.0, cos(time*0.08+20.0));
-        vec3 rotationDirection2 = cross(from - rotatorPosition, vec3(1.0, -0.1, -0.1));
-        rotationComponent += normalize(rotationDirection2) * 0.08 * sin(0.02*time) / length(from - rotatorPosition);
-
-        // clamp size of the thing
-        if (length(from) > 10.0) {
-            rotationComponent *= -0.5;
-        }
-        
-        dir += rotationComponent;
-
-
-        vec3 f = normalize(dir) * m; 
-
-        // random motion
-        f.x += rnd(from.xy) * 0.001;
-        f.y += rnd(from.xz) * 0.002;
-        f.z += rnd(from.yz) * 0.003;
-
-        gl_FragColor = vec4(comp(f), 1.);
+        m = clamp(m, 0., 0.02);
     }
 
+    vec3 rotationComponent = vec3(0.0);
+
+    vec3 rotationDirection = cross(from, vec3(0.1, 1.0, 0.1));
+    rotationComponent += rotationDirection * 0.04;
+
+    vec3 rotatorPosition = vec3(sin(time*0.1), 0.0, cos(time*0.08+20.0));
+    vec3 rotationDirection2 = cross(from - rotatorPosition, vec3(1.0, -0.1, -0.1));
+    rotationComponent += normalize(rotationDirection2) * 0.08 * sin(0.02*time) / length(from - rotatorPosition);
+
+    // clamp size of the thing
+    if (length(from) > 10.0) {
+        rotationComponent *= -0.5;
+    }
+    
+    dir += rotationComponent;
+
+
+    vec3 f = normalize(dir) * m; 
+
+    // random motion
+    f.x += rnd(from.xy) * 0.001;
+    f.y += rnd(from.xz) * 0.002;
+    f.z += rnd(from.yz) * 0.003;
+
+    gl_FragColor = vec4(comp(f), 1.);
 }
 </script>
 
@@ -154,6 +145,7 @@ uniform float seed;
 uniform vec3 clickPosition;
 uniform float clickTime;
 uniform float particleDragThreshold;
+uniform int initializeState;
 
 vec3 uncomp(vec3 v3) {
     v3 = ((v3 - 0.5) * 2.0);
@@ -172,7 +164,7 @@ vec3 comp(vec3 v3) {
 
 void main() {
 
-    if(time <= 0.3) {
+    if(time <= 0.3 && initializeState == 1) {
         // initialize
 
         gl_FragColor = vec4(0.45, 0.45, 0.45, 1.);
@@ -223,14 +215,6 @@ void main() {
 }
 </script>
 
-<script type="x-shader/x-fragment" id="positionFrag">
-varying vec4 color;
-
-void main() {
-  gl_FragColor = color;
-}
-</script>
-
 <script type="x-shader/x-fragment" id="velocityFrag">
 precision highp float;
 varying vec2 texcoord;
@@ -242,6 +226,7 @@ uniform vec3 scale;
 uniform float time;
 uniform float dt;
 uniform float seed;
+uniform int initializeState;
 
 float rnd(vec2 p){
     return fract(sin(dot(p ,vec2(12.9898,78.233))) * 43758.5453);
@@ -265,7 +250,7 @@ vec3 comp(vec3 v3) {
 // output position
 void main() {
 
-    if(time <= 0.3) {
+    if(time <= 0.3 && initializeState == 1) {
         float r = (rnd(texcoord) + 2.0) * 2.0;
         float q = rnd(texcoord+seed * 2000.0) * 0.2;
         float theta = rnd(texcoord + seed) * 3.1415 * 2.0;
@@ -274,16 +259,23 @@ void main() {
         float x = r*sin(theta) + q*sin(phi);
         float y = q*cos(phi);
         float z = r*cos(theta);
-        float w = rnd(texcoord + seed * 100.);
-        gl_FragColor = vec4(comp(vec3(x, y, z)), w);
+        gl_FragColor = vec4(comp(vec3(x, y, z)), 1.0);
     } else {
         vec3 vel = uncomp(texture2D(velocityTex, texcoord).xyz);
 
         vec4 p = texture2D(positionTex, texcoord);
         vec3 pos = uncomp(p.xyz);
         pos += vel * dt;
-        gl_FragColor = vec4(comp(pos), p.w);
+        gl_FragColor = vec4(comp(pos), 1.0);
     }
+}
+</script>
+
+<script type="x-shader/x-fragment" id="positionFrag">
+varying vec4 color;
+
+void main() {
+  gl_FragColor = color;
 }
 </script>
 
@@ -345,6 +337,9 @@ void main() {
     (function(global, THREE) {
 
         function FboPingPong(width, height, type) {
+            this.width = width;
+            this.height = height;
+            this.type = type;
             this.readBufferIndex = 0;
             this.writeBufferIndex = 1;
             this.buffers = [
@@ -379,7 +374,30 @@ void main() {
                     type: type,
                     stencilBuffer: false
                 });
-            }
+            },
+            
+            save : function(renderer) {
+                var gl = renderer.getContext();
+                var width = this.width;
+                var height = this.height;
+                var data = new Uint8Array(width * height * 4);
+                var framebuffer = renderer.properties.get(this.getReadBuffer()).__webglFramebuffer;
+                gl.bindFramebuffer(gl.FRAMEBUFFER, framebuffer);
+
+                gl.readPixels(0, 0, width, height, gl.RGBA, gl.UNSIGNED_BYTE, data);
+
+                // Create a 2D canvas to store the result 
+                var canvas = document.createElement('canvas');
+                canvas.width = width;
+                canvas.height = height;
+                var context = canvas.getContext('2d');
+
+                // Copy the pixels to a 2D canvas
+                var imageData = context.createImageData(width, height);
+                imageData.data.set(data);
+                context.putImageData(imageData, 0, 0);
+                return canvas.toDataURL();
+            },
 
         };
 
@@ -405,6 +423,11 @@ void main() {
                 if (!isWebGLSupported()) {
                     $dom.find('.gpu-particles-fallback-image').show();
                     return;
+                }
+
+                var saveGLState = false;
+                if (window.location.hash.search('save-gl-state') !== -1) {
+                    saveGLState = true;
                 }
 
                 var scene = new THREE.Scene();
@@ -453,13 +476,14 @@ void main() {
                 var size = 128;
                 // var size = 512;
 
-                var isIos = /(iPad|iPhone|iPod)/g.test(navigator.userAgent);
-                var type = isIos ? THREE.HalfFloatType : THREE.FloatType;
-                var particleDragThreshold = isIos ? 1.9 : 1.3;
-                // var type = THREE.FloatType;
+                var halfFloatMode = /(iPad|iPhone|iPod)/g.test(navigator.userAgent);
+                var type = halfFloatMode ? THREE.HalfFloatType : THREE.FloatType;
+                var particleDragThreshold = halfFloatMode ? 1.9 : 1.3;
+
                 var fboAccelerationPP = new FboPingPong(size, size, type);
                 var fboVelocityPP = new FboPingPong(size, size, type);
                 var fboPositionPP = new FboPingPong(size, size, type);
+                window.renderer = renderer;
 
                 // var space = new THREE.Vector3(10, 10, 10);
                 // var space = new THREE.Vector3(5, 5, 5);
@@ -489,6 +513,7 @@ void main() {
                 var dt = { type : "f", value : 0.0 };
                 var clickTime = { type : "f", value : 0.0 };
                 var clickPosition = { type : "v3", value : new THREE.Vector3(0.0, 0.0, 0.0) };
+                var initializeState = { type : "i", value : saveGLState ? 1 : 0 };
 
                 force = new THREE.ShaderMaterial({
                     uniforms : {
@@ -520,6 +545,7 @@ void main() {
                         clickPosition      : clickPosition,
                         clickTime          : clickTime,
                         particleDragThreshold: { type: 'f', value: particleDragThreshold },
+                        initializeState    : initializeState
                     },
                     vertexShader : shaders[2],
                     fragmentShader : shaders[4]
@@ -533,7 +559,8 @@ void main() {
                         scale              : scale,
                         time               : time,
                         dt                 : dt,
-                        seed               : seed
+                        seed               : seed,
+                        initializeState    : initializeState,
                     },
                     vertexShader : shaders[2],
                     fragmentShader : shaders[5]
@@ -546,23 +573,33 @@ void main() {
                     fragmentShader : shaders[shaders.length - 1]
                 });
 
-                var geometry = new THREE.Geometry();
-                var uv = [];
+                var geometry = new THREE.BufferGeometry();
+                var amount = size*size;
+                var positions = new Float32Array( amount * 3 );
+                var vuvs = new Float32Array( amount * 2 );
+
+                var position = new THREE.Vector3();
+                var uv = new THREE.Vector2();
+
                 for(var y = 0; y < size; y++) {
                     var ry = y / size;
                     for(var x = 0; x < size; x++) {
-                        geometry.vertices.push(
-                            new THREE.Vector3(
-                                (Math.random() - 0.5) * 100,
-                                (Math.random() - 0.5) * 100,
-                                (Math.random() - 0.5) * 100
-                            )
-                        );
-                        uv.push(new THREE.Vector2(x / size, ry));
+                        var i = y*size + x;
+                        position.x = (Math.random() - 0.5) * 100;
+                        position.y = (Math.random() - 0.5) * 100;
+                        position.z = (Math.random() - 0.5) * 100;
+                        position.toArray(positions, i*3);
+
+                        uv.x = x / size;
+                        uv.y = ry;
+                        uv.toArray(vuvs, i*2);
                     }
                 }
 
-                ps = new THREE.PointCloud(
+                geometry.addAttribute('position', new THREE.BufferAttribute(positions, 3));
+                geometry.addAttribute('vuv', new THREE.BufferAttribute(vuvs, 2));
+
+                ps = new THREE.Points(
                     geometry,
                     new THREE.ShaderMaterial({
                         uniforms : {
@@ -571,9 +608,6 @@ void main() {
                             scale               : scale,
                             time                : time,
                             px                  : { type : "f",     value : 1 / size }
-                        },
-                        attributes : {
-                            "vuv" : { type : "v2", value : uv }
                         },
                         vertexShader : shaders[0],
                         fragmentShader : shaders[1],
@@ -647,8 +681,8 @@ void main() {
                 var simulate = function(t, dt, attractor) {
                     // apply force
                     
-                    force.uniforms.accelerationTex.value = fboAccelerationPP.getReadBuffer();
-                    force.uniforms.positionTex.value = fboPositionPP.getReadBuffer();
+                    force.uniforms.accelerationTex.value = fboAccelerationPP.getReadBuffer().texture;
+                    force.uniforms.positionTex.value = fboPositionPP.getReadBuffer().texture;
                     force.uniforms.time.value = t;
                     force.uniforms.attractor.value = attractor;
                     force.uniforms.dt.value = dt;
@@ -656,18 +690,18 @@ void main() {
                     fboAccelerationPP.swap();
 
                     // update velocity
-                    acceleration.uniforms.accelerationTex.value = fboAccelerationPP.getReadBuffer();
-                    acceleration.uniforms.velocityTex.value = fboVelocityPP.getReadBuffer();
-                    acceleration.uniforms.positionTex.value = fboPositionPP.getReadBuffer();
+                    acceleration.uniforms.accelerationTex.value = fboAccelerationPP.getReadBuffer().texture;
+                    acceleration.uniforms.velocityTex.value = fboVelocityPP.getReadBuffer().texture;
+                    acceleration.uniforms.positionTex.value = fboPositionPP.getReadBuffer().texture;
                     acceleration.uniforms.time.value = t;
                     acceleration.uniforms.dt.value = dt;
                     blit(acceleration, fboVelocityPP.getWriteBuffer());
                     fboVelocityPP.swap();
 
                     // update position
-                    velocity.uniforms.accelerationTex.value = fboAccelerationPP.getReadBuffer();
-                    velocity.uniforms.velocityTex.value = fboVelocityPP.getReadBuffer();
-                    velocity.uniforms.positionTex.value = fboPositionPP.getReadBuffer();
+                    velocity.uniforms.accelerationTex.value = fboAccelerationPP.getReadBuffer().texture;
+                    velocity.uniforms.velocityTex.value = fboVelocityPP.getReadBuffer().texture;
+                    velocity.uniforms.positionTex.value = fboPositionPP.getReadBuffer().texture;
                     velocity.uniforms.time.value = t;
                     velocity.uniforms.dt.value = dt;
                     blit(velocity, fboPositionPP.getWriteBuffer());
@@ -711,12 +745,49 @@ void main() {
 
                     if(ps) {
                         simulate(clock.elapsedTime, dt, new THREE.Vector3(sphere.position.x / space.x * 0.5 + 0.5, sphere.position.y / space.y * 0.5 + 0.5, sphere.position.z / space.z * 0.5 + 0.5));
-                        ps.material.uniforms.positionTex.value = fboPositionPP.getReadBuffer();
+                        ps.material.uniforms.positionTex.value = fboPositionPP.getReadBuffer().texture;
                         blit(clear, fboAccelerationPP.getReadBuffer());
                     }
 
                     renderer.render(scene, camera);
                 })();
+
+                if (saveGLState) {
+                    setTimeout(function () {
+                        console.log('saving...');
+                        var positionImg = fboPositionPP.save(renderer);
+                        var velocityImg = fboVelocityPP.save(renderer);
+                        var accelerationImg = fboAccelerationPP.save(renderer);
+                        document.write('position: <img src="'+positionImg+'"/><br>velocity: <img src="'+velocityImg+'"/><br>acceleration: <img src="'+accelerationImg+'"/>');
+                    }, 2000);
+                } else {
+                    // load the initial state
+                    var loader = new THREE.TextureLoader();
+                    var positionTexture, velocityTexture;
+
+                    loader.load('/img/gl-initial-position.png', function (texture) {
+                        positionTexture = texture;
+                        if (positionTexture && velocityTexture) applyInitialState();
+                    });
+                    loader.load('/img/gl-initial-velocity.png', function (texture) {
+                        velocityTexture = texture;
+                        if (positionTexture && velocityTexture) applyInitialState();
+                    });
+
+                    function applyInitialState() {
+                        var material = new THREE.MeshBasicMaterial({
+                            map: positionTexture,
+                        })
+                        blit(material, fboPositionPP.getWriteBuffer());
+                        fboPositionPP.swap();
+
+                        var material = new THREE.MeshBasicMaterial({
+                            map: velocityTexture,
+                        })
+                        blit(material, fboVelocityPP.getWriteBuffer());
+                        fboVelocityPP.swap();
+                    }
+                }
             },
 
             loadShaders : function(names, success) {
