@@ -410,6 +410,16 @@ void main() {
             }
         }
 
+        function areRequiredExtensionsSupported() {
+            try {
+                var canvas = document.createElement('canvas');
+                var gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+                return !!(gl.getExtension('OES_texture_float') || gl.getExtension('OES_texture_half_float'));
+            } catch (e) {
+                return false;
+            }
+        }
+
         var app, GPUParticlesAnimation = function(id) {
             app = this;
             app.init(id);
@@ -420,7 +430,7 @@ void main() {
             init: function(id) {
                 var $dom = $("#" + id);
 
-                if (!isWebGLSupported()) {
+                if (!isWebGLSupported() || !areRequiredExtensionsSupported()) {
                     $dom.find('.gpu-particles-fallback-image').show();
                     return;
                 }
