@@ -36,89 +36,12 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/threejs/r71/three.min.js"></script>
 
-<script type="x-shader/x-fragment" id="accelerationFrag">
-precision highp float;
+<script type="x-shader/x-vertex" id="kernelVert">
 varying vec2 texcoord;
 
-uniform sampler2D accelerationTex;
-uniform sampler2D velocityTex;
-uniform sampler2D positionTex;
-uniform vec3 scale;
-uniform vec3 mousePosition;
-uniform vec3 mousePositionVelocity;
-uniform vec3 mousePositionToCameraVector;
-uniform float time;
-uniform float dt;
-uniform float seed;
-uniform vec3 clickPosition;
-uniform float clickTime;
-uniform float particleDragThreshold;
-
-vec3 uncomp(vec3 v3) {
-    v3 = ((v3 - 0.5) * 2.0);
-    v3.x *= scale.x;
-    v3.y *= scale.y;
-    v3.z *= scale.z;
-    return v3;
-}
-
-vec3 comp(vec3 v3) {
-    v3.x /= scale.x;
-    v3.y /= scale.y;
-    v3.z /= scale.z;
-    return (v3 / 2.0) + 0.5;
-}
-
 void main() {
-
-    if(time <= 0.3) {
-        // initialize
-
-        gl_FragColor = vec4(0.45, 0.45, 0.45, 1.);
-    } else {
-        // update velocity
-
-        vec3 vel = uncomp(texture2D(velocityTex, texcoord).xyz);
-        // linear drag
-        if(length(vel) > particleDragThreshold) {
-            vel *= 0.9;
-        }
-
-        // collision with mouse
-        // collision is within a volume (a cylinder) described by a point center
-        // and a vector of the primary axis.
-        vec3 pos = uncomp(texture2D(positionTex, texcoord).xyz);
-        vec3 lineStart = mousePosition - mousePositionToCameraVector;
-        vec3 lineEnd = mousePosition + mousePositionToCameraVector;
-        vec3 cylinderCrossPos = (cross(lineEnd - lineStart, lineStart - pos)
-                                 /
-                                 length(lineEnd - lineStart));
-        float cylinderToPos = length(cylinderCrossPos);
-
-        if (cylinderToPos < 0.8) {
-            if (clickTime > time - 0.1) {
-                // repel from the clicked position
-                vel = normalize(cylinderCrossPos) * 1.6;
-            } else {
-                if (cylinderToPos < 0.4) {
-                    vec3 cylinderToPoint = cross(cylinderCrossPos, lineEnd - lineStart);
-                    vel = reflect(vel, normalize(cylinderToPoint)) * 0.7 + mousePositionVelocity * 15.0;
-                    if (length(vel) < 0.1) {
-                        vel = 0.2 * normalize(vel);
-                    }
-                    //vel += mousePositionVelocity * 10.0;
-                    //vel += (mousePosition - pos) * 0.01;  
-                }
-            }
-        }
-
-        vec3 acc = uncomp(texture2D(accelerationTex, texcoord).xyz);
-        vel += acc;
-
-        // gl_FragColor = vec4(0.5, 0.5, 0.5, 1.);
-        gl_FragColor = vec4(comp(vel), 1.);
-    }
-
+    texcoord = uv;
+    gl_Position = vec4(position, 1.);
 }
 </script>
 
@@ -214,31 +137,23 @@ void main() {
 }
 </script>
 
-<script type="x-shader/x-fragment" id="kernelVert">
+<script type="x-shader/x-fragment" id="accelerationFrag">
+precision highp float;
 varying vec2 texcoord;
 
-void main() {
-    texcoord = uv;
-    gl_Position = vec4(position, 1.);
-}
-</script>
-
-<script type="x-shader/x-fragment" id="particleFrag">
-varying vec4 color;
-
-void main() {
-    gl_FragColor = color;
-}
-</script>
-
-<script type="x-shader/x-fragment" id="particleVert">
-attribute vec2 vuv;
-varying vec4 color;
-
+uniform sampler2D accelerationTex;
+uniform sampler2D velocityTex;
 uniform sampler2D positionTex;
-uniform float pointSize;
-uniform float time;
 uniform vec3 scale;
+uniform vec3 mousePosition;
+uniform vec3 mousePositionVelocity;
+uniform vec3 mousePositionToCameraVector;
+uniform float time;
+uniform float dt;
+uniform float seed;
+uniform vec3 clickPosition;
+uniform float clickTime;
+uniform float particleDragThreshold;
 
 vec3 uncomp(vec3 v3) {
     v3 = ((v3 - 0.5) * 2.0);
@@ -248,32 +163,63 @@ vec3 uncomp(vec3 v3) {
     return v3;
 }
 
+vec3 comp(vec3 v3) {
+    v3.x /= scale.x;
+    v3.y /= scale.y;
+    v3.z /= scale.z;
+    return (v3 / 2.0) + 0.5;
+}
+
 void main() {
-    vec2 texcoord = vuv;
 
-    vec3 p = texture2D(positionTex, texcoord).xyz;
-    vec3 pos = uncomp(p);
+    if(time <= 0.3) {
+        // initialize
 
-    vec3 color1 = vec3(0.43, 0.95, 1.0);
-    color1 *= 0.8;
-    color1.b = 0.95;
-    //vec3 color2 = vec3(0.92, 0.58, 1.0);
-    vec3 color2 = vec3(0.49, 0.71, 1.0);
-    
-    float gradientDriver = p.y * 3.0;
+        gl_FragColor = vec4(0.45, 0.45, 0.45, 1.);
+    } else {
+        // update velocity
 
-    color = vec4(clamp(p.x, -0.5, 1.0) * color1 +
-                 clamp(1.0-p.x, -0.5, 1.0) * color2,
-                 1.0);
-    
-    color.rgb *= clamp(p.y * 0.5, -1.0, 0.0) + 1.0;
-    color.rgb += clamp(p.y * 0.5, 0.0, 1.0);
+        vec3 vel = uncomp(texture2D(velocityTex, texcoord).xyz);
+        // linear drag
+        if(length(vel) > particleDragThreshold) {
+            vel *= 0.9;
+        }
 
-    float opacity = clamp(time * 0.5, 0.0, 1.0);
-    color.a *= opacity;
+        // collision with mouse
+        // collision is within a volume (a cylinder) described by a point center
+        // and a vector of the primary axis.
+        vec3 pos = uncomp(texture2D(positionTex, texcoord).xyz);
+        vec3 lineStart = mousePosition - mousePositionToCameraVector;
+        vec3 lineEnd = mousePosition + mousePositionToCameraVector;
+        vec3 cylinderCrossPos = (cross(lineEnd - lineStart, lineStart - pos)
+                                 /
+                                 length(lineEnd - lineStart));
+        float cylinderToPos = length(cylinderCrossPos);
 
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
-    gl_PointSize = pointSize;
+        if (cylinderToPos < 0.8) {
+            if (clickTime > time - 0.1) {
+                // repel from the clicked position
+                vel = normalize(cylinderCrossPos) * 1.6;
+            } else {
+                if (cylinderToPos < 0.4) {
+                    vec3 cylinderToPoint = cross(cylinderCrossPos, lineEnd - lineStart);
+                    vel = reflect(vel, normalize(cylinderToPoint)) * 0.7 + mousePositionVelocity * 15.0;
+                    if (length(vel) < 0.1) {
+                        vel = 0.2 * normalize(vel);
+                    }
+                    //vel += mousePositionVelocity * 10.0;
+                    //vel += (mousePosition - pos) * 0.01;  
+                }
+            }
+        }
+
+        vec3 acc = uncomp(texture2D(accelerationTex, texcoord).xyz);
+        vel += acc;
+
+        // gl_FragColor = vec4(0.5, 0.5, 0.5, 1.);
+        gl_FragColor = vec4(comp(vel), 1.);
+    }
+
 }
 </script>
 
@@ -338,6 +284,60 @@ void main() {
         pos += vel * dt;
         gl_FragColor = vec4(comp(pos), p.w);
     }
+}
+</script>
+
+<script type="x-shader/x-vertex" id="particleVert">
+attribute vec2 vuv;
+varying vec4 color;
+
+uniform sampler2D positionTex;
+uniform float pointSize;
+uniform float time;
+uniform vec3 scale;
+
+vec3 uncomp(vec3 v3) {
+    v3 = ((v3 - 0.5) * 2.0);
+    v3.x *= scale.x;
+    v3.y *= scale.y;
+    v3.z *= scale.z;
+    return v3;
+}
+
+void main() {
+    vec2 texcoord = vuv;
+
+    vec3 p = texture2D(positionTex, texcoord).xyz;
+    vec3 pos = uncomp(p);
+
+    vec3 color1 = vec3(0.43, 0.95, 1.0);
+    color1 *= 0.8;
+    color1.b = 0.95;
+    //vec3 color2 = vec3(0.92, 0.58, 1.0);
+    vec3 color2 = vec3(0.49, 0.71, 1.0);
+    
+    float gradientDriver = p.y * 3.0;
+
+    color = vec4(clamp(p.x, -0.5, 1.0) * color1 +
+                 clamp(1.0-p.x, -0.5, 1.0) * color2,
+                 1.0);
+    
+    color.rgb *= clamp(p.y * 0.5, -1.0, 0.0) + 1.0;
+    color.rgb += clamp(p.y * 0.5, 0.0, 1.0);
+
+    float opacity = clamp(time * 0.5, 0.0, 1.0);
+    color.a *= opacity;
+
+    gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+    gl_PointSize = pointSize;
+}
+</script>
+
+<script type="x-shader/x-fragment" id="particleFrag">
+varying vec4 color;
+
+void main() {
+    gl_FragColor = color;
 }
 </script>
 
