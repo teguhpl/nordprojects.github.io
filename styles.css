@@ -11,13 +11,11 @@
   font-style: normal;
 }
 
-/* We love making thing: */
-
 body {
   font-family: 'Apercu';
-  font-size: 22px;
+  font-size: 18px;
   color: #373737;
-  letter-spacing: 0;
+  letter-spacing: -0.1px;
   line-height: 28px;
   -webkit-font-smoothing: antialiased;
 }
@@ -68,11 +66,13 @@ h1, h2, h3, h4, h5, h6 {
     margin-top: 1em;
     margin-bottom: 1em;
   }
+}
 
-  h1 {
-    font-size: 25px;
-    line-height: 28px;
-  }
+h2 {
+  font-size: 28px;
+}
+h3 {
+  font-size: 24px;
 }
 
 p {
@@ -92,4 +92,10 @@ a {
 .vertical-align {
     display: flex;
     align-items: center;
+}
+
+.image-banner {
+  background-size: auto 100%;
+  background-position: center;
+  background-color: #d8d8d8;
 }

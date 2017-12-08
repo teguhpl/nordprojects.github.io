@@ -32,6 +32,7 @@ exclude:
   - Readme.md
   - Gemfile*
   - open.command
+  - node_modules
 permalink: /blog/:year/:month/:day/:title.html
 
 # social

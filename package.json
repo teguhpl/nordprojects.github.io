@@ -1,0 +1,23 @@
+{
+  "name": "nordproject.co",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently --kill-others 'jekyll build --watch' 'live-server _site'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nordprojects/nordprojects.github.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nordprojects/nordprojects.github.io/issues"
+  },
+  "homepage": "https://github.com/nordprojects/nordprojects.github.io#readme",
+  "devDependencies": {
+    "concurrently": "^3.5.1",
+    "live-server": "^1.2.0"
+  }
+}

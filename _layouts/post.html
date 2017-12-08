@@ -1,0 +1,57 @@
+---
+layout: default
+---
+<style>
+  .post-header {
+    background-color: #fcfcfc;
+    padding-bottom: 70px;
+  }
+  .post-hero {
+    background-position: center;
+    background-size: auto 100%;
+    background-color: #f2f2f2;
+    height: 600px;
+  }
+  .post-header-title {
+    font-weight: bold;
+    font-size: 40px;
+    color: black;
+    margin-top: 50px;
+    margin-bottom: 0;
+  }
+  .post-header-subtitle {
+    font-size: 25px;
+    font-weight: 500;
+    margin-top: 22px;
+  }
+  hr.post-header-rule {
+    width: 108px;
+    height: 3px;
+    background-color: black;
+    margin-left: 0;
+  }
+  .post-header-byline {
+    font-size: 17px;
+    margin-top:  34px;
+  }
+</style>
+
+<div class="post-header">
+  <div class="post-hero"
+       style="background-image: url({{page.image}})">
+  </div>
+  <div class="margins">
+    <h1 class="post-header-title">
+      {{ page.title }}
+    </h1>
+    <h2 class="post-header-subtitle">
+      {{ page.subtitle }}
+    </h2>
+    <hr class="post-header-rule">
+    <div class="post-header-byline">
+      {{ page.byline }}
+    </div>
+  </div>
+</div>
+
+{{ content }}

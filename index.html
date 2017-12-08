@@ -1,34 +1,12 @@
 ---
+layout: base
 ---
-<!DOCTYPE HTML>
-<html lang="en-GB">
-<head>
-    <meta charset="UTF-8">
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108024565-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-108024565-1');
-    </script>
-    <!-- Global site tag end -->
-
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="shortcut icon" href="/img/favicon.png">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/styles.css?20170731">
-    
-    <!-- jquery is useful even before the page is loaded, and is commonly cached
-         Other JS resources should go below the content -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-
-    {% seo %}
-</head>
-<body>
+<style>
+  body {
+    /* bump up the base font size on just this page */
+    font-size: 22px;
+  }
+</style>
 
 {% comment %}
 
@@ -43,656 +21,652 @@
                                                                      
 {% endcomment %}
 
-  <div class="section"
-       style="height: 90vh;
-              max-height: 600px;
-              position: relative;
-              overflow: hidden;
-              background-image: radial-gradient(circle 180vw at 80% 102%,
-                                                rgba(254,241,235,1) 0%,
-                                                rgba(168,223,250,1) 100%);">
+<div class="section"
+     style="height: 90vh;
+            max-height: 600px;
+            position: relative;
+            overflow: hidden;
+            background-image: radial-gradient(circle 180vw at 80% 102%,
+                                              rgba(254,241,235,1) 0%,
+                                              rgba(168,223,250,1) 100%);">
 
-    {% include gpuparticlesanimation.html %}
+  {% include gpuparticlesanimation.html %}
 
-    <div class="margins" style="display: flex;
-                                justify-content: center;
-                                flex-direction: column;
-                                height: 100%;
-                                padding-top: 2em;
-                                position: relative;
-                                zIndex: 1;
-                                max-width: 930px;">
-      <div class="hidden-xs">
-        <img src="img/nord-logo.svg" style="width: 284px"/>
-        <p style="margin-top: 2em; font-size: 26px">
-          We use design and technology <br>
-          to create meaningful products. <br>
-        </p>
-      </div>
-      <div class="visible-xs-block" style="text-align: center; padding: 0 10px;">
-        <div style="height: 26vh"></div>
-        <img src="img/nord-logo-centered.svg" />
-        <div style="height: 10vh"></div>
-        <p style="margin-top: 1em; font-size: 23px">
-          We use design and <br>
-          technology to create <br>
-          meaningful products.
-        </p>
-      </div>
+  <div class="margins" style="display: flex;
+                              justify-content: center;
+                              flex-direction: column;
+                              height: 100%;
+                              padding-top: 2em;
+                              position: relative;
+                              zIndex: 1;
+                              max-width: 930px;">
+    <div class="hidden-xs">
+      <img src="img/nord-logo.svg" style="width: 284px"/>
+      <p style="margin-top: 2em; font-size: 26px">
+        We use design and technology <br>
+        to create meaningful products. <br>
+      </p>
+    </div>
+    <div class="visible-xs-block" style="text-align: center; padding: 0 10px;">
+      <div style="height: 26vh"></div>
+      <img src="img/nord-logo-centered.svg" />
+      <div style="height: 10vh"></div>
+      <p style="margin-top: 1em; font-size: 23px">
+        We use design and <br>
+        technology to create <br>
+        meaningful products.
+      </p>
     </div>
   </div>
+</div>
 
 {% comment %}
 
-       /$$$$$$             /$$                        
-      |_  $$_/            | $$                        
-        | $$   /$$$$$$$  /$$$$$$    /$$$$$$   /$$$$$$ 
-        | $$  | $$__  $$|_  $$_/   /$$__  $$ /$$__  $$
-        | $$  | $$  \ $$  | $$    | $$  \__/| $$  \ $$
-        | $$  | $$  | $$  | $$ /$$| $$      | $$  | $$
-       /$$$$$$| $$  | $$  |  $$$$/| $$      |  $$$$$$/
-      |______/|__/  |__/   \___/  |__/       \______/ 
-                                                                                                   
+     /$$$$$$             /$$                        
+    |_  $$_/            | $$                        
+      | $$   /$$$$$$$  /$$$$$$    /$$$$$$   /$$$$$$ 
+      | $$  | $$__  $$|_  $$_/   /$$__  $$ /$$__  $$
+      | $$  | $$  \ $$  | $$    | $$  \__/| $$  \ $$
+      | $$  | $$  | $$  | $$ /$$| $$      | $$  | $$
+     /$$$$$$| $$  | $$  |  $$$$/| $$      |  $$$$$$/
+    |______/|__/  |__/   \___/  |__/       \______/ 
+                                                                                                 
 {% endcomment %}
 
-  <style>
-    @media (max-width: 768px) {
-      p.mobile-line {
-        line-height: 32px;
-      }
+<style>
+  @media (max-width: 768px) {
+    p.mobile-line {
+      line-height: 32px;
     }
-  </style>
+  }
+</style>
 
-  <div class="section">
-    <div class="margins-narrow"
-          style="display: flex;
-                 justify-content: center;
-                 flex-direction: column;">
-      <div class="spacer hidden-xs" style="height: 30px"></div>
-      <div class="spacer visible-xs" style="height: 20px"></div>
-      <h2>Hi! We’re Nord Projects.</h2>
-      <p class="mobile-line">
-        We're a design and technology consultancy. We work like a start-up to build products that delight users and solve business problems.
-      </p>
-      <div class="spacer hidden-xs" style="height: 50px"></div>
-      <div class="spacer visible-xs" style="height: 20px"></div>
-    </div>
+<div class="section">
+  <div class="margins-narrow"
+        style="display: flex;
+               justify-content: center;
+               flex-direction: column;">
+    <div class="spacer hidden-xs" style="height: 30px"></div>
+    <div class="spacer visible-xs" style="height: 20px"></div>
+    <h2 style="font-size: 30px">Hi! We’re Nord Projects.</h2>
+    <p class="mobile-line">
+      We're a design and technology consultancy. We work like a start-up to build products that delight users and solve business problems.
+    </p>
+    <div class="spacer hidden-xs" style="height: 50px"></div>
+    <div class="spacer visible-xs" style="height: 20px"></div>
   </div>
+</div>
 
-  <div class="iphone-banner-container">
-    <div class="iphone-banner">
-      <video autoplay loop muted playsinline
-             style="">
-        <source src="img/iphone.mp4" type="video/mp4">
-        <source src="img/iphone.webm" type="video/webm">
-      </video>
-    </div>
+<div class="iphone-banner-container">
+  <div class="iphone-banner">
+    <video autoplay loop muted playsinline
+           style="">
+      <source src="img/iphone.mp4" type="video/mp4">
+      <source src="img/iphone.webm" type="video/webm">
+    </video>
   </div>
-  <style>
+</div>
+<style>
+  .iphone-banner-container {
+    height: 400px;
+    background-color: #ceced0;
+    position: relative;
+    overflow: hidden;
+  }
+  .iphone-banner {
+    width: 1440px;
+    height: 400px;
+    position: absolute;
+    left: calc(50% - 720px);
+    top: calc(50% - 200px);
+    background-image: url(img/sync-app.jpg);
+    background-size: 100% auto;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .iphone-banner video {
+    height: 400px;
+    width: 400px;
+    position: absolute;
+    top: 0;
+    left: 520px;
+  }
+  @media (max-width: 768px) {
     .iphone-banner-container {
-      height: 400px;
-      background-color: #ceced0;
-      position: relative;
-      overflow: hidden;
+    height: 338px;
     }
     .iphone-banner {
-      width: 1440px;
-      height: 400px;
-      position: absolute;
-      left: calc(50% - 720px);
-      top: calc(50% - 200px);
-      background-image: url(img/sync-app.jpg);
-      background-size: 100% auto;
-      background-position: center;
-      background-repeat: no-repeat;
+      width: 782px;
+      height: 338px;
+      background-image: url(img/sync-app-mobile.jpg);
+      left: calc(50% - 391px);
+      top: calc(50% - 169px);
     }
     .iphone-banner video {
-      height: 400px;
-      width: 400px;
+      height: 270px;
+      width: 270px;
       position: absolute;
-      top: 0;
-      left: 520px;
+      top: 55px;
+      left: 200px;
     }
-    @media (max-width: 768px) {
-      .iphone-banner-container {
-      height: 338px;
+  }
+
+  @media (max-width: 768px) {
+      .mobile-margin {
+          margin-top: 35px;
       }
-      .iphone-banner {
-        width: 782px;
-        height: 338px;
-        background-image: url(img/sync-app-mobile.jpg);
-        left: calc(50% - 391px);
-        top: calc(50% - 169px);
+      p.mobile-line-small {
+          line-height: 30px;
       }
-      .iphone-banner video {
-        height: 270px;
-        width: 270px;
-        position: absolute;
-        top: 55px;
-        left: 200px;
-      }
-    }
+  }
   
-    @media (max-width: 768px) {
-        .mobile-margin {
-            margin-top: 35px;
-        }
-        p.mobile-line-small {
-            line-height: 30px;
-        }
-    }
-    
-    @media (min-width: 768px) {
-        .mobile-margin {
-            margin-top: 45px;
-        }
-    }
-  </style>
-  <div class="section mobile-margin">
-    <div class="margins-narrow">
-      <p class="mobile-line-small">
-        We love making things.
-      <br>
-      <br>
-        We’ve been working together since 2012 on projects like <a href="http://tingbot.com/" target="_blank">Tingbot</a> and <a href="https://getmixim.com/" target="_blank">Mixim</a>. These are the kind of projects we love best - where great design and solid engineering make the complex simple.
-      <br>
-      <br>
-        We work across mobile, web and connected devices. Our work focuses on:
-      </p>
-    </div>
-  </div>
-  <style>
-    .work-on-item {
-      max-width: 255px;
-      margin: 0 auto;
-      line-height: 1.44;
-    }
-    .work-on-item h3 {
-      margin-top: 14px;
-      margin-bottom: 7px;
-    }
-
-    @media (max-width: 768px) {
-      .mobile-design-fix {
-        position: relative;
-        top: 10px;
+  @media (min-width: 768px) {
+      .mobile-margin {
+          margin-top: 45px;
       }
-    }
+  }
+</style>
+<div class="section mobile-margin">
+  <div class="margins-narrow">
+    <p class="mobile-line-small">
+      We love making things.
+    <br>
+    <br>
+      We’ve been working together since 2012 on projects like <a href="http://tingbot.com/" target="_blank">Tingbot</a> and <a href="https://getmixim.com/" target="_blank">Mixim</a>. These are the kind of projects we love best - where great design and solid engineering make the complex simple.
+    <br>
+    <br>
+      We work across mobile, web and connected devices. Our work focuses on:
+    </p>
+  </div>
+</div>
+<style>
+  .work-on-item {
+    max-width: 255px;
+    margin: 0 auto;
+    line-height: 1.44;
+  }
+  .work-on-item h3 {
+    margin-top: 14px;
+    margin-bottom: 7px;
+    font-size: 24px;
+  }
 
-  </style>
-  <div class="section" style="margin-top: 45px;">
-    <div class="margins">
-      <div class="row"
-           style="text-align: center;
-                  font-size: 0.8em">
-        <div class="col-sm-4">
-          <div class="work-on-item">
-            <div style="background: url(/img/icon-strategy.svg) center no-repeat;
-                        background-size: 76px auto;
-                        height: 120px;">
-            </div>
-            <h3>Strategy</h3>
-            <p>
-              Transform user needs and business goals into a compelling proposition.
-            </p>
+  @media (max-width: 768px) {
+    .mobile-design-fix {
+      position: relative;
+      top: 10px;
+    }
+  }
+
+</style>
+<div class="section" style="margin-top: 45px;">
+  <div class="margins">
+    <div class="row"
+         style="text-align: center;
+                font-size: 0.8em">
+      <div class="col-sm-4">
+        <div class="work-on-item">
+          <div style="background: url(/img/icon-strategy.svg) center no-repeat;
+                      background-size: 76px auto;
+                      height: 120px;">
           </div>
+          <h3>Strategy</h3>
+          <p>
+            Transform user needs and business goals into a compelling proposition.
+          </p>
         </div>
-        <div class="col-sm-4">
-          <div class="work-on-item">
-            <div class="mobile-design-fix" 
-                 style="background: url(/img/icon-design.svg) center no-repeat;
-                        background-size: 78px auto;
-                        height: 120px;">
-            </div>
-            <h3>Design</h3>
-            <p>
-              Create meaningful products with a beautiful look and a wonderful feel.
-            </p>
+      </div>
+      <div class="col-sm-4">
+        <div class="work-on-item">
+          <div class="mobile-design-fix" 
+               style="background: url(/img/icon-design.svg) center no-repeat;
+                      background-size: 78px auto;
+                      height: 120px;">
           </div>
+          <h3>Design</h3>
+          <p>
+            Create meaningful products with a beautiful look and a wonderful feel.
+          </p>
         </div>
-        <div class="col-sm-4">
-          <div class="work-on-item">
-            <div style="background: url(/img/icon-development.svg) center no-repeat;
-                        background-size: 95px auto;
-                        height: 120px">
-            </div>
-            <h3>Development</h3>
-            <p>
-              Build technology and provide a codebase that's a lasting asset to your business.
-            </p>
+      </div>
+      <div class="col-sm-4">
+        <div class="work-on-item">
+          <div style="background: url(/img/icon-development.svg) center no-repeat;
+                      background-size: 95px auto;
+                      height: 120px">
           </div>
+          <h3>Development</h3>
+          <p>
+            Build technology and provide a codebase that's a lasting asset to your business.
+          </p>
         </div>
       </div>
     </div>
   </div>
+</div>
 
 {% comment %}
 
-       /$$$$$$$  /$$                 /$$   /$$                                            
-      | $$__  $$|__/                | $$$ | $$                                            
-      | $$  \ $$ /$$  /$$$$$$       | $$$$| $$  /$$$$$$  /$$$$$$/$$$$   /$$$$$$   /$$$$$$$
-      | $$$$$$$ | $$ /$$__  $$      | $$ $$ $$ |____  $$| $$_  $$_  $$ /$$__  $$ /$$_____/
-      | $$__  $$| $$| $$  \ $$      | $$  $$$$  /$$$$$$$| $$ \ $$ \ $$| $$$$$$$$|  $$$$$$ 
-      | $$  \ $$| $$| $$  | $$      | $$\  $$$ /$$__  $$| $$ | $$ | $$| $$_____/ \____  $$
-      | $$$$$$$/| $$|  $$$$$$$      | $$ \  $$|  $$$$$$$| $$ | $$ | $$|  $$$$$$$ /$$$$$$$/
-      |_______/ |__/ \____  $$      |__/  \__/ \_______/|__/ |__/ |__/ \_______/|_______/ 
-                     /$$  \ $$                                                            
-                    |  $$$$$$/                                                            
-                     \______/
+     /$$$$$$$  /$$                 /$$   /$$                                            
+    | $$__  $$|__/                | $$$ | $$                                            
+    | $$  \ $$ /$$  /$$$$$$       | $$$$| $$  /$$$$$$  /$$$$$$/$$$$   /$$$$$$   /$$$$$$$
+    | $$$$$$$ | $$ /$$__  $$      | $$ $$ $$ |____  $$| $$_  $$_  $$ /$$__  $$ /$$_____/
+    | $$__  $$| $$| $$  \ $$      | $$  $$$$  /$$$$$$$| $$ \ $$ \ $$| $$$$$$$$|  $$$$$$ 
+    | $$  \ $$| $$| $$  | $$      | $$\  $$$ /$$__  $$| $$ | $$ | $$| $$_____/ \____  $$
+    | $$$$$$$/| $$|  $$$$$$$      | $$ \  $$|  $$$$$$$| $$ | $$ | $$|  $$$$$$$ /$$$$$$$/
+    |_______/ |__/ \____  $$      |__/  \__/ \_______/|__/ |__/ |__/ \_______/|_______/ 
+                   /$$  \ $$                                                            
+                  |  $$$$$$/                                                            
+                   \______/
 
 {% endcomment %}
 
-  <style>
+<style>
+  .big-names-logo {
+    margin: 25px 25px;
+  }
+
+  .big-names-blue {
+      margin-top: 112px;
+  }
+
+  .big-names-margin {
+    padding-bottom: 64px;
+  }
+
+  @media (max-width: 768px) {
     .big-names-logo {
-      margin: 25px 25px;
+      display: block;
+      margin: 28px auto;
     }
 
     .big-names-blue {
-        margin-top: 112px;
+      margin-top: 60px;
     }
 
     .big-names-margin {
-      padding-bottom: 64px;
+      padding-bottom: 40px;
     }
+  }
+</style>
 
-    @media (max-width: 768px) {
-      .big-names-logo {
-        display: block;
-        margin: 28px auto;
-      }
+<div class="section big-names-blue" style="background-image: linear-gradient(165deg, #6E91F7 0%, #35AFF7 100%);
+                            text-align: center;">
+  <div class="margins big-names-margin" style="padding-top: 30px;" >
+    <h2 class="hidden-xs" style="color: #FFFFFF; 
+               width: 100%;
+               margin-top: 27px;
+               margin-bottom: 27px;
+               font-size: 34px;">
+      We work with big names like...
+    </h2>
 
-      .big-names-blue {
-        margin-top: 60px;
-      }
+    <h2 class="visible-xs" style="color: #FFFFFF; 
+               width: 100%;
+               margin-top: 24px;
+               margin-bottom: 30px;
+               font-size: 28px;
+               line-height: 30px;">
+      We work with big<br>
+      names like...
+    </h2>
+    <div>
+      <img class="big-names-logo hidden-xs" src="img/logos/google.svg">
+      <img class="big-names-logo hidden-xs" src="img/logos/samsung.svg">
+      <img class="big-names-logo hidden-xs" src="img/logos/nhs.svg">
+      <img class="big-names-logo hidden-xs" src="img/logos/bt-sport.svg">
+      <img class="big-names-logo hidden-xs" src="img/logos/nectar.svg">
 
-      .big-names-margin {
-        padding-bottom: 40px;
-      }
-    }
-  </style>
-
-  <div class="section big-names-blue" style="background-image: linear-gradient(165deg, #6E91F7 0%, #35AFF7 100%);
-                              text-align: center;">
-    <div class="margins big-names-margin" style="padding-top: 30px;" >
-      <h2 class="hidden-xs" style="color: #FFFFFF; 
-                 width: 100%;
-                 margin-top: 27px;
-                 margin-bottom: 27px;
-                 font-size: 34px;">
-        We work with big names like...
-      </h2>
-
-      <h2 class="visible-xs" style="color: #FFFFFF; 
-                 width: 100%;
-                 margin-top: 24px;
-                 margin-bottom: 30px;
-                 font-size: 28px;
-                 line-height: 30px;">
-        We work with big<br>
-        names like...
-      </h2>
-      <div>
-        <img class="big-names-logo hidden-xs" src="img/logos/google.svg">
-        <img class="big-names-logo hidden-xs" src="img/logos/samsung.svg">
-        <img class="big-names-logo hidden-xs" src="img/logos/nhs.svg">
-        <img class="big-names-logo hidden-xs" src="img/logos/bt-sport.svg">
-        <img class="big-names-logo hidden-xs" src="img/logos/nectar.svg">
-
-        <img class="big-names-logo visible-xs" style="height: 36px" src="img/logos/google.svg">
-        <img class="big-names-logo visible-xs" style="height: 41px" src="img/logos/samsung.svg">
-        <img class="big-names-logo visible-xs" style="height: 29px" src="img/logos/bt-sport.svg">
-        <img class="big-names-logo visible-xs" style="height: 31px" src="img/logos/nhs.svg">
-      </div>
+      <img class="big-names-logo visible-xs" style="height: 36px" src="img/logos/google.svg">
+      <img class="big-names-logo visible-xs" style="height: 41px" src="img/logos/samsung.svg">
+      <img class="big-names-logo visible-xs" style="height: 29px" src="img/logos/bt-sport.svg">
+      <img class="big-names-logo visible-xs" style="height: 31px" src="img/logos/nhs.svg">
     </div>
   </div>
+</div>
 
-  <div class="section">
-    <div class="margins">
-      <h2 class="hidden-xs" style="text-align: center;
-                 width: 100%;
-                 margin-top: 3em;
-                 margin-bottom: 2em;
-                 color: #3F70FF;
-                 font-size: 34px;">
-                 and sometimes we build our own stuff too.</h2>
-      <h2 class="visible-xs" style="text-align: center;
-                 width: 100%;
-                 margin-top: 2em;
-                 margin-bottom: 2.1em;
-                 color: #3F70FF;
-                 font-size: 28px;
-                 line-height: 30px;">
-                 Sometimes we build<br>
-                 our own stuff too...</h2>
-    </div>
+<div class="section">
+  <div class="margins">
+    <h2 class="hidden-xs" style="text-align: center;
+               width: 100%;
+               margin-top: 3em;
+               margin-bottom: 2em;
+               color: #3F70FF;
+               font-size: 34px;">
+               and sometimes we build our own stuff too.</h2>
+    <h2 class="visible-xs" style="text-align: center;
+               width: 100%;
+               margin-top: 2em;
+               margin-bottom: 2.1em;
+               color: #3F70FF;
+               font-size: 28px;
+               line-height: 30px;">
+               Sometimes we build<br>
+               our own stuff too...</h2>
   </div>
+</div>
 
 {% comment %}
 
-        /$$$$$$                            /$$      /$$                     /$$      
-       /$$__  $$                          | $$  /$ | $$                    | $$      
-      | $$  \ $$ /$$   /$$  /$$$$$$       | $$ /$$$| $$  /$$$$$$   /$$$$$$ | $$   /$$
-      | $$  | $$| $$  | $$ /$$__  $$      | $$/$$ $$ $$ /$$__  $$ /$$__  $$| $$  /$$/
-      | $$  | $$| $$  | $$| $$  \__/      | $$$$_  $$$$| $$  \ $$| $$  \__/| $$$$$$/ 
-      | $$  | $$| $$  | $$| $$            | $$$/ \  $$$| $$  | $$| $$      | $$_  $$ 
-      |  $$$$$$/|  $$$$$$/| $$            | $$/   \  $$|  $$$$$$/| $$      | $$ \  $$
-       \______/  \______/ |__/            |__/     \__/ \______/ |__/      |__/  \__/
-                                                                                                                                                  
+      /$$$$$$                            /$$      /$$                     /$$      
+     /$$__  $$                          | $$  /$ | $$                    | $$      
+    | $$  \ $$ /$$   /$$  /$$$$$$       | $$ /$$$| $$  /$$$$$$   /$$$$$$ | $$   /$$
+    | $$  | $$| $$  | $$ /$$__  $$      | $$/$$ $$ $$ /$$__  $$ /$$__  $$| $$  /$$/
+    | $$  | $$| $$  | $$| $$  \__/      | $$$$_  $$$$| $$  \ $$| $$  \__/| $$$$$$/ 
+    | $$  | $$| $$  | $$| $$            | $$$/ \  $$$| $$  | $$| $$      | $$_  $$ 
+    |  $$$$$$/|  $$$$$$/| $$            | $$/   \  $$|  $$$$$$/| $$      | $$ \  $$
+     \______/  \______/ |__/            |__/     \__/ \______/ |__/      |__/  \__/
+                                                                                                                                                
 {% endcomment %}
 
-  <style>
+<style>
+  .link-button {
+    background: #FFFFFF;
+    border: 2px solid #000000;
+    box-shadow: -3px 3px 0 0 #000000;
+    padding: 10px 20px;
+    color: inherit;
+    text-decoration: none; 
+  }
+  .link-button:hover {
+    text-decoration: none;
+    color: inherit;
+    box-shadow: -4px 4px 0 0 #000000;
+    position: relative;
+    left: 1px;
+    top: -1px;
+  }
+  .link-button:active {
+    border: 2px solid #000000;
+    box-shadow: -1px 1px 0 0 #000000;
+    position: relative;
+    left: -2px;
+    top: 2px;
+    color: inherit;
+  }
+  .link-button:focus {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  @media (max-width: 768px) {
     .link-button {
-      background: #FFFFFF;
-      border: 2px solid #000000;
-      box-shadow: -3px 3px 0 0 #000000;
-      padding: 10px 20px;
-      color: inherit;
-      text-decoration: none; 
+      font-size: 18px;
+      padding: 9px 16px;
     }
-    .link-button:hover {
-      text-decoration: none;
-      color: inherit;
-      box-shadow: -4px 4px 0 0 #000000;
-      position: relative;
-      left: 1px;
-      top: -1px;
-    }
-    .link-button:active {
-      border: 2px solid #000000;
-      box-shadow: -1px 1px 0 0 #000000;
-      position: relative;
-      left: -2px;
-      top: 2px;
-      color: inherit;
-    }
-    .link-button:focus {
-      color: inherit;
-      text-decoration: none;
-    }
+  }
+</style>
 
-    @media (max-width: 768px) {
-      .link-button {
-        font-size: 18px;
-        padding: 9px 16px;
-      }
-    }
-  </style>
+<div class="section" style="margin-top: 30px;">
+  <div class="margins-wide">
 
-  <div class="section" style="margin-top: 30px;">
-    <div class="margins-wide">
+    <div class="row text-center">
+      <div class="col-sm-6">
 
-      <div class="row text-center">
-        <div class="col-sm-6">
-
-          <div class="hidden-xs" style="
-                      width: 100%;
-                      height: 300px;
-                      overflow: hidden;">
-            <video class="gfy-video" 
-                   autoplay 
-                   loop="" 
-                   playsinline=""
-                   muted=""
-                   poster="https://thumbs.gfycat.com/MedicalTameAmericanavocet-poster.jpg" 
-                   style="width: 100%; height: 100%; object-fit: cover;">
-              <source src="https://fat.gfycat.com/MedicalTameAmericanavocet.webm" type="video/webm" class="webmsource">
-              <source src="https://zippy.gfycat.com/MedicalTameAmericanavocet.mp4" type="video/mp4" class="mp4source">
-            </video>
-          </div>
-          <div class="visible-xs" style="
-                      width: 260px;
-                      height: 260px;
-                      margin: auto">
-            <video class="gfy-video" 
-                   autoplay 
-                   loop="" 
-                   playsinline=""
-                   muted=""
-                   poster="https://thumbs.gfycat.com/MedicalTameAmericanavocet-poster.jpg" 
-                   style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
-              <source src="https://fat.gfycat.com/MedicalTameAmericanavocet.webm" type="video/webm" class="webmsource">
-              <source src="https://zippy.gfycat.com/MedicalTameAmericanavocet.mp4" type="video/mp4" class="mp4source">
-            </video>
-          </div>
-          <img src="/img/tingbotlogo.svg"
-               style="max-width: 147px;
-                      margin-top: 21px;
-                      margin-bottom: 20px;
-                      height: 50px;"/>
-          <p class="wide-paragraph" style="font-size: 21px">
-            A kit product that turns<br>
-            scary electronics into a fun<br>
-            accessible coding platform.
-          </p>
+        <div class="hidden-xs" style="
+                    width: 100%;
+                    height: 300px;
+                    overflow: hidden;">
+          <video class="gfy-video" 
+                 autoplay 
+                 loop="" 
+                 playsinline=""
+                 muted=""
+                 poster="https://thumbs.gfycat.com/MedicalTameAmericanavocet-poster.jpg" 
+                 style="width: 100%; height: 100%; object-fit: cover;">
+            <source src="https://fat.gfycat.com/MedicalTameAmericanavocet.webm" type="video/webm" class="webmsource">
+            <source src="https://zippy.gfycat.com/MedicalTameAmericanavocet.mp4" type="video/mp4" class="mp4source">
+          </video>
+        </div>
+        <div class="visible-xs" style="
+                    width: 260px;
+                    height: 260px;
+                    margin: auto">
+          <video class="gfy-video" 
+                 autoplay 
+                 loop="" 
+                 playsinline=""
+                 muted=""
+                 poster="https://thumbs.gfycat.com/MedicalTameAmericanavocet-poster.jpg" 
+                 style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+            <source src="https://fat.gfycat.com/MedicalTameAmericanavocet.webm" type="video/webm" class="webmsource">
+            <source src="https://zippy.gfycat.com/MedicalTameAmericanavocet.mp4" type="video/mp4" class="mp4source">
+          </video>
+        </div>
+        <img src="/img/tingbotlogo.svg"
+             style="max-width: 147px;
+                    margin-top: 21px;
+                    margin-bottom: 20px;
+                    height: 50px;"/>
+        <p class="wide-paragraph" style="font-size: 21px">
+          A kit product that turns<br>
+          scary electronics into a fun<br>
+          accessible coding platform.
+        </p>
+        <a class="link-button"
+           href="http://tingbot.com/" 
+           ontouchstart=""
+           target="_blank">Learn more</a>
+        <div style="height: 50px"></div>
+      </div>
+      <div class="visible-xs" style="height: 60px;"></div>
+      <div class="col-sm-6">
+        <div class="hidden-xs" style="width: 100%;
+          height: 300px;
+          background-image: url(/img/mixim-image-desktop.jpg);
+          background-size: cover;
+          background-position: center;">
+        </div>
+        <div class="visible-xs" style="
+          height: 260px;
+          width: 260px;
+          background-image: url(/img/mixim-image-desktop.jpg);
+          background-size: cover;
+          background-position: center;
+          border-radius: 50%;
+          margin: auto;">
+        </div>
+        <img src="/img/miximlogo.svg"
+             style="max-width: 159px;
+                    margin-top: 21px;
+                    margin-bottom: 20px;
+                    height: 50px;"/>
+        <p class="wide-paragraph" style="font-size: 21px">
+          A software tool enabling<br>
+          musicians to collaborate online<br>
+          10x faster than Dropbox.
+        </p>
           <a class="link-button"
-             href="http://tingbot.com/" 
+             href="https://getmixim.com/"
              ontouchstart=""
              target="_blank">Learn more</a>
           <div style="height: 50px"></div>
-        </div>
-        <div class="visible-xs" style="height: 60px;"></div>
-        <div class="col-sm-6">
-          <div class="hidden-xs" style="width: 100%;
-            height: 300px;
-            background-image: url(/img/mixim-image-desktop.jpg);
-            background-size: cover;
-            background-position: center;">
-          </div>
-          <div class="visible-xs" style="
-            height: 260px;
-            width: 260px;
-            background-image: url(/img/mixim-image-desktop.jpg);
-            background-size: cover;
-            background-position: center;
-            border-radius: 50%;
-            margin: auto;">
-          </div>
-          <img src="/img/miximlogo.svg"
-               style="max-width: 159px;
-                      margin-top: 21px;
-                      margin-bottom: 20px;
-                      height: 50px;"/>
-          <p class="wide-paragraph" style="font-size: 21px">
-            A software tool enabling<br>
-            musicians to collaborate online<br>
-            10x faster than Dropbox.
-          </p>
-            <a class="link-button"
-               href="https://getmixim.com/"
-               ontouchstart=""
-               target="_blank">Learn more</a>
-            <div style="height: 50px"></div>
-        </div>
       </div>
     </div>
   </div>
+</div>
 
 {% comment %}
 
-       /$$$$$$$$                               
-      |__  $$__/                               
-         | $$  /$$$$$$   /$$$$$$  /$$$$$$/$$$$ 
-         | $$ /$$__  $$ |____  $$| $$_  $$_  $$
-         | $$| $$$$$$$$  /$$$$$$$| $$ \ $$ \ $$
-         | $$| $$_____/ /$$__  $$| $$ | $$ | $$
-         | $$|  $$$$$$$|  $$$$$$$| $$ | $$ | $$
-         |__/ \_______/ \_______/|__/ |__/ |__/
-                                                                                                             
+     /$$$$$$$$                               
+    |__  $$__/                               
+       | $$  /$$$$$$   /$$$$$$  /$$$$$$/$$$$ 
+       | $$ /$$__  $$ |____  $$| $$_  $$_  $$
+       | $$| $$$$$$$$  /$$$$$$$| $$ \ $$ \ $$
+       | $$| $$_____/ /$$__  $$| $$ | $$ | $$
+       | $$|  $$$$$$$|  $$$$$$$| $$ | $$ | $$
+       |__/ \_______/ \_______/|__/ |__/ |__/
+                                                                                                           
 {% endcomment %}
 
-  <div class="hidden-xs" style="height: 60px"></div>
-  <div class="hidden-xs"
-       style="height: 60vw;
-              max-height: 450px;
-              background-image: url(/img/team-pic-web.jpg);
-              background-size: cover;
-              background-position: center;">
-  </div>
-  <div class="visible-xs" style="height: 38px"></div>
-  <div class="visible-xs"
-       style="height: 244px;
-              background-image: url(/img/team-pic-mobile.jpg);
-              background-size: cover;
-              background-position: center;">
-  </div>
-  <style>
+<div class="hidden-xs" style="height: 60px"></div>
+<div class="hidden-xs"
+     style="height: 60vw;
+            max-height: 450px;
+            background-image: url(/img/team-pic-web.jpg);
+            background-size: cover;
+            background-position: center;">
+</div>
+<div class="visible-xs" style="height: 38px"></div>
+<div class="visible-xs"
+     style="height: 244px;
+            background-image: url(/img/team-pic-mobile.jpg);
+            background-size: cover;
+            background-position: center;">
+</div>
+<style>
 
 
+  .section-team {
+    margin-top: 50px;
+  }
+  @media (max-width: 768px) {
     .section-team {
-      margin-top: 50px;
+      margin-top: 28px;
     }
-    @media (max-width: 768px) {
-      .section-team {
-        margin-top: 28px;
-      }
-    }
+  }
 
+  p.team-bio {
+    font-size: 16px;
+    color: #373737;
+    letter-spacing: 0;
+    line-height: 24px;
+    margin-bottom: 40px;
+  }
+
+  img.team-bio {
+    float: left; 
+    margin: 0px 30px 0px 0px;
+    width: 90px;
+    height: 90px;
+  }
+
+  a.team-bio {
+    text-decoration: underline;
+    color: #3F70FF;
+  }
+
+  @media (max-width: 768px) {
     p.team-bio {
-      font-size: 16px;
-      color: #373737;
-      letter-spacing: 0;
-      line-height: 24px;
-      margin-bottom: 40px;
+      margin-left: 13px;
+      margin-right: 13px;
     }
 
     img.team-bio {
-      float: left; 
-      margin: 0px 30px 0px 0px;
-      width: 90px;
-      height: 90px;
+      display: block;
+      float: none;
+      margin: 0px 0px 12px 0px;
+      width: 160px;
+      height: 160px;
     }
 
-    a.team-bio {
-      text-decoration: underline;
-      color: #3F70FF;
+    br.team-bio {
+      display: none;
     }
-
-    @media (max-width: 768px) {
-      p.team-bio {
-        margin-left: 13px;
-        margin-right: 13px;
-      }
-
-      img.team-bio {
-        display: block;
-        float: none;
-        margin: 0px 0px 12px 0px;
-        width: 160px;
-        height: 160px;
-      }
-
-      br.team-bio {
-        display: none;
-      }
-    }
+  }
 
 
-  </style>
+</style>
 
-  <div class="section section-team">
-    <div class="margins-narrow">
-      <p>
-        Nord Projects is Ben, Joe and Mike. We work together really well, and we've got years of experience doing it. So you’re in safe hands.
-        <br><br>
-        Nord is small for a reason - we're the ones actually designing and making your product. Too often ideas are diluted by oversized, fragmented teams. We're able to preserve the principle of an idea and craft it into something special - to create brilliant products.
-        <br>
-        <br class="team-bio">
-        <p class="team-bio">
-          <img src="img/team/ben.jpg" class="team-bio">
-          Ben’s a product / interaction designer. His work’s been exhibited in places like the V&amp;A, and featured by Wired and Fast Co. His one hit wonder was a <a href="https://vimeo.com/47322513" target="_blank">condom you could open with one hand</a>.
-          <br class="team-bio"><a class="team-bio" href="http://benpawle.co.uk" target="_blank">See Ben's work</a>
-        </p>
-        <p class="team-bio">
-          <img src="img/team/joe.jpg" class="team-bio">
-          Joe’s a full stack developer. Since graduating from the University of Cambridge he’s built everything from experimental generative graphics to iPhone apps to cloud-deployed web platforms.
-          <br class="team-bio"><a class="team-bio" href="http://joerick.me" target="_blank">See Joe's work</a>
-        </p>
-        <p class="team-bio">
-          <img src="img/team/mike.jpg" class="team-bio">
-          Mike has been leading development teams for the last 5 years delivering projects used by millions of users. He has worked across iPhone, Mac and Web on apps like TVPlayer, At The Races and Mixim.
-          <br class="team-bio"><a class="team-bio" href="http://mikethings.com" target="_blank">See Mike's work</a>
-        </p>
+<div class="section section-team">
+  <div class="margins-narrow">
+    <p>
+      Nord Projects is Ben, Joe and Mike. We work together really well, and we've got years of experience doing it. So you’re in safe hands.
+      <br><br>
+      Nord is small for a reason - we're the ones actually designing and making your product. Too often ideas are diluted by oversized, fragmented teams. We're able to preserve the principle of an idea and craft it into something special - to create brilliant products.
+      <br>
+      <br class="team-bio">
+      <p class="team-bio">
+        <img src="img/team/ben.jpg" class="team-bio">
+        Ben’s a product / interaction designer. His work’s been exhibited in places like the V&amp;A, and featured by Wired and Fast Co. His one hit wonder was a <a href="https://vimeo.com/47322513" target="_blank">condom you could open with one hand</a>.
+        <br class="team-bio"><a class="team-bio" href="http://benpawle.co.uk" target="_blank">See Ben's work</a>
       </p>
-    </div>
+      <p class="team-bio">
+        <img src="img/team/joe.jpg" class="team-bio">
+        Joe’s a full stack developer. Since graduating from the University of Cambridge he’s built everything from experimental generative graphics to iPhone apps to cloud-deployed web platforms.
+        <br class="team-bio"><a class="team-bio" href="http://joerick.me" target="_blank">See Joe's work</a>
+      </p>
+      <p class="team-bio">
+        <img src="img/team/mike.jpg" class="team-bio">
+        Mike has been leading development teams for the last 5 years delivering projects used by millions of users. He has worked across iPhone, Mac and Web on apps like TVPlayer, At The Races and Mixim.
+        <br class="team-bio"><a class="team-bio" href="http://mikethings.com" target="_blank">See Mike's work</a>
+      </p>
+    </p>
   </div>
+</div>
 
-  <div class="hidden-xs" style="height: 70px"></div>
-  <div class="visible-xs" style="height: 25px"></div>
+<div class="hidden-xs" style="height: 70px"></div>
+<div class="visible-xs" style="height: 25px"></div>
 
-  {% comment %}
+{% comment %}
 
-        /$$$$$$                        /$$                           /$$    
-       /$$__  $$                      | $$                          | $$    
-      | $$  \__/  /$$$$$$  /$$$$$$$  /$$$$$$    /$$$$$$   /$$$$$$$ /$$$$$$  
-      | $$       /$$__  $$| $$__  $$|_  $$_/   |____  $$ /$$_____/|_  $$_/  
-      | $$      | $$  \ $$| $$  \ $$  | $$      /$$$$$$$| $$        | $$    
-      | $$    $$| $$  | $$| $$  | $$  | $$ /$$ /$$__  $$| $$        | $$ /$$
-      |  $$$$$$/|  $$$$$$/| $$  | $$  |  $$$$/|  $$$$$$$|  $$$$$$$  |  $$$$/
-       \______/  \______/ |__/  |__/   \___/   \_______/ \_______/   \___/  
-                                                                            
+      /$$$$$$                        /$$                           /$$    
+     /$$__  $$                      | $$                          | $$    
+    | $$  \__/  /$$$$$$  /$$$$$$$  /$$$$$$    /$$$$$$   /$$$$$$$ /$$$$$$  
+    | $$       /$$__  $$| $$__  $$|_  $$_/   |____  $$ /$$_____/|_  $$_/  
+    | $$      | $$  \ $$| $$  \ $$  | $$      /$$$$$$$| $$        | $$    
+    | $$    $$| $$  | $$| $$  | $$  | $$ /$$ /$$__  $$| $$        | $$ /$$
+    |  $$$$$$/|  $$$$$$/| $$  | $$  |  $$$$/|  $$$$$$$|  $$$$$$$  |  $$$$/
+     \______/  \______/ |__/  |__/   \___/   \_______/ \_______/   \___/  
+                                                                          
 {% endcomment %}
-  <style>
+<style>
+  .section-contact {
+    padding-top: 75px;
+  }
+
+  .paragraph-copyright {
+    margin-top: 110px;
+  }
+
+  @media (max-width: 768px) {
     .section-contact {
-      padding-top: 75px;
+      padding-top: 40px;
+    }
+
+    .paragraph-contact {
+      margin-left: 11px;
+      margin-right: 11px;
+      font-size: 24px;
+      line-height: 29px;
     }
 
     .paragraph-copyright {
-      margin-top: 110px;
+      margin-top: 70px;
     }
+  }
+</style>
 
-    @media (max-width: 768px) {
-      .section-contact {
-        padding-top: 40px;
-      }
+<div class="section section-contact" style="background-color: #353535; 
+                            color: white;
+                            padding-bottom: 25px;">
+  <div class="margins-narrow">
+    <p class="paragraph-contact">
+      We like meeting new people, potential collaborations and the prospect of new exciting work. If you have an enquiry relating to any of these please get in touch.<br><br>👇
+    <br><br>
+      <a href="mailto:hello@nordprojects.co" style="color: #FFFFFF;
+                                                    text-decoration: none;
+                                                    padding-bottom: 5px;
+                                                    background:
+                                                      linear-gradient(
+                                                        to right, 
+                                                        #7FB5FF,
+                                                        #5FFFE9 100%)
+                                                      left 
+                                                      bottom
+                                                      transparent
+                                                      no-repeat; 
+                                                    background-size:100% 2px;">
+        hello@nordprojects.co
+      </a>
+    </p>
 
-      .paragraph-contact {
-        margin-left: 11px;
-        margin-right: 11px;
-        font-size: 24px;
-        line-height: 29px;
-      }
-
-      .paragraph-copyright {
-        margin-top: 70px;
-      }
-    }
-  </style>
-
-  <div class="section section-contact" style="background-color: #353535; 
-                              color: white;
-                              padding-bottom: 25px;">
-    <div class="margins-narrow">
-      <p class="paragraph-contact">
-        We like meeting new people, potential collaborations and the prospect of new exciting work. If you have an enquiry relating to any of these please get in touch.<br><br>👇
-      <br><br>
-        <a href="mailto:hello@nordprojects.co" style="color: #FFFFFF;
-                                                      text-decoration: none;
-                                                      padding-bottom: 5px;
-                                                      background:
-                                                        linear-gradient(
-                                                          to right, 
-                                                          #7FB5FF,
-                                                          #5FFFE9 100%)
-                                                        left 
-                                                        bottom
-                                                        transparent
-                                                        no-repeat; 
-                                                      background-size:100% 2px;">
-          hello@nordprojects.co
-        </a>
-      </p>
-
-      <p class="paragraph-copyright" 
-         style="margin-bottom: 0;
-                font-size: 0.7em;
-                opacity: 0.44;
-                text-align: center;">
-        &copy;Copyright Nord Projects Ltd 2017
-      </p>
-    </div>
+    <p class="paragraph-copyright" 
+       style="margin-bottom: 0;
+              font-size: 0.7em;
+              opacity: 0.44;
+              text-align: center;">
+      &copy;Copyright Nord Projects Ltd 2017
+    </p>
   </div>
-
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-</body>
-</html>
+</div>
