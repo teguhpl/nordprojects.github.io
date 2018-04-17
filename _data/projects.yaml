@@ -1,0 +1,62 @@
+- name: Lantern
+  title: "Android Things Lantern"
+  desktop_image: /img/projects/lantern-desktop.jpg
+  description: "Bacon ipsum dolor amet chicken buffalo ham hock meatball short loin, drumstick jerky brisket meatloaf tongue pork chop landjaeger. Turducken flank pork belly pastrami beef ribs salami. Picanha alcatra beef ribs boudin filet mignon brisket pastrami biltong burgdoggen cow meatloaf."
+  link_title: Lantern
+  link_url: https://developer.android.com/things/index.html
+
+- name: Ding
+  title: "Ding, the smart doorbell."
+  image: /img/projects/ding.jpg
+  description: "We helped Ding create their first product - a connected doorbell, chime and companion app. First and foremost, it revolves around the lifestyle of the user, like a nice interior product that just happens to have smarts inside. The app is designed to complement this approach - to feel more like a magazine than a tech app. Simple features like silencing the Chime are sensitive to the needs of the user (and their young children)."
+  link_title: Ding Products
+  link_url: https://dingproducts.com
+
+- name: Google Futures
+  title: "Google near futures."
+  image: /img/projects/google-futures.jpg
+  description: "A strategy project exploring device relationships in 3-5 years time. We worked as an embedded team within Google designing and developing interactive, hard-coded prototypes to test new experiences and create IP."
+  link_title: Google
+  link: https://www.google.com
+
+- name: Tingbot
+  title: "Tingbot, the creative app platform for Raspberry Pi."
+  image: /img/projects/tingbot.jpg
+  description: "Bacon ipsum dolor amet chicken buffalo ham hock meatball short loin, drumstick jerky brisket meatloaf tongue pork chop landjaeger. Turducken flank pork belly pastrami beef ribs salami."
+  link_title: Tingbot
+  link_url: http://tingbot.com/
+
+- name: Grisedale Pike
+  title: "Grisedale Pike, a dialect bot."
+  image: /img/projects/grisedale.jpg
+  description: "Bacon ipsum dolor amet chicken buffalo ham hock meatball short loin, drumstick jerky brisket meatloaf tongue pork chop landjaeger. Turducken flank pork belly pastrami beef ribs salami."
+  link_title: "@GrisedalePike"
+  link: https://twitter.com/grisedalepike
+
+- name: Little Printer
+  title: "Little Printers, a delightful front-end for an iconic connected device"
+  image: /img/projects/little-printer.jpg
+  description: "Bacon ipsum dolor amet chicken buffalo ham hock meatball short loin, drumstick jerky brisket meatloaf tongue pork chop landjaeger. Turducken flank pork belly pastrami beef ribs salami."
+  link_title: Little Printer
+  link_url: http://littleprinter.nordprojects.co/
+
+- name: Cove
+  title: "Cove, a mental health app for NHS."
+  image: /img/projects/cove.jpg
+  description: "Bacon ipsum dolor amet chicken buffalo ham hock meatball short loin, drumstick jerky brisket meatloaf tongue pork chop landjaeger. Turducken flank pork belly pastrami beef ribs salami. "
+  link_title: Cove
+  link: http://www.cove-app.com/
+
+- name: Mixim
+  title: "Mixim, music collaboration 10x faster than Dropbox."
+  image: /img/projects/mixim.jpg
+  description: "Bacon ipsum dolor amet chicken buffalo ham hock meatball short loin, drumstick jerky brisket meatloaf tongue pork chop landjaeger. Turducken flank pork belly pastrami beef ribs salami. "
+  link_title: Mixim
+  link: https://getmixim.com/
+
+- name: Loyalty Co.
+  title: "Loyalty Co. rewards experience for shopping locally."
+  image: /img/projects/loyalty-co.jpg
+  description: "Bacon ipsum dolor amet chicken buffalo ham hock meatball short loin, drumstick jerky brisket meatloaf tongue pork chop landjaeger. Turducken flank pork belly pastrami beef ribs salami. "
+  link_title: Park Technology
+  link: https://www.parktechnology.com/

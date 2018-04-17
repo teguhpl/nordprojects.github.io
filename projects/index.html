@@ -1,0 +1,79 @@
+---
+layout: base
+---
+<style type="text/css">
+  .project-margins {
+    max-width: 1100px;
+  }
+  .hero {
+    color: white;
+    background-size: cover;
+    height: 0px;
+    padding-top: 52.7%;
+    position: relative;
+    width: 100%;
+  }
+  .hero-card {
+    max-width: 250px;
+    margin-left: 45px;
+    margin-right: 45px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .project-card {
+    padding-bottom: 100px;
+    max-width: 537px;
+  }
+  h2 {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 80px;
+  }
+  h3 {
+    font-size: 22px;
+    margin-top: 24px;
+  }
+  p {
+    font-size: 16px;
+    margin-top: 13px;
+  }
+  .project-link, .project-link:hover {
+    color: #0041FF;
+    font-size: 16px;
+  }
+  .hero-link, .hero-link:hover {
+    color: #FFFFFF;
+    font-size: 16px;
+  }
+  @media (max-width: 767px) {
+    .col-centered{
+      float: none;
+      margin: 0 auto;
+    }
+  }
+</style>
+
+<div class="margins project-margins">
+  <h2>Brand new 🌟⚡️🚀🎉🎁📣🏁👻</h2>
+  {% assign hero = site.data.projects[0] %}
+  <div class="hero" style="background-image: url({{ hero.desktop_image }});">
+    <div class="hero-card">
+      <h3>{{ hero.title }}</h3>
+      <p>{{ hero.description }}</p>
+      <a class="hero-link" href="{{ hero.link_url }}">{{ hero.link_title }}</a>
+    </div>
+  </div>
+
+  <h2>Recent work</h2>
+  {% for project in site.data.projects offset:1 %}
+    {% cycle '<div class="row">', '' %}
+      <div class="col-sm-6 project-card col-centered">
+        <img src="{{ project.image }}" style="width: 537px;" />
+        <h3>{{ project.title }}</h3>
+        <p>{{ project.description }}</p>
+        <a class="project-link" href="{{ project.link_url }}">{{ project.link_title }}</a>
+      </div>
+    {% cycle '', '</div>' %}
+  {% endfor %}
+</div>
