@@ -4,7 +4,7 @@
   image: /img/projects/lantern.jpg
   description: "Bacon ipsum dolor amet chicken buffalo ham hock meatball short loin, drumstick jerky brisket meatloaf tongue pork chop landjaeger. Turducken flank pork belly pastrami beef ribs salami. Picanha alcatra beef ribs boudin filet mignon brisket pastrami biltong burgdoggen cow meatloaf."
   link_title: Lantern
-  link_url: https://developer.android.com/things/index.html
+  link_url: /lantern
 
 - name: Ding
   title: "Ding, the smart doorbell."
