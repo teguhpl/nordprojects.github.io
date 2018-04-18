@@ -46,10 +46,19 @@ layout: base
     color: #FFFFFF;
     font-size: 16px;
   }
+  .hero-mobile {
+    display: none;
+  }
   @media (max-width: 767px) {
     .col-centered{
       float: none;
       margin: 0 auto;
+    }
+    .hero {
+      display: none;
+    }
+    .hero-mobile {
+      display: block;
     }
   }
 </style>
@@ -57,11 +66,21 @@ layout: base
 <div class="margins project-margins">
   <h2>Brand new 🌟⚡️🚀🎉🎁📣🏁👻</h2>
   {% assign hero = site.data.projects[0] %}
+  <!-- Hero Desktop -->
   <div class="hero" style="background-image: url({{ hero.desktop_image }});">
     <div class="hero-card">
       <h3>{{ hero.title }}</h3>
       <p>{{ hero.description }}</p>
       <a class="hero-link" href="{{ hero.link_url }}">{{ hero.link_title }}</a>
+    </div>
+  </div>
+  <!-- Hero Mobile -->
+  <div class="row hero-mobile">
+    <div class="col-sm-6 project-card col-centered" style="padding-bottom: 0px;">
+      <img src="{{ hero.image }}" style="width: 537px;" />
+      <h3>{{ hero.title }}</h3>
+      <p>{{ hero.description }}</p>
+      <a class="project-link" href="{{ hero.link_url }}">{{ hero.link_title }}</a>
     </div>
   </div>
 
