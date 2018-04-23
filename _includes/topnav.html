@@ -3,8 +3,8 @@
     min-height: 100px;
     border-bottom: 3px solid #EEEEEE;
     position: relative;
-    overflow: hidden; /* Allows nav to expand vertically for floating menu element */
     color: black;
+    margin-bottom: 0px;
   }
   .nav-logo {
     width: 244px;
@@ -16,46 +16,72 @@
     top: 28px;
     display: inline-block;
   }
+  .nav-collapse {
+    margin-top: 7px;
+    margin-bottom: 7px;
+    margin-right: 9px;
+  }
   .nav-menu {
-    display: inline-block;
-    float: right;
-    margin-right: 30px;
-    margin-top: 35px;
-    margin-bottom: 32px;
+    margin-right: 13px;
+    margin-top: 25px;
+    margin-bottom: 25px;
   }
   .nav-menu-item {
     display: inline-block;
     font-size: 20px;
-    margin-right: 48px;
   }
   .topnav a:link, .topnav a:visited {
     color: inherit;
   }
   .topnav a:hover {
     color: #555;
+    background-color: transparent;
+  }
+  .nav>li>a {
+    display: inline-block;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .nav>li {
+    padding-right: 28px;
+    padding-left: 27px;
+  }
+  .nav>li>a:focus, .nav>li>a:hover {
+    text-decoration: underline;
+    background-color: transparent;
   }
   .topnav-final-breadcrumb-link {
     text-decoration: none;
   }
-  .topnav-final-breadcrumb-link:hover {
+  .nav>li>a.topnav-final-breadcrumb-link:hover {
     text-decoration: none;
   }
-  @media (max-width: 620px) { 
-    .nav-menu {
-      display: block;
-      float: left;
-      margin-top: 50px;
-      margin-bottom: 20px;
+  @media (max-width: 767px) { 
+    .topnav {
+      min-height: 60px;
     }
     .nav-logo {
-      display: block;
+      width: 160px;
+      height: 25px;
+      top: 19px;
+      margin-left: 20px;
     }
-  }
+    .nav-menu {
+      margin-top: 5px;
+      margin-left: 0px;
+    }
 </style>
-<div class="topnav">
-  <a href="/"><div class="nav-logo"></div></a>
-  <div class="nav-menu">
-    <ul style="margin-bottom: 0px;">
+<nav class="navbar topnav">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle collapsed nav-collapse" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+      <span class="sr-only">Toggle navigation</span>
+      <img src="/img/icon-menu.svg" />
+    </button>
+    <a href="/"><div class="nav-logo"></div></a>
+  </div>
+
+  <div class="collapse navbar-collapse" id="navbar-collapse-1">
+    <ul class="nav navbar-nav navbar-right nav-menu">
       <li class="nav-menu-item"><a href="/">About</a></li>
       <li class="nav-menu-item">
         <a href="/projects/">Projects</a>
@@ -69,4 +95,4 @@
       </li>
     </ul>
   </div>
-</div>
+</nav>
