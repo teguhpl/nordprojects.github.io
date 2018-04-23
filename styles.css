@@ -12,7 +12,8 @@
 }
 
 body {
-  font-family: 'Apercu';
+  /* font is Apercu, as loaded by font-face, or fallback to system font */
+  font-family: 'Apercu', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 18px;
   color: #373737;
   letter-spacing: -0.1px;

@@ -4,11 +4,12 @@
     border-bottom: 3px solid #EEEEEE;
     position: relative;
     overflow: hidden; /* Allows nav to expand vertically for floating menu element */
+    color: black;
   }
   .nav-logo {
     width: 244px;
     height: 40px;
-    background-image: url('/img/nav-logo.png');
+    background-image: url('/img/nav-logo.svg');
     background-size: cover;
     margin-left: 40px;
     position: relative;
@@ -27,8 +28,17 @@
     font-size: 20px;
     margin-right: 48px;
   }
+  .topnav a:link, .topnav a:visited {
+    color: inherit;
+  }
   .topnav a:hover {
-    color: black;
+    color: #555;
+  }
+  .topnav-final-breadcrumb-link {
+    text-decoration: none;
+  }
+  .topnav-final-breadcrumb-link:hover {
+    text-decoration: none;
   }
   @media (max-width: 620px) { 
     .nav-menu {
@@ -46,8 +56,17 @@
   <a href="/"><div class="nav-logo"></div></a>
   <div class="nav-menu">
     <ul style="margin-bottom: 0px;">
-      <li class="nav-menu-item"><a href="/projects/">Projects</a></li>
-      <li class="nav-menu-item"><a href="/">Studio</a></li>
+      <li class="nav-menu-item"><a href="/">About</a></li>
+      <li class="nav-menu-item">
+        <a href="/projects/">Projects</a>
+        {% if page.breadcrumb.under == "Projects" %}
+          &gt;
+          <a href="{{ page.breadcrumb.url }}"
+             class="topnav-final-breadcrumb-link">
+            {{ page.breadcrumb.name }}
+          </a>
+        {% endif %}
+      </li>
     </ul>
   </div>
 </div>

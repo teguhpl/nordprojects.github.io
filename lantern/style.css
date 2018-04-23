@@ -1,0 +1,5 @@
+.lantern-global-margin {
+    /* a really wide max width for the page (makes the videos easier to place) */
+    margin: 0 auto;
+    max-width: 1800px;
+}
