@@ -1,6 +1,7 @@
 - name: Lantern
   title: "Android Things Lantern"
-  desktop_image: /img/projects/lantern-desktop.jpg
+  hero_desktop_image: /img/projects/lantern-desktop.jpg
+  hero_mobile_image: /img/projects/lantern-mobile.jpg
   image: /img/projects/lantern.jpg
   description: "Bacon ipsum dolor amet chicken buffalo ham hock meatball short loin, drumstick jerky brisket meatloaf tongue pork chop landjaeger. Turducken flank pork belly pastrami beef ribs salami. Picanha alcatra beef ribs boudin filet mignon brisket pastrami biltong burgdoggen cow meatloaf."
   link_title: Lantern
