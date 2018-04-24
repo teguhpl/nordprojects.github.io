@@ -1,0 +1,84 @@
+<div class="lantern-nav">
+    <div class="lantern-nav-item {% if include.page == "vision" %}current{% endif %}">
+        <a href="/lantern/">Vision</a>
+    </div>
+    <div class="lantern-nav-item {% if include.page == "channels" %}current{% endif %}">
+        <a href="/lantern/channels">Channels</a>
+    </div>
+    <div class="lantern-nav-item {% if include.page == "features" %}current{% endif %}">
+        <a href="/lantern/features">Features</a>
+    </div>
+    <div class="lantern-nav-item"><a href="/TODO">Build</a></div>
+    <div class="lantern-nav-item"><a href="https://github.com/nordprojects/lantern">GitHub</a></div>
+</div>
+<style>
+    .lantern-nav {
+        font-family: "Apercu Mono", Menlo, Monaco, monospace;
+        font-size: 0;
+        letter-spacing: 0.37px;
+        background: white;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 0 7px;
+        color: black;
+
+        white-space: nowrap
+    }
+    .lantern-nav a:link, .lantern-nav a:visited {
+        text-decoration: none;
+        color: inherit;
+    }
+    .lantern-nav-item {
+        display: inline-block;
+        padding: 7px 1px;
+        padding-bottom: 5px;
+        font-size: 14px;
+    }
+    .lantern-nav-item a {
+        padding-left: 8px;
+        padding-right: 14px;
+    }
+    .lantern-nav-item.current a {
+        position: relative;
+        background: linear-gradient(to right, #ffdf36 100%, #ffdf36 100%);
+        background-position: top;
+        background-size: 100% 92%;
+        background-repeat: no-repeat;
+    }
+    
+    @media (max-width: 767px) { /* mobile */
+        .lantern-nav {
+            -webkit-font-smoothing: auto;
+            text-align: center;
+        }
+    }
+    @media (min-width: 768px) { /* desktop */
+        .lantern-nav {
+            background: transparent;
+            color: white;
+            font-size: 14px;
+            letter-spacing: 0.42px;
+            display: flex;
+            justify-content: flex-end;
+            padding: 25px 35px;
+        }
+        .lantern-nav-item {
+            padding: 7px 0;
+            font-size: 16px;
+        }
+        .lantern-nav-item a {
+            padding-left: 1em;
+            padding-right: 1em;
+            padding-top: 2px;
+            padding-bottom: 1px;
+            border-right: 1px solid white;
+        }
+        .lantern-nav-item:last-child a {
+            border-right-color: transparent;
+        }
+        .lantern-nav-item.current a {
+            background: linear-gradient(to right, white 100%, white 100%);
+            color: #616d7b;
+        }
+    }
+</style>

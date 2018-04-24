@@ -1,5 +1,71 @@
-.lantern-global-margin {
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:700');
+
+.lantern-base {
     /* a really wide max width for the page (makes the videos easier to place) */
     margin: 0 auto;
     max-width: 1800px;
+
+    /* global font settings for lantern */
+    font-size: 18px;
+    letter-spacing: 0.48px;
+    line-height: 1.63;
+}
+
+@media (min-width: 768px) { /* desktop */
+    .lantern-base {
+        font-size: 22px;
+        letter-spacing: 0.58px;
+    }
+}
+
+.studio-notes {
+    background-image: url(img/studio-notes-iso-tile.png);
+    background-size: 20px auto;
+    padding: 22px;
+
+    font-family: "Apercu Mono", "Roboto Mono", "Consolas", "Monaco", monospace;
+    font-size: 16px;
+    line-height: 26px;
+    letter-spacing: 0.42px;
+}
+
+@media (min-width: 768px) { /* desktop */
+    .studio-notes {
+        background-size: 26px 15px;
+    }
+}
+
+
+.studio-notes :link, .studio-notes :visited {
+    color: #0136d0;
+}
+
+.studio-notes-header {
+    font-family: 'Apercu', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    letter-spacing: 2px;
+    line-height: 46px;
+    font-size: 26px;
+}
+
+.studio-notes-subhead {
+    font-size: 16px;
+    letter-spacing: 0.48px;
+    line-height: 26px;
+    font-family: "Roboto Mono", "Consolas", "Monaco", monospace;
+    margin-bottom: 3px;
+}
+
+.studio-notes ul {
+    list-style: none;
+    padding-left: 1.6em;
+}
+.studio-notes li {
+    position: relative;
+    margin-bottom: 2em;
+}
+.studio-notes li:before {
+    content: "- ";
+    position: absolute;
+    top: 0;
+    left: -1.6em;
 }

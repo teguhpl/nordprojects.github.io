@@ -7,16 +7,238 @@ breadcrumb:
 ---
 <link href="./style.css" rel="stylesheet">
 
-<div class="lantern-global-margin">
+<div class="lantern-base">
   <style>
     .hero {
       background: #909eae;
+      color: white;
       min-height: 500px;
-      height: 50vw;
+      height: 55vw;
       max-height: 750px;
+    }
+    .hero-tagline {
+      font-size: 24px;
     }
   </style>
   <div class="hero">
-
+    {% include_relative nav.inc.html page="vision" %}
+    <div class="spacer" style="height: 60px; height: calc(40% - 220px)"></div>
+    <div class="margins">
+      <div class="row">
+        <div class="col-sm-5 col-sm-push-7">
+          <h1 class="hero-title">
+            <img src="img/lantern-logo.svg">
+          </h1>
+          <p class="hero-tagline">Transform any surface into an ambient, smart interface.</p>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <div class="spacer" style="height: 40px"></div>
+  <div class="spacer hidden-xs" style="height: 140px"></div>
+  <div class="margins">
+    <div class="row">
+      <div class="col-sm-10 col-sm-push-1">
+         Using an Ikea lamp, laser projector and Android Things, Lantern explores the relationships between surfaces and content — augmenting real-world objects and environments with glanceable, meaningful data.
+      </div>
+    </div>
+  </div>
+  <div class="spacer" style="height: 40px"></div>
+  <div class="spacer hidden-xs" style="height: 140px"></div>
+
+  <style>
+    .vision-row {
+    }
+    .vision-row-textbox {
+      padding: 22px 25px;
+      padding-bottom: 30px;
+    }
+    .vision-row-header {
+      font-size: 22px;
+      margin: 1em 0;
+      margin-bottom: 0.5em;
+    }
+    .vision-row-description {
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: 0.14px;
+    }
+
+    @media (max-width: 767px) { /* mobile */
+      .vision-content {
+        background: white;
+        color: #363636;
+      }
+      .vision-content.mobile-full-bleed {
+        background: transparent;
+        color: inherit;
+      }
+      .vision-row-background-spacer {
+        height: 100vw;
+      }
+    }
+
+    @media (min-width: 768px) { /* desktop */
+      .vision-row {
+        max-height: 650px;
+        height: 45vw;
+        min-height: 447px;
+      }
+      .vision-content {
+        width: 90vw;
+        max-width: 1160px;
+        margin: 0 auto;
+        padding: 0 30px;
+        height: 100%;
+
+        display: flex;
+        align-items: center;
+      }
+      .vision-row-textbox {
+        width: 36%;
+        min-width: 350px;
+      }
+      .vision-row-textbox.desktop-wider {
+        width: 45%
+      }
+      .vision-row-header {
+        font-size: 28px;
+        letter-spacing: 0.14px;
+        line-height: 38px;
+        margin: 1em 0;
+        margin-bottom: 0.2em;
+      }
+      .vision-row-description {
+        font-size: 22px;
+        letter-spacing: 0.14px;
+        line-height: 35px;
+        margin-bottom: 1em;
+      }
+    }
+  </style>
+
+  <div class="vision-row"
+       style="background: #cfcfdb;
+              color: white;">
+    <div class="vision-row-background-spacer"></div>
+    <div class="vision-content mobile-full-bleed">
+      <div class="vision-row-textbox">
+        <h2 class="vision-row-header">
+          Do it yourself
+        </h2>
+        <p class="vision-row-description">
+          Lantern is an Ikea Tertial lamp combined with a 3D-printed housing and off-the-shelf components: Raspberry Pi, laser projector, an accelerometer and some cables.
+        </p>
+        <p class="vision-row-description">
+          <a href="TODO">Build your own</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="vision-row" 
+       style="background: #b6b6bd;
+              color: #3c3c3c;">
+    <div class="vision-row-background-spacer"></div>
+    <div class="vision-content"
+         style="justify-content: flex-end">
+      <div class="vision-row-textbox">
+        <h2 class="vision-row-header">
+          Augmented Reality
+        </h2>
+        <p class="vision-row-description">
+          Lantern augments objects and environments with subtle, glanceable overlays. And when they’re no longer relevant, the UI just fades away.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="vision-row"
+       style="background: #cfcfdb;
+              color: white;">
+    <div class="vision-row-background-spacer"></div>
+    <div class="vision-content">
+      <div class="vision-row-textbox">
+        <h2 class="vision-row-header">
+          Social devices
+        </h2>
+        <p class="vision-row-description">
+            Lantern is designed for a social, shared space, so anyone can walk up and use it, using Bluetooth-style connectivity.
+        </p>
+        <p class="vision-row-description">
+            It's free from the complexity of user accounts and permissions, just like the light switch in a room.            
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="vision-row" 
+       style="background: #b8bdc8;
+              color: white;">
+    <div class="vision-row-background-spacer"></div>
+    <div class="vision-content"
+         style="justify-content: flex-end">
+      <div class="vision-row-textbox mobile-full-bleed">
+        <h2 class="vision-row-header">
+           Open-source.
+        </h2>
+        <p class="vision-row-description">
+            We’ve made the chassis and built a few use-cases, but we’d love to see what others do with it! Get a few lamps and play with the colours, or fork our project on Github and build your own experiences.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="vision-row"
+       style="background: #bdfce1;
+              color: #3c3c3c;">
+    <div class="vision-row-background-spacer"></div>
+    <div class="vision-content mobile-full-bleed">
+      <div class="vision-row-textbox desktop-wider">
+        <p class="vision-row-description">
+            This project is a collaboration with the Android Things team at Google.
+        </p>
+        <p class="vision-row-description">
+          <a href="https://androidthings.withgoogle.com/">
+            Learn more about Android Things and get your starter kit.
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="studio-notes">
+    <div class="margins">
+      <div class="spacer" style="height: 30px"></div>
+      <h2 class="studio-notes-header">
+        Studio notes.
+      </h2>
+      <h3 class="studio-notes-subhead">
+        Android Things
+      </h3>
+      <p>
+        <a href="https://androidthings.withgoogle.com/">Android Things</a> is a new operating system from Google, designed for embedded devices and the Internet of Things. In contrast to other embedded platforms, Android Things lets you build on modern technology that is familiar to mobile app developers.
+      </p>
+      <p>
+        The Lantern code-base is written in <a href="https://en.wikipedia.org/wiki/Kotlin_(programming_language)">Kotlin</a>, a modern type-safe language that should be familiar to Android and Swift developers alike. In addition, it uses Google technology like Nearby Connection and Cast to accelerate development.
+      </p>
+      <div class="spacer" style="height: 40px"></div>
+      <h3 class="studio-notes-subhead">
+        Embedded Projectors
+      </h3>
+      <ul>
+        <li>Projectors are becoming cheaper, small enough to embed. Laser projectors are always in focus, with no manual adjustment needed.</li>
+        <li>Unlike screens, projections work across undulating surfaces and reliefs, as well as vertical, horizontal planes</li>
+        <li>Projections are a temporary display, and can entirely disappear when not needed. Furniture becomes information becomes furniture.</li>
+        <li>We think projectors are a natural fit for subtly embedding information into our homes and shared spaces, and we expect to see more of this in the coming years.</li>
+        <li>With Android Things it's easy to deploy rich, graphical, connected apps to these devices.</li>
+      </ul>
+      <div class="spacer" style="height: 30px"></div>    
+    </div>
+  </div>
+
+  {% include_relative footer.inc.html %}
 </div>
