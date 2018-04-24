@@ -8,7 +8,7 @@
     <div class="lantern-nav-item {% if include.page == "features" %}current{% endif %}">
         <a href="/lantern/features">Features</a>
     </div>
-    <div class="lantern-nav-item"><a href="/TODO">Build</a></div>
+    <div class="lantern-nav-item"><a href="/https://www.hackster.io/nord-projects/lantern-9f0c28">Build</a></div>
     <div class="lantern-nav-item"><a href="https://github.com/nordprojects/lantern">GitHub</a></div>
 </div>
 <style>
@@ -78,7 +78,7 @@
         }
         .lantern-nav-item.current a {
             background: linear-gradient(to right, white 100%, white 100%);
-            color: #616d7b;
+            color: {{ include.desktop_bg_color | default: "#616d7b" }};
         }
     }
 </style>

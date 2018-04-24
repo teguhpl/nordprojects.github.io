@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently --kill-others 'jekyll build --watch' 'live-server _site'"
+    "start": "concurrently --kill-others 'bundle exec jekyll build --watch' 'live-server _site'"
   },
   "repository": {
     "type": "git",

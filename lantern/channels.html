@@ -1,0 +1,275 @@
+---
+layout: base
+title: Channels - Lantern
+breadcrumb:
+  under: Projects
+  name: Lantern
+  url: /lantern/
+---
+<link href="./style.css" rel="stylesheet">
+
+<div class="lantern-base">
+  <style>
+    .hero {
+      background: #1c94e3;
+      color: white;
+      min-height: 500px;
+      height: 55vw;
+      max-height: 750px;
+      text-align: center;
+    }
+    .hero-title {
+      font-size: 30px;
+      letter-spacing: 0.6px;
+      margin-bottom: 10px;
+    }
+    .hero-tagline {
+      font-size: 17px;
+      letter-spacing: 0.45px;
+      line-height: 24px;
+    }
+    .hero-video-spacer-mobile {
+      height: 90vw;
+    }
+    @media (min-width: 768px) { /* desktop */
+      .hero-video-spacer-mobile {
+        height: 0;
+      }
+    }
+  </style>
+  <div class="hero">
+
+    {% include_relative nav.inc.html page="channels" desktop_bg_color="#0085d3" %}
+    <style>
+
+    </style>
+    <div class="spacer hidden-xs" style="height: 60px; height: calc(40% - 220px)"></div>
+    <div class="margins">
+      <div class="row">
+        <div class="col-sm-5 col-sm-push-7">
+          <h1 class="hero-title">
+            Real-world AR
+          </h1>
+          <p class="hero-tagline">
+            Tables, shelves, floors and ceilings all become surfaces to paint in with glanceable, meaningful information and interfaces.
+          </p>
+          <div class="hero-video-spacer-mobile"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="spacer" style="height: 40px"></div>
+  <div class="spacer hidden-xs" style="height: 140px"></div>
+  <div class="margins">
+    <div class="row">
+      <div class="col-sm-10 col-sm-push-1">
+        Lantern is built around the concept of ‘channels’ – mini apps that can be configured through the companion app, hook into data feeds online and display projected UI.  
+        <br><br>Here’s a selection of the channels we created:          
+      </div>
+    </div>
+  </div>
+  <div class="spacer" style="height: 40px"></div>
+  <div class="spacer hidden-xs" style="height: 140px"></div>
+
+  <style>
+    .channel-row {
+    }
+    .channel-row-textbox {
+      padding: 22px 25px;
+      padding-bottom: 30px;
+    }
+    .channel-row-header {
+      font-size: 22px;
+      margin: 1em 0;
+      margin-bottom: 0.5em;
+    }
+    .channel-row-description {
+      font-size: 16px;
+      line-height: 24px;
+      letter-spacing: 0.14px;
+    }
+
+    @media (max-width: 767px) { /* mobile */
+      .channel-content {
+        background: white;
+        color: #363636;
+      }
+      .channel-content.mobile-full-bleed {
+        background: transparent;
+        color: inherit;
+      }
+      .channel-row-background-spacer {
+        height: 100vw;
+      }
+    }
+
+    @media (min-width: 768px) { /* desktop */
+      .channel-row {
+        max-height: 650px;
+        height: 45vw;
+        min-height: 447px;
+      }
+      .channel-content {
+        width: 90vw;
+        max-width: 1160px;
+        margin: 0 auto;
+        padding: 0 30px;
+        height: 100%;
+
+        display: flex;
+        align-items: center;
+      }
+      .channel-row-textbox {
+        width: 36%;
+        min-width: 350px;
+      }
+      .channel-row-textbox.desktop-wider {
+        width: 45%
+      }
+      .channel-row-header {
+        font-size: 28px;
+        letter-spacing: 0.14px;
+        line-height: 38px;
+        margin: 1em 0;
+        margin-bottom: 0.2em;
+      }
+      .channel-row-description {
+        font-size: 22px;
+        letter-spacing: 0.14px;
+        line-height: 35px;
+        margin-bottom: 1em;
+      }
+    }
+  </style>
+
+  <div class="channel-row"
+       style="background: #cfcfdb;
+              color: white;">
+    <div class="channel-row-background-spacer"></div>
+    <div class="channel-content">
+      <div class="channel-row-textbox">
+        <h2 class="channel-row-header">
+          Now Playing
+        </h2>
+        <p class="channel-row-description">
+          Displays song information from whatever’s playing through your cast-enabled speaker.
+        </p>
+        <p class="channel-row-description">
+            <u>How</u>: Lantern discovers cast devices on the local network using mDNS discovery, and connects via the Cast protocol over the local network.
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="channel-row" 
+       style="background: #b6b6bd;
+              color: #3c3c3c;">
+    <div class="channel-row-background-spacer"></div>
+    <div class="channel-content"
+         style="justify-content: flex-end">
+      <div class="channel-row-textbox">
+        <h2 class="channel-row-header">
+          Weather Caustics
+        </h2>
+        <p class="channel-row-description">
+          Projects ambient water motion reflections that react to live weather data at your location.
+        </p>
+        <p class="channel-row-description">
+          <u>How</u>: The companion app sends the location to the Lantern when setting up. Lantern then pulls weather data from OpenWeatherMap and displays the appropriate water simulation.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="channel-row"
+       style="background: #9ecccc;
+              color: white;">
+    <div class="channel-row-background-spacer"></div>
+    <div class="channel-content">
+      <div class="channel-row-textbox">
+        <h2 class="channel-row-header">
+          Augmented Clock
+        </h2>
+        <p class="channel-row-description">
+          Add your calendar to Lantern to see your days events as an overlay around the studio clock. This approach adds smarts to your everyday objects, without compromising their original purpose.
+        </p>
+        <p class="channel-row-description">
+          <u>How</u>: Use the companion app to add a publicly-available calendar URL. Lantern pulls the information periodically and shows events for the next 12 hours.
+        </p>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="channel-row" 
+       style="background: #37373a;
+              color: white;">
+    <div class="channel-row-background-spacer"></div>
+    <div class="channel-content"
+         style="justify-content: flex-end">
+      <div class="channel-row-textbox mobile-full-bleed">
+        <h2 class="channel-row-header">
+          Space Porthole
+        </h2>
+        <p class="channel-row-description">
+          Uses your local latitude/longitude and a database of stars and constellations to project the night sky in real time on your ceiling.
+        </p>
+        <p class="channel-row-description">
+          <u>How</u>: Developed as a sketch in Processing, we ported it over to a Lantern channel using the Processing-Android project.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="channel-row"
+       style="background: #909aae;
+              color: white;">
+    <div class="channel-row-background-spacer"></div>
+    <div class="channel-content mobile-full-bleed">
+      <div class="channel-row-textbox desktop-wider">
+        <h2 class="channel-row-header">
+          Create your own
+        </h2>
+        <p class="channel-row-description">
+          Lantern’s channels are simple to make, being based on Android Fragments, and all the code is open-source. 
+        </p>
+        <p class="channel-row-description">
+          <a href="https://github.com/nordprojects/lantern">Check out our Github</a> and get started <a href="https://github.com/nordprojects/lantern#creating-a-channel">writing your own channel</a>!
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="studio-notes">
+    <div class="margins">
+      <div class="spacer" style="height: 30px"></div>
+      <h2 class="studio-notes-header">
+        Studio notes.
+      </h2>
+      <h3 class="studio-notes-subhead">
+          Projected graphics and ‘Real-world AR’
+      </h3>
+      <ul>
+        <li>We like the term ‘Soft UI’ -  projections form peripheral, ambient, ephemeral displays, which can enhance real world objects and spaces with useful, beautiful data.</li>
+        <li>When designing projections, keep clear of the corners of the projected area to avoid a boxed feeling reminiscent of screens.</li>
+        <li>Projecting black is projecting nothing - useful for backgrounds and removing the display.</li>
+        <li>Can be used for utility or delight, creating subtle but meaningful moments.</li>
+        <li>Subtle way of making classic analog devices smart</li>
+      </ul>
+      <div class="spacer" style="height: 40px"></div>
+      <h3 class="studio-notes-subhead">
+        AI-ready
+      </h3>
+      <ul>
+        <li>The integrated camera brings opportunities to take advantage of Machine Learning applied to Computer Vision</li>
+        <li>Opportunities to allow the device to recognise objects, conditions or signals, for a fully interactive UI. e.g. using your hands as paddles could open up Pong, placing an object on surface could trigger a story telling response.</li>
+        <li>Check out our recent <a href="TODO">Quick, Draw: Pen &amp; Paper</a> installation at I/O 2018! We worked with the ML team at Android Things to make a version of Quick, Draw! using a real pen on a paper pad.</li>
+      </ul>
+      <div class="spacer" style="height: 30px"></div>    
+    </div>
+  </div>
+
+  {% include_relative footer.inc.html %}
+</div>
