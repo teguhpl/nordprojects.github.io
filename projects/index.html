@@ -45,6 +45,7 @@ layout: base
   .hero-link, .hero-link:hover {
     color: #FFFFFF;
     font-size: 16px;
+    text-decoration: none;
   }
   /* Mobile */
   @media (max-width: 767px) {
@@ -82,16 +83,17 @@ layout: base
       }
     }
   </style>
-  <div class="hero" style="">
-    <div class="hero-card">
-      <div class="hero-top-spacer"></div>
-      <h3>{{ hero.title }}</h3>
-      <p>{{ hero.description }}</p>
-      <a class="hero-link" href="{{ hero.link_url }}">{{ hero.link_title }}</a>
-      <div class="hero-bottom-spacer"></div>
+  <a href="{{ hero.link_url }}" class="hero-link">
+    <div class="hero">
+      <div class="hero-card">
+        <div class="hero-top-spacer"></div>
+        <h3>{{ hero.title }}</h3>
+        <p>{{ hero.description }}</p>
+        <span style="text-decoration: underline;">{{ hero.link_title }}</span>
+        <div class="hero-bottom-spacer"></div>
+      </div>
     </div>
-  </div>
-
+  </a>
   <h2>Recent work</h2>
   {% for project in site.data.projects offset:1 %}
     {% cycle '<div class="row">', '' %}
