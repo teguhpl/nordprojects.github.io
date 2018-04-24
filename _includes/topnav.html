@@ -67,8 +67,23 @@
       margin-left: 20px;
     }
     .nav-menu {
-      margin-top: 5px;
-      margin-left: 0px;
+      margin-top: 0px;
+      margin-left: 15px;
+      margin-bottom: 10px;
+    }
+    .nav-menu-item {
+      font-size: 16px;
+    }
+    .nav>li>a {
+      padding-top: 6px;
+      padding-bottom: px;
+    }
+    .nav>li>a.topnav-final-breadcrumb-link {
+      display: block;
+      margin-left: 25px;
+    }
+    .breadcrumb-seperator {
+      display: none;
     }
   }
 </style>
@@ -80,14 +95,13 @@
     </button>
     <a href="/"><div class="nav-logo"></div></a>
   </div>
-
   <div class="collapse navbar-collapse" id="navbar-collapse-1">
     <ul class="nav navbar-nav navbar-right nav-menu">
       <li class="nav-menu-item"><a href="/">About</a></li>
       <li class="nav-menu-item">
         <a href="/projects/">Projects</a>
         {% if page.breadcrumb.under == "Projects" %}
-          &gt;
+          <span class="breadcrumb-seperator">&gt;</span>
           <a href="{{ page.breadcrumb.url }}"
              class="topnav-final-breadcrumb-link">
             {{ page.breadcrumb.name }}
