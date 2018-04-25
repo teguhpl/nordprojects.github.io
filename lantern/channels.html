@@ -11,12 +11,15 @@ breadcrumb:
 <div class="lantern-base">
   <style>
     .hero {
-      background: #1c94e3;
+      background: #0067c3;
       color: white;
       min-height: 500px;
       height: 55vw;
-      max-height: 750px;
+      max-height: 550px;
       text-align: center;
+
+      position: relative;
+      overflow: hidden;
     }
     .hero-title {
       font-size: 30px;
@@ -31,7 +34,37 @@ breadcrumb:
     .hero-video-spacer-mobile {
       height: 90vw;
     }
+    .hero-bg-container {
+      width: 1024px;
+      max-width: 100vw;
+      position: absolute;
+      top: 50%;
+      left: 55%;
+      bottom: 0;
+    }
+    .hero-bg {
+      padding-top: 56.25%;
+      width: 100%;
+      height: 0;
+      z-index: 0;
+      transform: translate(-60%, -50%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
     @media (min-width: 768px) { /* desktop */
+      .hero {
+        text-align: left;
+      }
+      .hero-title {
+        font-size: 47px;
+      }
+      .hero-tagline {
+        font-size: 24px;
+        line-height: 30px;
+        letter-spacing: 0.64px;
+      }
       .hero-video-spacer-mobile {
         height: 0;
       }
@@ -39,23 +72,45 @@ breadcrumb:
   </style>
   <div class="hero">
 
-    {% include_relative nav.inc.html page="channels" desktop_bg_color="#0085d3" %}
-    <style>
-
-    </style>
-    <div class="spacer hidden-xs" style="height: 60px; height: calc(40% - 220px)"></div>
-    <div class="margins">
-      <div class="row">
-        <div class="col-sm-5 col-sm-push-7">
-          <h1 class="hero-title">
-            Real-world AR
-          </h1>
-          <p class="hero-tagline">
-            Tables, shelves, floors and ceilings all become surfaces to paint in with glanceable, meaningful information and interfaces.
-          </p>
-          <div class="hero-video-spacer-mobile"></div>
-        </div>
+    <div class="hero-bg-container">
+      <div class="hero-bg">
+        <img src="img/color-cube-bg.jpg"
+             style="position: absolute;
+                    width: 137.5%;
+                    height: auto;
+                    max-width: none;
+                    max-height: none;
+                    top: -46.4%;
+                    left: -18.8%;">
+        <video autoplay loop muted playsinline 
+               style="position: absolute;
+                      top: 0; height: 100%;
+                      left: 0; width: 100%;
+                      z-index: 1;">
+          <source src="https://nordprojects-static.s3.amazonaws.com/lantern/color-cube.mp4"
+                  type="video/mp4">
+          <source src="https://nordprojects-static.s3.amazonaws.com/lantern/color-cube.webm"
+                  type="video/webm">
+        </video>
       </div>
+    </div>
+
+    <div class="hero-content" style="">
+      {% include_relative nav.inc.html page="channels" desktop_bg_color="#0085d3" %}
+      <div class="spacer hidden-xs" style="height: 60px; height: calc(40% - 220px)"></div>
+      <div class="margins">
+        <div class="row">
+          <div class="col-sm-6 col-sm-push-6">
+            <h1 class="hero-title">
+              Real-world AR
+            </h1>
+            <p class="hero-tagline">
+              Tables, shelves, floors and ceilings all become surfaces to paint in with glanceable, meaningful information and interfaces.
+            </p>
+            <div class="hero-video-spacer-mobile"></div>
+          </div>
+        </div>
+      </div>            
     </div>
   </div>
 
@@ -108,7 +163,20 @@ breadcrumb:
       .channel-row {
         max-height: 650px;
         height: 45vw;
-        min-height: 447px;
+        min-height: 420px;
+        overflow: hidden;
+        position: relative;
+      }
+      .channel-bg {
+        position: absolute;
+        z-index: 1;
+        height: auto;
+        width: auto;
+        min-width: 100%;
+        min-height: 100%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
       }
       .channel-content {
         width: 90vw;
@@ -117,37 +185,65 @@ breadcrumb:
         padding: 0 30px;
         height: 100%;
 
+        position: relative;
+        z-index: 2;
+
         display: flex;
         align-items: center;
+
+        font-size: 16px;
       }
       .channel-row-textbox {
-        width: 36%;
-        min-width: 350px;
+        width: 38%;
+        padding: 0;
+        /* min-width: 400px; */
       }
       .channel-row-textbox.desktop-wider {
         width: 45%
       }
       .channel-row-header {
-        font-size: 28px;
-        letter-spacing: 0.14px;
-        line-height: 38px;
+        font-size: 1.4em;
+        letter-spacing: 0.005em;
+        line-height: 1.07em;
         margin: 1em 0;
         margin-bottom: 0.2em;
       }
       .channel-row-description {
-        font-size: 22px;
-        letter-spacing: 0.14px;
-        line-height: 35px;
+        font-size: 1em;
+        letter-spacing: 0.005em;
+        line-height: 1.5em;
         margin-bottom: 1em;
+      }
+      .channel-row-how {
+        display: block;
+      }
+    }
+    @media (min-width: 1100px) { /* big desktop */
+      .channel-content {
+        font-size: 17px;
       }
     }
   </style>
 
   <div class="channel-row"
        style="background: #cfcfdb;
-              color: white;">
+              color: #282828;">
     <div class="channel-row-background-spacer"></div>
-    <div class="channel-content">
+    <video autoplay loop muted playsinline
+           class="channel-bg"
+           style="min-width: 110%;
+                  min-height: 100%;
+                  max-width: 100%;
+                  left:                 0%; top: 60%;
+                  transform: translate(-0%,     -60%);">
+      <source src="https://nordprojects-static.s3.amazonaws.com/lantern/now-playing-table.mp4"
+              type="video/mp4">
+      <source src="https://nordprojects-static.s3.amazonaws.com/lantern/now-playing-table.webm"
+              type="video/webm">
+    </video>
+      
+    <div class="channel-content"
+         style="justify-content: flex-end">
       <div class="channel-row-textbox">
         <h2 class="channel-row-header">
           Now Playing
@@ -156,7 +252,8 @@ breadcrumb:
           Displays song information from whatever’s playing through your cast-enabled speaker.
         </p>
         <p class="channel-row-description">
-            <u>How</u>: Lantern discovers cast devices on the local network using mDNS discovery, and connects via the Cast protocol over the local network.
+            <span class="channel-row-how"><u>How</u>:</span>
+            Lantern discovers cast devices on the local network using mDNS discovery, and connects via the Cast protocol over the local network.
         </p>
       </div>
     </div>
@@ -165,10 +262,21 @@ breadcrumb:
 
   <div class="channel-row" 
        style="background: #b6b6bd;
-              color: #3c3c3c;">
+              color: #282828;">
     <div class="channel-row-background-spacer"></div>
-    <div class="channel-content"
-         style="justify-content: flex-end">
+    <video autoplay loop muted playsinline
+           class="channel-bg"
+           style="min-width: 100%;
+                  min-height: 100%;
+                  max-width: 100%;
+                  left:                 50%; top: 30%;
+                  transform: translate(-50%,     -30%);">
+      <source src="https://nordprojects-static.s3.amazonaws.com/lantern/weather-caustics.mp4"
+              type="video/mp4">
+      <source src="https://nordprojects-static.s3.amazonaws.com/lantern/weather-caustics.webm"
+              type="video/webm">
+    </video>
+    <div class="channel-content">
       <div class="channel-row-textbox">
         <h2 class="channel-row-header">
           Weather Caustics
@@ -177,7 +285,8 @@ breadcrumb:
           Projects ambient water motion reflections that react to live weather data at your location.
         </p>
         <p class="channel-row-description">
-          <u>How</u>: The companion app sends the location to the Lantern when setting up. Lantern then pulls weather data from OpenWeatherMap and displays the appropriate water simulation.
+          <span class="channel-row-how"><u>How</u>:</span>
+          The companion app sends the location to the Lantern when setting up. Lantern then pulls weather data from OpenWeatherMap and displays the appropriate water simulation.
         </p>
       </div>
     </div>
@@ -187,16 +296,38 @@ breadcrumb:
        style="background: #9ecccc;
               color: white;">
     <div class="channel-row-background-spacer"></div>
-    <div class="channel-content">
+    <video autoplay loop muted playsinline
+           class="channel-bg"
+           style="min-width: 100%;
+                  min-height: 100%;
+                  max-width: 106%;
+                  left:                 80%; top: 60%;
+                  transform: translate(-80%,     -60%);">
+      <source src="https://nordprojects-static.s3.amazonaws.com/lantern/augmented-clock.mp4"
+              type="video/mp4">
+      <source src="https://nordprojects-static.s3.amazonaws.com/lantern/augmented-clock.webm"
+              type="video/webm">
+    </video>
+    <div class="grad-nd hidden-xs"
+         style="position: absolute;
+                top: 0; bottom: 0;
+                left: 50%; right: 0;
+                z-index: 1;
+                background: linear-gradient(to right, 
+                                            rgba(7,99,100,0.00) 0%,
+                                            rgba(102,171,172,0.30) 67%);"></div>
+    <div class="channel-content"
+         style="justify-content: flex-end">
       <div class="channel-row-textbox">
         <h2 class="channel-row-header">
           Augmented Clock
         </h2>
         <p class="channel-row-description">
-          Add your calendar to Lantern to see your days events as an overlay around the studio clock. This approach adds smarts to your everyday objects, without compromising their original purpose.
+          Makes the classic wall clock smart. Add your calendar to Lantern to see your days events as an overlay around the studio clock. 
         </p>
         <p class="channel-row-description">
-          <u>How</u>: Use the companion app to add a publicly-available calendar URL. Lantern pulls the information periodically and shows events for the next 12 hours.
+          <span class="channel-row-how"><u>How</u>:</span>
+          Use the companion app to add a publicly-available calendar URL. Lantern pulls the information periodically and shows events for the next 12 hours.
         </p>
       </div>
     </div>
@@ -206,9 +337,20 @@ breadcrumb:
   <div class="channel-row" 
        style="background: #37373a;
               color: white;">
+    <video autoplay loop muted playsinline
+           class="channel-bg"
+           style="min-width: 100%;
+                  min-height: 100%;
+                  max-width: 130%;
+                  left:                 60%; top: 50%;
+                  transform: translate(-60%,     -50%);">
+      <source src="https://nordprojects-static.s3.amazonaws.com/lantern/space-flip.mp4"
+              type="video/mp4">
+      <source src="https://nordprojects-static.s3.amazonaws.com/lantern/space-flip.webm"
+              type="video/webm">
+    </video>            
     <div class="channel-row-background-spacer"></div>
-    <div class="channel-content"
-         style="justify-content: flex-end">
+    <div class="channel-content">
       <div class="channel-row-textbox mobile-full-bleed">
         <h2 class="channel-row-header">
           Space Porthole
@@ -217,7 +359,8 @@ breadcrumb:
           Uses your local latitude/longitude and a database of stars and constellations to project the night sky in real time on your ceiling.
         </p>
         <p class="channel-row-description">
-          <u>How</u>: Developed as a sketch in Processing, we ported it over to a Lantern channel using the Processing-Android project.
+          <span class="channel-row-how"><u>How</u>:</span>
+          Developed as a sketch in Processing, we ported it over to a Lantern channel using the Processing-Android project.
         </p>
       </div>
     </div>
@@ -226,8 +369,16 @@ breadcrumb:
   <div class="channel-row"
        style="background: #909aae;
               color: white;">
+    <img src="img/create-your-own.jpg"
+         class="channel-bg"
+         style="min-width: 100%;
+                min-height: 100%;
+                max-width: 130%;
+                left:                 10%; top: 90%;
+                transform: translate(-10%,     -90%);">
     <div class="channel-row-background-spacer"></div>
-    <div class="channel-content mobile-full-bleed">
+    <div class="channel-content mobile-full-bleed"
+         style="justify-content: flex-end">
       <div class="channel-row-textbox desktop-wider">
         <h2 class="channel-row-header">
           Create your own
