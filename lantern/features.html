@@ -1,0 +1,214 @@
+---
+layout: base
+title: Lantern
+breadcrumb:
+  under: Projects
+  name: Lantern
+  url: /lantern/
+---
+<link href="./style.css" rel="stylesheet">
+
+<div class="lantern-base">
+  <style>
+    .hero {
+      background: #909eae;
+      background-image: url(img/lamp-hero-shade-off.jpg);
+      background-size: 879px auto;
+      background-position: 70% 100%;
+      background-repeat: no-repeat;
+      color: white;
+      min-height: 500px;
+      height: 50vw;
+      max-height: 610px;
+    }
+    .hero-tagline {
+      font-size: 20px;
+      letter-spacing: 0.53px;
+      line-height: 28px;
+      text-align: center;
+    }
+    @media (min-width: 768px) { /* desktop */
+      .hero {
+        background-size: 1580px auto;
+        background-position: 69% 100%;
+      }
+      .hero-tagline {
+        font-size: 34px;
+        text-align: left;
+        letter-spacing: 0.22px;
+        line-height: 40px;
+      }
+    }
+  </style>
+  <div class="hero">
+    {% include_relative nav.inc.html page="features" %}
+    <div class="spacer hidden-xs" style="height: 60px; height: calc(50% - 220px)"></div>
+    <div class="spacer" style="height:40px"></div>
+    <div class="margins">
+      <div class="row">
+        <div class="col-sm-6">
+          <p class="hero-tagline">
+            Off the shelf parts coupled with some sweet new interactions.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="spacer visible-xs" style="height: 294px"></div>
+  </div>
+
+  <div class="spacer" style="height: 40px"></div>
+  <div class="spacer hidden-xs" style="height: 75px"></div>
+  <div class="margins">
+    <div class="row">
+      <div class="col-sm-10 col-sm-push-1">
+        <center>
+          How it works: a few more details of Lantern.
+        </center>
+      </div>
+    </div>
+  </div>
+  <div class="spacer" style="height: 60px"></div>
+  <div class="spacer hidden-xs" style="height: 20px"></div>
+
+  <style>
+    .feature {
+      font-size: 16px;
+      letter-spacing: 0.14px;
+      line-height: 24px;
+      margin-bottom: 50px;
+    }
+    .feature h2 {
+      font-size: 20px;
+      letter-spacing: 0.14px;
+      line-height: 30px;
+      margin-bottom: 8px;
+    }
+    @media (min-width: 768px) { /* desktop */
+      .feature {
+        font-size: 18px;
+        letter-spacing: 0.1px;
+        line-height: 28px;
+        margin-bottom: 100px;
+      }
+      .feature h2 {
+        font-size: 22px;
+        letter-spacing: 0.1px;
+        line-height: 28px;
+        margin-top: 0;
+      }
+    }
+  </style>
+
+  <div class="margins">
+    <div class="feature row">
+      <div class="col-sm-7 col-sm-push-5">
+        <img src="http://placehold.it/1600x900">
+        &nbsp;
+        <img src="http://placehold.it/1600x900">
+      </div>
+      <div class="col-sm-5 col-sm-pull-7">
+        <h2>
+          Different content for each surface
+        </h2>
+        <p>
+          Lantern makes use of the built-in accelerometer to change channels just by rotating the head.
+        </p>
+      </div>
+    </div>
+
+    <div class="feature row">
+      <div class="col-sm-7 col-sm-push-5">
+        <img src="http://placehold.it/1600x900">
+      </div>
+      <div class="col-sm-5 col-sm-pull-7">
+        <h2>
+          If you can see it, you can use it
+        </h2>
+        <p>
+          Connect to Lantern through Google Nearby. We use a proximity-based permissions, rather than user identity.
+        </p>
+      </div>
+    </div>
+    
+    <div class="feature row">
+      <div class="col-sm-7 col-sm-push-5">
+        <img src="http://placehold.it/1600x900">
+      </div>
+      <div class="col-sm-5 col-sm-pull-7">
+        <h2>
+          Change the channel
+        </h2>
+        <p>
+          Tap a plane to change the channel and customise its appearance.
+        </p>
+      </div>
+    </div>
+    
+    <div class="feature row">
+      <div class="col-sm-7 col-sm-push-5">
+        <img src="http://placehold.it/1600x900">
+        &nbsp;
+        <img src="http://placehold.it/1600x900">
+      </div>
+      <div class="col-sm-5 col-sm-pull-7">
+        <h2>
+          Works with existing services
+        </h2>
+        <p>
+          Lantern integrates with services you use already: Google Calendar (via the iCal format), Spotify and Google Play Music (via the Cast protocol)
+        </p>
+      </div>
+    </div>
+    
+    <div class="feature row">
+      <div class="col-sm-7 col-sm-push-5">
+        <img src="http://placehold.it/1600x900">
+      </div>
+      <div class="col-sm-5 col-sm-pull-7">
+        <h2>
+          Start in Processing
+        </h2>
+        <p>
+          Using the <a href="http://android.processing.org/">Processing-Android</a> project, you can start development of a channel in the accessible Processing language, and then port it over to a channel if you like. This is how we developed Space Porthole!
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .learn-more-banner {
+      position: relative;
+      padding-top: 66%;
+      background-image: url(img/lamp-lens-flare.jpg);
+      background-size: cover;
+      background-position: bottom;
+      color: white;
+    }
+    .learn-more-banner a:hover {
+      color: inherit;
+    }
+    .learn-more-banner-content {
+      position: absolute;
+      width: 686px;
+      max-width: 85vw;
+      text-align: center;
+      left: 50%;
+      top: 160px;
+      transform: translate(-50%, 0);
+    }
+
+    @media (min-width: 768px) { /* desktop */
+      .learn-more-banner {
+        font-size: 30px;
+      }
+    }
+  </style>
+  <div class="learn-more-banner">
+    <div class="learn-more-banner-content">
+      Want to learn more? Check out how you can 
+      <a href="https://www.hackster.io/nord-projects/lantern-9f0c28">make your own</a>, or <a href="https://github.com/nordprojects/lantern">browse the code</a>.
+    </div>
+  </div>
+
+  {% include_relative footer.inc.html %}
+</div>
