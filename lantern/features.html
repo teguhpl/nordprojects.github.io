@@ -180,9 +180,11 @@ breadcrumb:
       position: relative;
       padding-top: 66%;
       background-image: url(img/lamp-lens-flare.jpg);
-      background-size: cover;
-      background-position: bottom;
+      background-size: auto 110%;
+      background-position: 0% 100%;
       color: white;
+      font-size: 22px;
+      height: 480px;
     }
     .learn-more-banner a:hover {
       color: inherit;
@@ -191,15 +193,22 @@ breadcrumb:
       position: absolute;
       width: 686px;
       max-width: 85vw;
-      text-align: center;
+      text-align: left;
       left: 50%;
-      top: 160px;
+      top: 38px;
       transform: translate(-50%, 0);
     }
 
     @media (min-width: 768px) { /* desktop */
       .learn-more-banner {
         font-size: 30px;
+        background-size: cover;
+        background-position: bottom;
+        height: auto;
+      }
+      .learn-more-banner-content {
+        text-align: center;
+        top: 160px;
       }
     }
   </style>
