@@ -13,27 +13,115 @@ breadcrumb:
     .hero {
       background: #909eae;
       color: white;
-      min-height: 500px;
-      height: 55vw;
-      max-height: 750px;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
     }
     .hero-tagline {
-      font-size: 24px;
+      font-size: 18px;
+    }
+    .hero-title {
+      margin: 15px 0;
+    }
+    .hero-title-image {
+      width: 116px;
+    }
+    .hero-bg-container {
+      position: absolute;
+      width: 120%;
+      top: 68px;
+      left: 54%;
+      bottom: 0;
+    }
+    .hero-bg {
+      padding-top: 56.25%;
+      width: 100%;
+      height: 0;
+      z-index: 0;
+      transform: translate(-50%, -0%);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+    .hero-video-spacer-mobile {
+      height: 75vw;
+    }
+    @media (min-width: 768px) { /* desktop */
+      .hero {
+        text-align: left;
+        min-height: 500px;
+        height: 55vw;
+        max-height: 736px;
+      }
+      .hero-title {
+        font-size: 47px;
+      }
+      .hero-title-image {
+        width: auto;
+      }
+      .hero-tagline {
+        font-size: 24px;
+        /* line-height: 30px;
+        letter-spacing: 0.64px; */
+      }
+      .hero-bg-container {
+        width: 1344px;
+        max-width: 100vw;
+        top: 100%;
+        left: 50%;
+        bottom: 0;
+      }
+      .hero-bg {
+        padding-top: 56.25%;
+        width: 100%;
+        transform: translate(-50%, -100%);
+      }
+      .hero-video-spacer-mobile {
+        height: 0;
+      }
     }
   </style>
   <div class="hero">
-    {% include_relative nav.inc.html page="vision" %}
-    <div class="spacer" style="height: 60px; height: calc(40% - 220px)"></div>
-    <div class="margins">
-      <div class="row">
-        <div class="col-sm-5 col-sm-push-7">
-          <h1 class="hero-title">
-            <img src="img/lantern-logo.svg">
-          </h1>
-          <p class="hero-tagline">Transform any surface into an ambient, smart interface.</p>
+    <div class="hero-bg-container">
+      <div class="hero-bg">
+        <img src="img/lantern-hero-srgb.jpg"
+             style="position: absolute;
+                    width: 177.5%;
+                    height: auto;
+                    max-width: none;
+                    max-height: none;
+                    top: -31.7%;
+                    left: -37.6%;">
+        <video autoplay loop muted playsinline 
+               style="position: absolute;
+                      top: 0; height: 100%;
+                      left: 0; width: 100%;
+                      z-index: 1;">
+          <source src="https://nordprojects-static.s3.amazonaws.com/lantern/lantern-hero.mp4"
+                  type="video/mp4">
+          <source src="https://nordprojects-static.s3.amazonaws.com/lantern/lantern-hero.webm"
+                  type="video/webm">
+        </video>
+      </div>
+    </div>
+
+    <div class="hero-content">
+      {% include_relative nav.inc.html page="vision" %}
+      <div class="spacer" style="height: 60px; height: calc(40% - 220px)"></div>
+      <div class="margins">
+        <div class="row">
+          <div class="col-sm-5 col-sm-push-7">
+            <h1 class="hero-title">
+              <img class="hero-title-image" src="img/lantern-logo.svg">
+            </h1>
+            <div class="hero-video-spacer-mobile"></div>
+            <p class="hero-tagline">Transform any surface into an ambient, smart interface.</p>
+          </div>
         </div>
       </div>
     </div>
+
   </div>
 
   <div class="spacer" style="height: 40px"></div>
@@ -92,7 +180,7 @@ breadcrumb:
         color: inherit;
       }
       .vision-row-background-spacer {
-        height: 65vw;
+        height: 85vw;
       }
     }
 
@@ -140,20 +228,22 @@ breadcrumb:
   </style>
 
   <div class="vision-row "
-       style="background: #cfcfdb;
+       style="background: #d0d1d9;
               color: white;">
     <img class="vision-row-bg iso-background"
          src="img/iso-components.jpg">
     <style>
-      .iso-background {
-        transform: translate(-62.7%, -52%);
-        width: 880px;
-        height: auto;
-        min-height: unset;
-        min-width: unset;
-        max-width: unset;
-        top: 170px;
-        left: 50%;
+    @media (max-width: 767px) { /* mobile */
+        .iso-background {
+          transform: translate(-62.7%, -52%);
+          width: 880px;
+          height: auto;
+          min-height: unset;
+          min-width: unset;
+          max-width: unset;
+          top: 54vw;
+          left: 50%;
+        }
       }
       @media (min-width: 768px) { /* desktop */
         .iso-background {
@@ -184,7 +274,39 @@ breadcrumb:
   <div class="vision-row" 
        style="background: #b6b6bd;
               color: #3c3c3c;">
-    <div class="vision-row-background-spacer"></div>
+    <div class="vision-row-background-spacer"
+         style="height: 85vw;"></div>
+
+    <video autoplay loop muted playsinline
+           class="vision-row-bg now-playing-bg"
+           style="">
+      <source src="https://nordprojects-static.s3.amazonaws.com/lantern/now-playing-speaker.mp4"
+              type="video/mp4">
+      <source src="https://nordprojects-static.s3.amazonaws.com/lantern/now-playing-speaker.webm"
+              type="video/webm">
+    </video>
+    <style>
+      @media (max-width: 767px) { /* mobile */
+        .now-playing-bg {
+          transform: translate(-8%, -100%);
+          width: 180%;
+          height: auto;
+          min-height: unset;
+          min-width: unset;
+          max-width: unset;
+          top: 85vw;
+          left: 8%;
+        }
+      }
+      @media (min-width: 768px) { /* desktop */
+        .now-playing-bg {
+          max-width: 100%;
+          width: auto;
+          left: 42%; top: 50%;
+          transform: translate(-42%, -50%);
+        }
+      }
+    </style>
     <div class="vision-content"
          style="justify-content: flex-end">
       <div class="vision-row-textbox">
