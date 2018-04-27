@@ -50,6 +50,7 @@ breadcrumb:
 
   <style>
     .vision-row {
+      position: relative;
     }
     .vision-row-textbox {
       padding: 22px 25px;
@@ -64,6 +65,22 @@ breadcrumb:
       font-size: 16px;
       line-height: 24px;
       letter-spacing: 0.14px;
+    }
+    .vision-content {
+      z-index: 1;
+      position: relative;
+    }
+
+    .vision-row-bg {
+      position: absolute;
+      z-index: 0;
+      height: auto;
+      width: auto;
+      min-width: 100%;
+      min-height: 100%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
 
     @media (max-width: 767px) { /* mobile */
@@ -85,6 +102,7 @@ breadcrumb:
         max-height: 650px;
         height: 45vw;
         min-height: 447px;
+        overflow: hidden;
       }
       .vision-content {
         width: 90vw;
@@ -119,9 +137,24 @@ breadcrumb:
     }
   </style>
 
-  <div class="vision-row"
+  <div class="vision-row "
        style="background: #cfcfdb;
               color: white;">
+    <img class="vision-row-bg iso-background"
+         src="img/iso-components.jpg">
+    <style>
+      .iso-background {
+
+      }
+      @media (min-width: 768px) { /* desktop */
+        .iso-background {
+          min-width: 1370px;
+          max-width: 120%;
+          left:                 42%; top:  60%;
+          transform: translate(-42%,      -52%);
+        }
+      }
+    </style>
     <div class="vision-row-background-spacer"></div>
     <div class="vision-content mobile-full-bleed">
       <div class="vision-row-textbox">
@@ -137,7 +170,6 @@ breadcrumb:
       </div>
     </div>
   </div>
-
 
   <div class="vision-row" 
        style="background: #b6b6bd;
