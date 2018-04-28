@@ -27,11 +27,17 @@
     font-size: 16px;
     line-height: 26px;
     letter-spacing: 0.42px;
+
+    overflow-x: hidden;
 }
 
 @media (min-width: 768px) { /* desktop */
     .studio-notes {
         background-size: 26px 15px;
+        padding: 50px 200px;
+    }
+    .studio-notes > .margins {
+        max-width: 780px;
     }
 }
 
@@ -45,6 +51,7 @@
     letter-spacing: 2px;
     line-height: 46px;
     font-size: 26px;
+    margin-bottom: 60px;
 }
 
 .studio-notes-subhead {
@@ -68,4 +75,27 @@
     position: absolute;
     top: 0;
     left: -1.6em;
+}
+.studio-notes-doodle-anchor-left, .studio-notes-doodle-anchor-right {
+    position: relative;
+    width: 0;
+    height: 0;
+}
+.studio-notes-doodle-anchor-left {
+    float: left;
+}
+.studio-notes-doodle-anchor-right {
+    float: right;
+}
+.studio-notes-doodle-anchor-left > *, .studio-notes-doodle-anchor-right > * {
+    position: absolute;
+    top: 0;
+    transform: translate(0, -50%);
+    max-width: 180px;
+}
+.studio-notes-doodle-anchor-left > * {
+    right: 50px;
+}
+.studio-notes-doodle-anchor-right > * {
+    left: 10px;
 }
