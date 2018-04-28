@@ -337,6 +337,25 @@ breadcrumb:
   <div class="vision-row"
        style="background: #cfcfdb;
               color: white;">
+    <video autoplay loop muted playsinline
+           class="vision-row-bg"
+           data-desktop-style="max-width: 100%;
+                               width: auto;
+                               left: 42%; top: 50%;
+                               transform: translate(-42%, -50%);">
+      <source src="https://static.nordprojects.co/lantern/kitchen.webm"
+              type="video/webm">
+      <source src="https://static.nordprojects.co/lantern/kitchen.mp4"
+              type="video/mp4">
+    </video>
+    <div class="grad-nd hidden-xs"
+         style="position: absolute;
+                top: 0; bottom: 0;
+                left: 0; right: 50%;
+                z-index: 1;
+                background: linear-gradient(to left, 
+                                            rgba(177, 169, 176, 0) 0%,
+                                            rgba(142, 128, 123, 0.397) 66%);"></div>
     <div class="vision-row-background-spacer"></div>
     <div class="vision-content">
       <div class="vision-row-textbox">
@@ -357,6 +376,17 @@ breadcrumb:
   <div class="vision-row" 
        style="background: #b8bdc8;
               color: white;">
+    <video autoplay loop muted playsinline
+           class="vision-row-bg"
+           data-desktop-style="max-width: 120%;
+                               width: auto;
+                               left: 42%; top: 50%;
+                               transform: translate(-42%, -50%);">
+      <source src="https://static.nordprojects.co/lantern/customise.mp4"
+              type="video/mp4">
+      <source src="https://static.nordprojects.co/lantern/customise.webm"
+              type="video/webm">
+    </video>
     <div class="vision-row-background-spacer"></div>
     <div class="vision-content"
          style="justify-content: flex-end">
@@ -372,9 +402,21 @@ breadcrumb:
   </div>
 
   <div class="vision-row"
-       style="background: #bdfce1;
+       style="background: #aaf1d3;
               color: #3c3c3c;">
     <div class="vision-row-background-spacer"></div>
+        <div class="vision-row-background-spacer" style="height: 85vw;"></div>
+
+    <img src="img/android-things-glock.png"
+         class="vision-row-bg"
+         style="min-height: unset;
+                min-width: unset;"
+         data-desktop-style="max-width: 604px;
+                             width: 50%;
+                             transform: translate(80px, -100%);
+                             top: 100%;
+                             left: 40%;">
+
     <div class="vision-content mobile-full-bleed">
       <div class="vision-row-textbox desktop-wider">
         <p class="vision-row-description">
@@ -439,7 +481,8 @@ breadcrumb:
              style="width: 297px;
                     max-width: unset;
                     top: 30px;
-                    right: -100px;">
+                    right: -100px;"
+             data-desktop-style="100px;">
       </div>   
       <div class="spacer hidden-xs" style="height: 150px"></div>    
     </div>
@@ -447,3 +490,6 @@ breadcrumb:
 
   {% include_relative footer.inc.html %}
 </div>
+<script>
+  {% include_relative lantern.js %}
+</script>
