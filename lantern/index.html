@@ -29,7 +29,7 @@ custom_css: ./style.css
     .hero-bg-container {
       position: absolute;
       width: 120%;
-      top: 68px;
+      top: 79px;
       left: 54%;
       bottom: 0;
     }
@@ -235,13 +235,10 @@ custom_css: ./style.css
         line-height: 35px;
         margin-bottom: 1em;
       }
-      .vision-row-background-spacer {
-        display: none;
-      }
     }
   </style>
 
-  <div class="vision-row "
+  <div class="vision-row"
        style="background: #d0d1d9;
               color: white;">
     <img class="vision-row-bg iso-background"
@@ -269,7 +266,7 @@ custom_css: ./style.css
         }
       }
     </style>
-    <div class="vision-row-background-spacer"></div>
+    <div class="spacer visible-xs" style="height: 85vw;"></div>
     <div class="vision-content mobile-full-bleed">
       <div class="vision-row-textbox">
         <h2 class="vision-row-header">
@@ -288,8 +285,7 @@ custom_css: ./style.css
   <div class="vision-row" 
        style="background: #b6b6bd;
               color: #3c3c3c;">
-    <div class="vision-row-background-spacer"
-         style="height: 85vw;"></div>
+    <div class="spacer visible-xs" style="height: 100vw;"></div>
 
     <video autoplay loop muted playsinline
            class="vision-row-bg now-playing-bg"
@@ -302,14 +298,14 @@ custom_css: ./style.css
     <style>
       @media (max-width: 767px) { /* mobile */
         .now-playing-bg {
-          transform: translate(-8%, -100%);
-          width: 180%;
+          transform: translate(-34%, -55%);
+          width: 204%;
           height: auto;
           min-height: unset;
           min-width: unset;
           max-width: unset;
-          top: 85vw;
-          left: 8%;
+          top: 50vw;
+          left: 50vw;
         }
       }
       @media (min-width: 768px) { /* desktop */
@@ -339,6 +335,14 @@ custom_css: ./style.css
               color: white;">
     <video autoplay loop muted playsinline
            class="vision-row-bg"
+           data-mobile-style="transform: translate(-62%, -50%);
+                              width: 194%;
+                              height: auto;
+                              min-height: unset;
+                              min-width: unset;
+                              max-width: unset;
+                              top: 43vw;
+                              left: 50vw;"
            data-desktop-style="max-width: 100%;
                                width: auto;
                                left: 42%; top: 50%;
@@ -356,7 +360,8 @@ custom_css: ./style.css
                 background: linear-gradient(to left, 
                                             rgba(177, 169, 176, 0) 0%,
                                             rgba(142, 128, 123, 0.397) 66%);"></div>
-    <div class="vision-row-background-spacer"></div>
+    <div class="spacer visible-xs" style="height: 87vw;"></div>
+
     <div class="vision-content">
       <div class="vision-row-textbox">
         <h2 class="vision-row-header">
@@ -378,6 +383,14 @@ custom_css: ./style.css
               color: white;">
     <video autoplay loop muted playsinline
            class="vision-row-bg"
+           data-mobile-style="transform: translate(-34%, -46.5%);
+                              width: 304%;
+                              height: auto;
+                              min-height: unset;
+                              min-width: unset;
+                              max-width: unset;
+                              top: 50vw;
+                              left: 50vw;"
            data-desktop-style="max-width: 120%;
                                width: auto;
                                left: 42%; top: 50%;
@@ -387,7 +400,7 @@ custom_css: ./style.css
       <source src="https://static.nordprojects.co/lantern/customise.webm"
               type="video/webm">
     </video>
-    <div class="vision-row-background-spacer"></div>
+    <div class="spacer visible-xs" style="height: 100vw;"></div>
     <div class="vision-content"
          style="justify-content: flex-end">
       <div class="vision-row-textbox mobile-full-bleed">
@@ -404,13 +417,18 @@ custom_css: ./style.css
   <div class="vision-row"
        style="background: #aaf1d3;
               color: #3c3c3c;">
-    <div class="vision-row-background-spacer"></div>
-        <div class="vision-row-background-spacer" style="height: 85vw;"></div>
+    <div class="spacer visible-xs"></div>
+        <div class="spacer visible-xs" style="height: 105vw;"></div>
 
     <img src="img/android-things-glock.png"
          class="vision-row-bg"
          style="min-height: unset;
-                min-width: unset;"
+                min-width: unset;
+                max-width: unset;"
+         data-mobile-style="width: 117%;
+                            transform: translate(-80.5%, -99%);
+                            top: 100vw;
+                            left: 100%;"
          data-desktop-style="max-width: 604px;
                              width: 50%;
                              transform: translate(80px, -100%);
@@ -436,7 +454,7 @@ custom_css: ./style.css
       <div class="spacer" style="height: 30px"></div>
       <h2 class="studio-notes-header">
         // Studio notes.
-        <div class="studio-notes-doodle-anchor-right">
+        <div class="studio-notes-doodle-anchor-right hidden-xs">
           <img src="img/studio-notes-doodle-android.png"
                style="width: 100px;
                       top: 50px;
@@ -445,11 +463,14 @@ custom_css: ./style.css
       </h2>
       <h3 class="studio-notes-subhead">
         Android Things
-        <div class="studio-notes-doodle-anchor-left">
+        <div class="studio-notes-doodle-anchor-left" data-mobile-style="float: right">
           <img src="img/studio-notes-doodle-at.png"
-               style="width: 169px;
-                      top: -20px;
-                      right: 40px;">
+               data-desktop-style="width: 169px;
+                                   top: -20px;
+                                   right: 40px;"
+               data-mobile-style="width: 100px;
+                                  right: 0px;
+                                  top: -100px;">
         </div>
       </h3>
       <p>
@@ -459,9 +480,12 @@ custom_css: ./style.css
         The Lantern code-base is written in <a href="https://en.wikipedia.org/wiki/Kotlin_(programming_language)">Kotlin</a>, a modern type-safe language that should be familiar to Android and Swift developers alike. In addition, it uses Google technology like Nearby Connection and Cast to accelerate development.
       </p>
       <div class="spacer" style="height: 40px"></div>
+      <img src="img/studio-notes-doodle-slack-red.png"
+           class="visible-xs"
+           style="width: 196px">
       <h3 class="studio-notes-subhead">
         Embedded Projectors
-        <div class="studio-notes-doodle-anchor-right">
+        <div class="studio-notes-doodle-anchor-right hidden-xs">
           <img src="img/studio-notes-doodle-bookshelf.png"
                style="width: 120px;
                       top: 30px;
@@ -476,7 +500,7 @@ custom_css: ./style.css
         <li>With Android Things it's easy to deploy rich, graphical, connected apps to these devices.</li>
       </ul>
       <div class="spacer" style="height: 30px"></div> 
-      <div class="studio-notes-doodle-anchor-left">
+      <div class="studio-notes-doodle-anchor-left hidden-xs">
         <img src="img/studio-notes-doodle-slack.png"
              style="width: 297px;
                     max-width: unset;

@@ -21,14 +21,14 @@
 .studio-notes {
     background-image: url(img/studio-notes-iso-tile.png);
     background-size: 20px auto;
-    padding: 22px 0;
+    padding: 48px 0;
 
     font-family: "Apercu Mono", "Roboto Mono", "Consolas", "Monaco", monospace;
     font-size: 16px;
     line-height: 26px;
     letter-spacing: 0.42px;
 
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 @media (min-width: 768px) { /* desktop */
@@ -51,7 +51,12 @@
     letter-spacing: 2px;
     line-height: 46px;
     font-size: 26px;
-    margin-bottom: 60px;
+    margin-bottom: 35px;
+}
+@media (min-width: 768px) { /* desktop */
+    .studio-notes-header {
+        margin-bottom: 60px;
+    }
 }
 
 .studio-notes-subhead {
