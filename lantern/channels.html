@@ -141,6 +141,8 @@ custom_css: ./style.css
 
   <style>
     .channel-row {
+      overflow: hidden;
+      position: relative;
     }
     .channel-row-textbox {
       padding: 22px 25px;
@@ -161,6 +163,8 @@ custom_css: ./style.css
       .channel-content {
         background: white;
         color: #363636;
+        z-index: 2;
+        position: relative;
       }
       .channel-content.mobile-full-bleed {
         background: transparent;
@@ -169,6 +173,15 @@ custom_css: ./style.css
       .channel-row-background-spacer {
         height: 100vw;
       }
+      .channel-bg {
+        position: absolute;
+        z-index: 1;
+        height: auto;
+        width: 218%;
+        top: 48vw;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
     }
 
     @media (min-width: 768px) { /* desktop */
@@ -176,8 +189,6 @@ custom_css: ./style.css
         max-height: 650px;
         height: 45vw;
         min-height: 420px;
-        overflow: hidden;
-        position: relative;
       }
       .channel-bg {
         position: absolute;
@@ -243,11 +254,13 @@ custom_css: ./style.css
     <div class="channel-row-background-spacer"></div>
     <video autoplay loop muted playsinline
            class="channel-bg"
-           style="min-width: 110%;
-                  min-height: 100%;
-                  max-width: 100%;
-                  left:                 0%; top: 60%;
-                  transform: translate(-0%,     -60%);">
+           data-mobile-style="transform: translate(-31%, -50%);
+                              width: 236%"
+           data-desktop-style="min-width: 110%;
+                               min-height: 100%;
+                               max-width: 100%;
+                               left:                 0%; top: 60%;
+                               transform: translate(-0%,     -60%);">
       <source src="https://nordprojects-static.s3.amazonaws.com/lantern/now-playing-table.mp4"
               type="video/mp4">
       <source src="https://nordprojects-static.s3.amazonaws.com/lantern/now-playing-table.webm"
@@ -278,11 +291,13 @@ custom_css: ./style.css
     <div class="channel-row-background-spacer"></div>
     <video autoplay loop muted playsinline
            class="channel-bg"
-           style="min-width: 100%;
-                  min-height: 100%;
-                  max-width: 100%;
-                  left:                 50%; top: 30%;
-                  transform: translate(-50%,     -30%);">
+           data-mobile-style="transform: translate(-55%, -50%);
+                              width: 218%"
+           data-desktop-style="min-width: 100%;
+                               min-height: 100%;
+                               max-width: 100%;
+                               left:                 50%; top: 30%;
+                               transform: translate(-50%,     -30%);">
       <source src="https://nordprojects-static.s3.amazonaws.com/lantern/weather-caustics.mp4"
               type="video/mp4">
       <source src="https://nordprojects-static.s3.amazonaws.com/lantern/weather-caustics.webm"
@@ -310,11 +325,13 @@ custom_css: ./style.css
     <div class="channel-row-background-spacer"></div>
     <video autoplay loop muted playsinline
            class="channel-bg"
-           style="min-width: 100%;
-                  min-height: 100%;
-                  max-width: 106%;
-                  left:                 80%; top: 60%;
-                  transform: translate(-80%,     -60%);">
+           data-mobile-style="transform: translate(-35%, -50%);
+                              width: 233%"
+           data-desktop-style="min-width: 100%;
+                               min-height: 100%;
+                               max-width: 106%;
+                               left:                 80%; top: 60%;
+                               transform: translate(-80%,     -60%);">
       <source src="https://nordprojects-static.s3.amazonaws.com/lantern/augmented-clock.mp4"
               type="video/mp4">
       <source src="https://nordprojects-static.s3.amazonaws.com/lantern/augmented-clock.webm"
@@ -351,11 +368,13 @@ custom_css: ./style.css
               color: white;">
     <video autoplay loop muted playsinline
            class="channel-bg"
-           style="min-width: 100%;
-                  min-height: 100%;
-                  max-width: 130%;
-                  left:                 60%; top: 50%;
-                  transform: translate(-60%,     -50%);">
+           data-mobile-style="transform: translate(-65.7%, -47%);
+                              width: 271%"
+           data-desktop-style="min-width: 100%;
+                               min-height: 100%;
+                               max-width: 130%;
+                               left:                 60%; top: 50%;
+                               transform: translate(-60%,     -50%);">
       <source src="https://nordprojects-static.s3.amazonaws.com/lantern/space-flip.mp4"
               type="video/mp4">
       <source src="https://nordprojects-static.s3.amazonaws.com/lantern/space-flip.webm"
@@ -383,12 +402,17 @@ custom_css: ./style.css
               color: white;">
     <img src="img/create-your-own.jpg"
          class="channel-bg"
-         style="min-width: 100%;
-                min-height: 100%;
-                max-width: 130%;
-                left:                 10%; top: 90%;
-                transform: translate(-10%,     -90%);">
-    <div class="channel-row-background-spacer"></div>
+         data-mobile-style="height: 140%;
+                            width: auto;
+                            left: 0;
+                            top: 100%;
+                            max-width: unset;
+                            transform: translate(0, -100%);"
+         data-desktop-style="min-width: 100%;
+                             min-height: 100%;
+                             max-width: 130%;
+                             left:                 10%; top: 90%;
+                             transform: translate(-10%,     -90%);">
     <div class="channel-content mobile-full-bleed"
          style="justify-content: flex-end">
       <div class="channel-row-textbox desktop-wider">
@@ -402,6 +426,7 @@ custom_css: ./style.css
           <a href="https://github.com/nordprojects/lantern">Check out our Github</a> and get started <a href="https://github.com/nordprojects/lantern#creating-a-channel">writing your own channel</a>!
         </p>
       </div>
+      <div class="channel-row-background-spacer" style="height: 30vw;"></div>
     </div>
   </div>
 
@@ -436,3 +461,6 @@ custom_css: ./style.css
 
   {% include_relative footer.inc.html %}
 </div>
+<script>
+  {% include_relative lantern.js %}
+</script>
