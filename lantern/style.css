@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto+Mono:700');
+@import url('/fonts/apercu-mono-regular-web/stylesheet.css');
 
 .lantern-base {
     /* a really wide max width for the page (makes the videos easier to place) */
