@@ -8,7 +8,7 @@ responseStyleElements.each(function (i, el) {
 function updateStyle() {
     responseStyleElements.each(function (i, el) {
         var $el = $(el);
-        var windowWidth = $(window).width();
+        var windowWidth = window.innerWidth;
 
         if (windowWidth < 768) {
             var mobileStyle = $el.data('mobile-style') || '';
