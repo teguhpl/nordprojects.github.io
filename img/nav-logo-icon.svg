@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="23px" height="25px" viewBox="0 0 23 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 49.3 (51167) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="3.-High-level-wireframes" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Mobile-Copy" transform="translate(-48.000000, -18.000000)">
+            <g id="Group" transform="translate(50.000000, 19.000000)">
+                <path d="M9.81288981,8.30555556 C4.39337579,8.30555556 0,13.5100683 0,18.5254074 C0,20.3805545 2.90899951,21.949703 6.91265146,22.4700277 L6.91265146,19.3180098 C6.91265146,17.7189867 8.22397028,16.4226998 9.84153584,16.4226998 C11.4591998,16.4226998 12.7705187,17.7189867 12.7705187,19.3180098 L12.7705187,22.4623401 C16.7444417,21.9345224 19.6257796,20.3716018 19.6257796,18.5254074 C19.6257796,13.5100683 15.2324038,8.30555556 9.81288981,8.30555556" id="Fill-1" fill="#FFFFFF"></path>
+                <path d="M9.81288981,8.30555556 C4.39337579,8.30555556 0,13.5100683 0,18.5254074 C0,20.3805545 2.90899951,21.949703 6.91265146,22.4700277 L6.91265146,19.3180098 C6.91265146,17.7189867 8.22397028,16.4226998 9.84153584,16.4226998 C11.4591998,16.4226998 12.7705187,17.7189867 12.7705187,19.3180098 L12.7705187,22.4623401 C16.7444417,21.9345224 19.6257796,20.3716018 19.6257796,18.5254074 C19.6257796,13.5100683 15.2324038,8.30555556 9.81288981,8.30555556 Z" id="Stroke-3" stroke="#000000" stroke-width="2.24" stroke-linecap="round" stroke-linejoin="round"></path>
+                <g id="Group-13" transform="translate(9.032258, 0.000000)">
+                    <polygon id="Stroke-7" stroke="#000000" stroke-width="2.24" stroke-linecap="round" stroke-linejoin="round" points="6.32245464 3.83333333 1.16116431 0.638888889 1.16116431 7.02777778"></polygon>
+                    <rect id="Rectangle-6-Copy" fill="#000000" x="0" y="0" width="2.25806452" height="12.1388889" rx="1.12903226"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

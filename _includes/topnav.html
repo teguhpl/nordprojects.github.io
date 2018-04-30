@@ -17,8 +17,8 @@
     display: inline-block;
   }
   .nav-collapse {
-    margin-top: 7px;
-    margin-bottom: 7px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     margin-right: 9px;
   }
   .nav-menu {
@@ -37,6 +37,7 @@
     color: #555;
     background-color: transparent;
   }
+  /* really specific selector to override bootstrap's styles */
   .nav>li>a {
     display: inline-block;
     padding-left: 0px;
@@ -50,21 +51,46 @@
     text-decoration: underline;
     background-color: transparent;
   }
-  .topnav-final-breadcrumb-link {
+  .topnav-breadcrumb-link {
     text-decoration: none;
   }
-  .nav>li>a.topnav-final-breadcrumb-link:hover {
+  .nav>li>a.topnav-breadcrumb-link:hover {
     text-decoration: none;
   }
-  @media (max-width: 767px) { 
+
+  @media (min-width: 768px) { /* desktop */
+    .nav>li>a.topnav-breadcrumb-link {
+      display: none;
+    }
+  }
+
+  @media (max-width: 767px) { /* mobile */
     .topnav {
       min-height: 60px;
     }
     .nav-logo {
       width: 160px;
       height: 25px;
-      top: 19px;
+      top: 17px;
       margin-left: 20px;
+    }
+    .nav-logo-icon {
+      width: 23px;
+      height: 25px;
+      background-image: url('/img/nav-logo-icon.svg');
+      background-size: cover;
+      position: relative;
+      top: 17px;
+      margin-left: 20px;
+      display: inline-block;
+    }
+    .nav-page-title-override {
+      -webkit-font-smoothing: auto;
+      position: absolute;
+      font-size: 20px;
+      top: 17px;
+      left: 50%;
+      transform: translate(-50%, 0);
     }
     .nav-menu {
       margin-top: 0px;
@@ -76,9 +102,8 @@
     }
     .nav>li>a {
       padding-top: 6px;
-      padding-bottom: px;
     }
-    .nav>li>a.topnav-final-breadcrumb-link {
+    .nav>li>a.topnav-breadcrumb-link {
       display: block;
       margin-left: 25px;
     }
@@ -93,17 +118,27 @@
       <span class="sr-only">Toggle navigation</span>
       <img src="/img/icon-menu.svg" />
     </button>
-    <a href="/"><div class="nav-logo"></div></a>
+
+    <div class="hidden-xs">
+      <a href="/"><div class="nav-logo"></div></a>
+    </div>
+    <div class="visible-xs">
+      {% if page.nav_title %}
+        <a href="/"><div class="nav-logo-icon"></div></a>
+        <div class="nav-page-title-override">{{ page.nav_title }}</div>
+      {% else %}
+        <a href="/"><div class="nav-logo"></div></a>
+      {% endif %}
+    </div>
   </div>
   <div class="collapse navbar-collapse" id="navbar-collapse-1">
     <ul class="nav navbar-nav navbar-right nav-menu">
-      <li class="nav-menu-item"><a href="/">About</a></li>
+      <li class="nav-menu-item"><a href="/">Studio</a></li>
       <li class="nav-menu-item">
         <a href="/projects/">Projects</a>
         {% if page.breadcrumb.under == "Projects" %}
-          <span class="breadcrumb-seperator">&gt;</span>
           <a href="{{ page.breadcrumb.url }}"
-             class="topnav-final-breadcrumb-link">
+             class="topnav-breadcrumb-link">
             {{ page.breadcrumb.name }}
           </a>
         {% endif %}
