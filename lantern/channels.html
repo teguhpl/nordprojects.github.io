@@ -13,9 +13,6 @@ custom_css: ./style.css
     .hero {
       background: #0067c3;
       color: white;
-      min-height: 500px;
-      height: 55vw;
-      max-height: 550px;
       text-align: center;
 
       position: relative;
@@ -56,6 +53,9 @@ custom_css: ./style.css
     @media (min-width: 768px) { /* desktop */
       .hero {
         text-align: left;
+        min-height: 500px;
+        height: 55vw;
+        max-height: 550px;
       }
       .hero-title {
         font-size: 47px;
@@ -418,7 +418,8 @@ custom_css: ./style.css
                             transform: translate(0, -100%);"
          data-desktop-style="min-width: 100%;
                              min-height: 100%;
-                             max-width: 200%;
+                             width: 170%;
+                             max-width: unset;
                              left:                 0%; top: 100%;
                              transform: translate(-0%,     -100%);">
     <div class="channel-content mobile-full-bleed"

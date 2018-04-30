@@ -39,14 +39,14 @@
     }
     .lantern-footer-button {
         display: inline-block;
-        width: 320px;
+        /* width: 320px; */
         max-width: 90vw;
-        padding: 23px 18px;
+        padding: 18px 18px;
         
         background: #ffc000;
         color: white;
 
-        font-size: 20px;
+        font-size: 18px;
         -webkit-font-smoothing: auto;
         text-decoration: none;
     }
@@ -54,5 +54,12 @@
         color: white;
         background: #f7b900;
         text-decoration: none;
+    }
+    @media (min-width: 768px) { /* desktop */
+        .lantern-footer-button {
+            width: 320px;
+            padding: 23px 18px;
+            font-size: 20px;
+        }
     }
 </style>
