@@ -103,24 +103,40 @@ custom_css: ./style.css
   <div class="hero">
     <div class="hero-bg-container">
       <div class="hero-bg">
-        <img src="img/lantern-hero-srgb.jpg"
-             style="position: absolute;
-                    width: 177.5%;
-                    height: auto;
-                    max-width: none;
-                    max-height: none;
-                    top: -31.7%;
-                    left: -37.6%;">
-        <video autoplay loop muted playsinline 
+        <div class="hidden-xs">
+          <img src="img/lantern-hero-srgb.jpg"
                style="position: absolute;
-                      top: 0; height: 100%;
-                      left: 0; width: 100%;
-                      z-index: 1;">
-          <source src="https://nordprojects-static.s3.amazonaws.com/lantern/lantern-hero.mp4"
-                  type="video/mp4">
-          <source src="https://nordprojects-static.s3.amazonaws.com/lantern/lantern-hero.webm"
-                  type="video/webm">
-        </video>
+                      width: 177.5%;
+                      height: auto;
+                      max-width: none;
+                      max-height: none;
+                      top: -31.7%;
+                      left: -37.6%;">
+          <video autoplay loop muted playsinline 
+                 style="position: absolute;
+                        top: 0; height: 100%;
+                        left: 0; width: 100%;
+                        z-index: 1;">
+            <source src="https://nordprojects-static.s3.amazonaws.com/lantern/lantern-hero.mp4"
+                    type="video/mp4">
+            <source src="https://nordprojects-static.s3.amazonaws.com/lantern/lantern-hero.webm"
+                    type="video/webm">
+          </video>          
+        </div>
+        <div class="visible-xs">
+          <video autoplay loop muted playsinline 
+                 style="position: absolute;
+                        top: -38%;
+                        height: auto;
+                        left: 5%;
+                        width: 84%;
+                        z-index: 1;">
+            <source src="https://nordprojects-static.s3.amazonaws.com/lantern/lantern-hero-mobile.mp4"
+                    type="video/mp4">
+            <source src="https://nordprojects-static.s3.amazonaws.com/lantern/lantern-hero-mobile.webm"
+                    type="video/webm">
+          </video>
+        </div>
       </div>
     </div>
 
