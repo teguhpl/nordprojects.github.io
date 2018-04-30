@@ -24,7 +24,7 @@
     background-size: 20px auto;
     padding: 48px 0;
 
-    font-family: "Apercu Mono", "Roboto Mono", "Consolas", "Monaco", monospace;
+    font-family: apercu-mono-regular, "Apercu Mono", "Roboto Mono", "Consolas", "Monaco", monospace;
     font-size: 16px;
     line-height: 26px;
     letter-spacing: 0.42px;
