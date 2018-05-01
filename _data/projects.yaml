@@ -3,14 +3,14 @@
   hero_desktop_image: /img/projects/lantern-desktop.jpg
   hero_mobile_image: /img/projects/lantern-mobile.jpg
   image: /img/projects/lantern.jpg
-  description: "Bacon ipsum dolor amet chicken buffalo ham hock meatball short loin, drumstick jerky brisket meatloaf tongue pork chop landjaeger. Turducken flank pork belly pastrami beef ribs salami. Picanha alcatra beef ribs boudin filet mignon brisket pastrami biltong burgdoggen cow meatloaf."
+  description: "We worked with Google to productise their newly released Android Things OS - to inspire designers and developers to engage with the platform. Using an Ikea lamp, laser projector and Raspberry Pi Lantern explores the relationships between surfaces and content - augmenting real-world objects and environments with glanceable data. Lantern is now on show at Google I/O."
   link_title: Lantern
   link_url: /lantern
 
 - name: Ding
   title: "Ding, the smart doorbell."
   image: /img/projects/ding.jpg
-  description: "We helped Ding create their first product - a connected doorbell, chime and companion app. First and foremost, it revolves around the lifestyle of the user, like a nice interior product that just happens to have smarts inside. The app is designed to complement this approach - to feel more like a magazine than a tech app. Simple features like silencing the Chime are sensitive to the needs of the user (and their young children)."
+  description: "We helped Ding create their first product - a connected doorbell, chime and iOS app. Ding’s understated design aesthetic (uncommon in IoT) is reflected in the companion app to feel more like an accessory of your home in your hand, than gadget app. Simple features like silencing the Chime are sensitive to the needs of the user (and their young children)."
   link_title: Ding Products
   link_url: https://dingproducts.com
 
@@ -21,44 +21,45 @@
   link_title: Google
   link: https://www.google.com
 
-- name: Tingbot
-  title: "Tingbot, the creative app platform for Raspberry Pi."
-  image: /img/projects/tingbot.jpg
-  description: "Bacon ipsum dolor amet chicken buffalo ham hock meatball short loin, drumstick jerky brisket meatloaf tongue pork chop landjaeger. Turducken flank pork belly pastrami beef ribs salami."
-  link_title: Tingbot
-  link_url: http://tingbot.com/
-
 - name: Grisedale Pike
   title: "Grisedale Pike, a dialect bot."
   image: /img/projects/grisedale.jpg
-  description: "Bacon ipsum dolor amet chicken buffalo ham hock meatball short loin, drumstick jerky brisket meatloaf tongue pork chop landjaeger. Turducken flank pork belly pastrami beef ribs salami."
+  description: "A hacked ‘Nook’ displays content from a @GrisedalePike - a bot that ‘grumbles’ about the weather in Cumbrian dialect. In contrast to phone/TV screens, e-ink refreshes are subtle and do not demand our attention, providing a calmer, more respectful approach to inviting technology into our homes."
   link_title: "@GrisedalePike"
   link: https://twitter.com/grisedalepike
 
+- name: Tingbot
+  title: "Tingbot, the creative app platform for Raspberry Pi."
+  image: /img/projects/tingbot.jpg
+  description: "Based on the Raspberry Pi, Tingbot transforms complex, scary electronics into a fun product that makes writing apps really simple.
+We began Tingbot as a side project, raised £48k on Kickstarter, manufactured it, and now sell it online to a global audience."
+  link_title: Tingbot
+  link_url: http://tingbot.com/
+
 - name: Little Printer
-  title: "Little Printers, a delightful front-end for an iconic connected device"
+  title: "Little Printers - a friendly new messaging app."
   image: /img/projects/little-printer.jpg
-  description: "Bacon ipsum dolor amet chicken buffalo ham hock meatball short loin, drumstick jerky brisket meatloaf tongue pork chop landjaeger. Turducken flank pork belly pastrami beef ribs salami."
+  description: "We’re creating an open-source front end experience (iOS app and cloud platform) to allow Little Printer owners to continue using their delightful devices. There’ll be a few messaging templates as well as integrations with other phone apps and 3rd party services like IFTTT and Slack."
   link_title: Little Printer
   link_url: http://littleprinter.nordprojects.co/
 
 - name: Cove
   title: "Cove, a mental health app for NHS."
   image: /img/projects/cove.jpg
-  description: "Bacon ipsum dolor amet chicken buffalo ham hock meatball short loin, drumstick jerky brisket meatloaf tongue pork chop landjaeger. Turducken flank pork belly pastrami beef ribs salami. "
+  description: "We worked with Cove to help develop their mental health therapy app. Cove is designed to provide young people with a way to express how they feel by making music and storing it in a personal journal. Cove is currently being trialled with the NHS."
   link_title: Cove
   link: http://www.cove-app.com/
 
 - name: Mixim
   title: "Mixim, music collaboration 10x faster than Dropbox."
   image: /img/projects/mixim.jpg
-  description: "Bacon ipsum dolor amet chicken buffalo ham hock meatball short loin, drumstick jerky brisket meatloaf tongue pork chop landjaeger. Turducken flank pork belly pastrami beef ribs salami. "
+  description: "Mixim is a software tool for remote collaboration between musicians, producers and sound engineers. We built Mixim over 2 years with Innovate UK funding, filed for a patent, and gained interest from the likes of Apple, Ministry of Sound, and Mixmag. Mixim launched in 2017."
   link_title: Mixim
   link: https://getmixim.com/
 
 - name: Loyalty Co.
   title: "Loyalty Co. rewards experience for shopping locally."
   image: /img/projects/loyalty-co.jpg
-  description: "Bacon ipsum dolor amet chicken buffalo ham hock meatball short loin, drumstick jerky brisket meatloaf tongue pork chop landjaeger. Turducken flank pork belly pastrami beef ribs salami. "
+  description: "Park technology are a startup bringing big business loyalty methods to small independent shops. We created a white-label MVP, gamifying discovery and local points collection. The app features graphical points visualisations using metaball physics and 3D particle systems."
   link_title: Park Technology
   link: https://www.parktechnology.com/
