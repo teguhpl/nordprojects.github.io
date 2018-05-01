@@ -25,9 +25,9 @@
     padding: 48px 0;
 
     font-family: apercu-mono-regular, "Apercu Mono", "Roboto Mono", "Consolas", "Monaco", monospace;
-    font-size: 16px;
-    line-height: 26px;
-    letter-spacing: 0.42px;
+    font-size: 14px;
+    line-height: 1.85em;
+    letter-spacing: 0.026em;
 
     overflow: hidden;
 }
@@ -36,6 +36,7 @@
     .studio-notes {
         background-size: 26px 15px;
         padding: 50px 200px;
+        font-size: 16px;
     }
     .studio-notes > .margins {
         max-width: 780px;
@@ -61,7 +62,7 @@
 }
 
 .studio-notes-subhead {
-    font-size: 16px;
+    font-size: 1em;
     letter-spacing: 0.48px;
     line-height: 26px;
     font-family: "Roboto Mono", "Consolas", "Monaco", monospace;
