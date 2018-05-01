@@ -8,7 +8,7 @@ layout: base
   .hero-section-header {
     margin-top: 75px;
     margin-bottom: 15px;
-    color: #0136D0;
+    color: #0041FF;
   }
   .hero-section-header-mobile {
     display: none;
@@ -76,7 +76,7 @@ layout: base
       display: block;
       margin-top: 40px;
       margin-bottom: 26px;
-      color: #0136D0;
+      color: #0041FF;
     }
     .hero-section-header {
       display: none;
@@ -161,7 +161,7 @@ layout: base
       {% endif %}
         <h3 class="project-card-header">{{ project.title }}</h3>
         <p class="project-card-description">{{ project.description }}</p>
-        <a class="project-link" href="{{ project.link_url }}">{{ project.link_title }}</a>
+        <a class="project-link" href="{{ project.link_url }}" target="_blank">{{ project.link_title }}</a>
       </div>
     {% cycle '', '</div>' %}
   {% endfor %}

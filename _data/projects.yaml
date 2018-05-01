@@ -19,20 +19,19 @@
   image: /img/projects/google-futures.jpg
   description: "A strategy project exploring device relationships in 3-5 years time. We worked as an embedded team within Google designing and developing interactive, hard-coded prototypes to test new experiences and create IP."
   link_title: Google
-  link: https://www.google.com
+  link_url: https://store.google.com/
 
 - name: Grisedale Pike
   title: "Grisedale Pike, a dialect bot."
   image: /img/projects/grisedale.jpg
   description: "A hacked ‘Nook’ displays content from a @GrisedalePike - a bot that ‘grumbles’ about the weather in Cumbrian dialect. In contrast to phone/TV screens, e-ink refreshes are subtle and do not demand our attention, providing a calmer, more respectful approach to inviting technology into our homes."
   link_title: "@GrisedalePike"
-  link: https://twitter.com/grisedalepike
+  link_url: https://twitter.com/grisedalepike
 
 - name: Tingbot
   title: "Tingbot, the creative app platform for Raspberry Pi."
   image: /img/projects/tingbot.jpg
-  description: "Based on the Raspberry Pi, Tingbot transforms complex, scary electronics into a fun product that makes writing apps really simple.
-We began Tingbot as a side project, raised £48k on Kickstarter, manufactured it, and now sell it online to a global audience."
+  description: "Based on the Raspberry Pi, Tingbot transforms complex, scary electronics into a fun product that makes writing apps really simple. We began Tingbot as a side project, raised £48k on Kickstarter, manufactured it, and now sell it online to a global audience."
   link_title: Tingbot
   link_url: http://tingbot.com/
 
@@ -41,21 +40,21 @@ We began Tingbot as a side project, raised £48k on Kickstarter, manufactured it
   image: /img/projects/little-printer.jpg
   description: "We’re creating an open-source front end experience (iOS app and cloud platform) to allow Little Printer owners to continue using their delightful devices. There’ll be a few messaging templates as well as integrations with other phone apps and 3rd party services like IFTTT and Slack."
   link_title: Little Printer
-  link_url: http://littleprinter.nordprojects.co/
+  link_url: https://github.com/genmon/sirius/issues/26
 
 - name: Cove
   title: "Cove, a mental health app for NHS."
   image: /img/projects/cove.jpg
   description: "We worked with Cove to help develop their mental health therapy app. Cove is designed to provide young people with a way to express how they feel by making music and storing it in a personal journal. Cove is currently being trialled with the NHS."
   link_title: Cove
-  link: http://www.cove-app.com/
+  link_url: http://www.cove-app.com/
 
 - name: Mixim
   title: "Mixim, music collaboration 10x faster than Dropbox."
   image: /img/projects/mixim.jpg
   description: "Mixim is a software tool for remote collaboration between musicians, producers and sound engineers. We built Mixim over 2 years with Innovate UK funding, filed for a patent, and gained interest from the likes of Apple, Ministry of Sound, and Mixmag. Mixim launched in 2017."
   link_title: Mixim
-  link: https://getmixim.com/
+  link_url: https://getmixim.com/
 
 - name: Loyalty Co.
   title: "Loyalty Co. rewards experience for shopping locally."
@@ -63,4 +62,4 @@ We began Tingbot as a side project, raised £48k on Kickstarter, manufactured it
   gfycat_id: DefinitiveIllAmericanwarmblood
   description: "Park technology are a startup bringing big business loyalty methods to small independent shops. We created a white-label MVP, gamifying discovery and local points collection. The app features graphical points visualisations using metaball physics and 3D particle systems."
   link_title: Park Technology
-  link: https://www.parktechnology.com/
+  link_url: https://www.parktechnology.com/
