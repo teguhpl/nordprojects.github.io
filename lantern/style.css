@@ -19,6 +19,34 @@
     }
 }
 
+.next-page-section {
+    font-size: 20px;
+    letter-spacing: 1px;
+    line-height: 28px;
+
+    text-align: center;
+
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+@media (min-width: 768px) { /* desktop */
+    .next-page-section {
+        margin-top: 100px;
+        margin-bottom: 40px;
+    }
+}
+
+
+.next-page-section .margins {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.next-page-section a:link {
+    color: #1500ff;
+}
+
 .studio-notes {
     background-image: url(img/studio-notes-iso-tile.png);
     background-size: 20px auto;
