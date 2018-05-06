@@ -637,10 +637,11 @@ void main() {
                 var touchDown = false;
 
                 function unproject(pageX, pageY) {
+                    var canvasRect = renderer.domElement.getBoundingClientRect()
                     var zeroPoint = new THREE.Vector3(0,0,0);
                     zeroPoint.project(camera);
-                    var result = new THREE.Vector3(2 * pageX/domWidth - 1.0,
-                                                   -2 * pageY/domHeight + 1.0,
+                    var result = new THREE.Vector3(2 * (pageX - canvasRect.left)/domWidth - 1.0,
+                                                   -2 * (pageY - canvasRect.top)/domHeight + 1.0,
                                                    zeroPoint.z);
                     result.unproject(camera);
                     return result;
