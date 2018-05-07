@@ -3,7 +3,7 @@
   hero_desktop_image: /img/projects/lantern-desktop.jpg
   hero_mobile_image: /img/projects/lantern-mobile.jpg
   image: /img/projects/lantern.jpg
-  description: "We worked with Google to productise their newly released Android Things OS - to inspire designers and developers to engage with the platform. Using an Ikea lamp, laser projector and Raspberry Pi Lantern explores the relationships between surfaces and content - augmenting real-world objects and environments with glanceable data. Lantern is now on show at Google I/O."
+  description: "We worked with Google to make something with their newly released Android Things OS that would inspire designers and developers to engage with the platform. Using an Ikea lamp, laser projector and Raspberry Pi, Lantern explores the relationships between surfaces and content - augmenting real-world objects and environments with glanceable data. Lantern is now on show at Google I/O."
   link_title: Lantern
   link_url: /lantern
 
