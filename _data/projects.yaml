@@ -3,14 +3,14 @@
   hero_desktop_image: /img/projects/lantern-desktop.jpg
   hero_mobile_image: /img/projects/lantern-mobile.jpg
   image: /img/projects/lantern.jpg
-  description: "We worked with Google to make something with their newly released Android Things OS that would inspire designers and developers to engage with the platform. Using an Ikea lamp, laser projector and Raspberry Pi, Lantern explores the relationships between surfaces and content - augmenting real-world objects and environments with glanceable data. Lantern is now on show at Google I/O."
+  description: "We worked with Google to make something for the new Android Things OS that would inspire designers and developers to engage with the platform. Using an Ikea lamp, laser projector and Raspberry Pi, Lantern explores the relationships between surfaces and content - augmenting real-world objects and environments with glanceable data. Lantern is currently being exhibited at Google I/O."
   link_title: Lantern
   link_url: /lantern
 
 - name: Ding
   title: "Ding, the smart doorbell."
   image: /img/projects/ding.jpg
-  description: "We helped Ding create their first product - a connected doorbell, chime and iOS app. Ding’s understated design aesthetic (uncommon in IoT) is reflected in the companion app to feel more like an accessory of your home in your hand, than gadget app. Simple features like silencing the Chime are sensitive to the needs of the user (and their young children)."
+  description: "We helped Ding create their first product: a connected doorbell. Our companion app reflects Ding’s understated design aesthetic to feel more like part of your home, and less like a gadget. Simple features like ‘Quiet Time’ are sensitive to the needs of the user, and their young children."
   link_title: Ding Products
   link_url: https://dingproducts.com
 
@@ -24,7 +24,7 @@
 - name: Grisedale Pike
   title: "Grisedale Pike, a dialect bot."
   image: /img/projects/grisedale.jpg
-  description: "A hacked ‘Nook’ displays content from a @GrisedalePike - a bot that ‘grumbles’ about the weather in Cumbrian dialect. In contrast to phone/TV screens, e-ink refreshes are subtle and do not demand our attention, providing a calmer, more respectful approach to inviting technology into our homes."
+  description: "A hacked e-reader that displays tweets from @GrisedalePike - a bot that's always grumbling about the weather in Cumbrian dialect. In contrast to phone/TV screens, e-ink refreshes do not demand our attention, providing a calmer, more respectful approach to inviting technology into our homes."
   link_title: "@GrisedalePike"
   link_url: https://twitter.com/grisedalepike
 
@@ -38,7 +38,7 @@
 - name: Little Printer
   title: "Little Printers - a friendly new messaging app."
   image: /img/projects/little-printer.jpg
-  description: "We’re creating an open-source front end experience (iOS app and cloud platform) to allow Little Printer owners to continue using their delightful devices. There’ll be a few messaging templates as well as integrations with other phone apps and 3rd party services like IFTTT and Slack."
+  description: "We’re creating an open-source app to allow Little Printer owners to continue using their delightful devices. There’ll be a few message styles as well as integrations with other iOS apps and 3rd party services like IFTTT and Slack."
   link_title: Little Printer
   link_url: https://github.com/genmon/sirius/issues/26
 
@@ -60,6 +60,6 @@
   title: "Loyalty Co. rewards experience for shopping locally."
   image: /img/projects/loyalty-co.jpg
   gfycat_id: DefinitiveIllAmericanwarmblood
-  description: "Park technology are a startup bringing big business loyalty methods to small independent shops. We created a white-label MVP, gamifying discovery and local points collection. The app features graphical points visualisations using metaball physics and 3D particle systems."
+  description: "Park Technology is a startup bringing big-business loyalty methods to small independent shops. We created a white-label MVP, gamifying discovery and local points collection. The app features graphical points visualisations using metaball physics and 3D particle systems."
   link_title: Park Technology
   link_url: https://www.parktechnology.com/
