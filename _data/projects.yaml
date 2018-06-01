@@ -45,9 +45,9 @@
 - name: Cove
   title: "Cove, a mental health app for NHS."
   image: /img/projects/cove.jpg
-  description: "We worked with Cove to help develop their mental health therapy app. Cove is designed to provide young people with a way to express how they feel by making music and storing it in a personal journal. Cove is currently being trialled with the NHS."
-  link_title: Cove
-  link_url: http://www.cove-app.com/
+  description: "We worked with Humane Engineering to help develop their mental health therapy app, Cove. Cove is designed to provide young people with a way to express how they feel by making music and storing it in a personal journal. Cove is currently being trialled with the NHS."
+  link_title: Humane Engineering
+  link_url: http://humaneengineering.com/
 
 - name: Mixim
   title: "Mixim, music collaboration 10x faster than Dropbox."
